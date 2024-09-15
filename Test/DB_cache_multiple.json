@@ -1,0 +1,207 @@
+[
+    {
+        "external_urls": {
+            "spotify": "https://open.spotify.com/artist/2QsynagSdAqZj3U9HgDzjD"
+        },
+        "followers": {
+            "href": null,
+            "total": 12631784
+        },
+        "genres": [
+            "reggae",
+            "roots reggae"
+        ],
+        "href": "https://api.spotify.com/v1/artists/2QsynagSdAqZj3U9HgDzjD",
+        "id": "2QsynagSdAqZj3U9HgDzjD",
+        "images": [
+            {
+                "height": 858,
+                "url": "https://i.scdn.co/image/b5aae2067db80f694a980e596e7f49618c1206c9",
+                "width": 1000
+            },
+            {
+                "height": 549,
+                "url": "https://i.scdn.co/image/4cd57e5e12ea2c24644c40886d65a9b22eca9802",
+                "width": 640
+            },
+            {
+                "height": 172,
+                "url": "https://i.scdn.co/image/02fd758d9805ef44d1caafc35ff17a47f9dff098",
+                "width": 200
+            },
+            {
+                "height": 55,
+                "url": "https://i.scdn.co/image/357fe6ef3655b1b33855e33546e3c174a38a1a36",
+                "width": 64
+            }
+        ],
+        "name": "Bob Marley & The Wailers",
+        "popularity": 82,
+        "type": "artist",
+        "uri": "spotify:artist:2QsynagSdAqZj3U9HgDzjD"
+    },
+    {
+        "external_urls": {
+            "spotify": "https://open.spotify.com/artist/74ASZWbe4lXaubB36ztrGX"
+        },
+        "followers": {
+            "href": null,
+            "total": 6587788
+        },
+        "genres": [
+            "classic rock",
+            "country rock",
+            "folk",
+            "folk rock",
+            "rock",
+            "roots rock",
+            "singer-songwriter"
+        ],
+        "href": "https://api.spotify.com/v1/artists/74ASZWbe4lXaubB36ztrGX",
+        "id": "74ASZWbe4lXaubB36ztrGX",
+        "images": [
+            {
+                "height": 1000,
+                "url": "https://i.scdn.co/image/ab6772690000c46cd7064356b04a156664a37c4f",
+                "width": 1000
+            },
+            {
+                "height": 640,
+                "url": "https://i.scdn.co/image/ab6772690000dd22d7064356b04a156664a37c4f",
+                "width": 640
+            },
+            {
+                "height": 200,
+                "url": "https://i.scdn.co/image/ab6772690000bac3d7064356b04a156664a37c4f",
+                "width": 200
+            },
+            {
+                "height": 64,
+                "url": "https://i.scdn.co/image/ab67726900008f74d7064356b04a156664a37c4f",
+                "width": 64
+            }
+        ],
+        "name": "Bob Dylan",
+        "popularity": 73,
+        "type": "artist",
+        "uri": "spotify:artist:74ASZWbe4lXaubB36ztrGX"
+    },
+    {
+        "external_urls": {
+            "spotify": "https://open.spotify.com/artist/5ndkK3dpZLKtBklKjxNQwT"
+        },
+        "followers": {
+            "href": null,
+            "total": 2069106
+        },
+        "genres": [
+            "atl hip hop",
+            "dance pop",
+            "pop rap",
+            "rap",
+            "southern hip hop"
+        ],
+        "href": "https://api.spotify.com/v1/artists/5ndkK3dpZLKtBklKjxNQwT",
+        "id": "5ndkK3dpZLKtBklKjxNQwT",
+        "images": [
+            {
+                "height": 640,
+                "url": "https://i.scdn.co/image/ab6761610000e5eba0f6617187248f1488822905",
+                "width": 640
+            },
+            {
+                "height": 320,
+                "url": "https://i.scdn.co/image/ab67616100005174a0f6617187248f1488822905",
+                "width": 320
+            },
+            {
+                "height": 160,
+                "url": "https://i.scdn.co/image/ab6761610000f178a0f6617187248f1488822905",
+                "width": 160
+            }
+        ],
+        "name": "B.o.B",
+        "popularity": 73,
+        "type": "artist",
+        "uri": "spotify:artist:5ndkK3dpZLKtBklKjxNQwT"
+    },
+    {
+        "external_urls": {
+            "spotify": "https://open.spotify.com/artist/485uL27bPomh29R4JmQehQ"
+        },
+        "followers": {
+            "href": null,
+            "total": 2497983
+        },
+        "genres": [
+            "album rock",
+            "classic rock",
+            "country rock",
+            "detroit rock",
+            "hard rock",
+            "heartland rock",
+            "mellow gold",
+            "rock",
+            "singer-songwriter",
+            "soft rock"
+        ],
+        "href": "https://api.spotify.com/v1/artists/485uL27bPomh29R4JmQehQ",
+        "id": "485uL27bPomh29R4JmQehQ",
+        "images": [
+            {
+                "height": 640,
+                "url": "https://i.scdn.co/image/ab6761610000e5ebd98e2abb8fbebc2e2340f178",
+                "width": 640
+            },
+            {
+                "height": 320,
+                "url": "https://i.scdn.co/image/ab67616100005174d98e2abb8fbebc2e2340f178",
+                "width": 320
+            },
+            {
+                "height": 160,
+                "url": "https://i.scdn.co/image/ab6761610000f178d98e2abb8fbebc2e2340f178",
+                "width": 160
+            }
+        ],
+        "name": "Bob Seger",
+        "popularity": 69,
+        "type": "artist",
+        "uri": "spotify:artist:485uL27bPomh29R4JmQehQ"
+    },
+    {
+        "external_urls": {
+            "spotify": "https://open.spotify.com/artist/6BH2lormtpjy3X9DyrGHVj"
+        },
+        "followers": {
+            "href": null,
+            "total": 818023
+        },
+        "genres": [
+            "reggae"
+        ],
+        "href": "https://api.spotify.com/v1/artists/6BH2lormtpjy3X9DyrGHVj",
+        "id": "6BH2lormtpjy3X9DyrGHVj",
+        "images": [
+            {
+                "height": 640,
+                "url": "https://i.scdn.co/image/ab67616d0000b273a8593daaadc17a9ba7c50e70",
+                "width": 640
+            },
+            {
+                "height": 300,
+                "url": "https://i.scdn.co/image/ab67616d00001e02a8593daaadc17a9ba7c50e70",
+                "width": 300
+            },
+            {
+                "height": 64,
+                "url": "https://i.scdn.co/image/ab67616d00004851a8593daaadc17a9ba7c50e70",
+                "width": 64
+            }
+        ],
+        "name": "Bob Marley",
+        "popularity": 48,
+        "type": "artist",
+        "uri": "spotify:artist:6BH2lormtpjy3X9DyrGHVj"
+    }
+]
