@@ -229,7 +229,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
 
                 document.getElementById('results').innerHTML += eventHtml;
-                //updateMap(eventData.local_events.concat(eventData.global_events)); //UNCOMMENT FOR MAP FUNCTIONALITY
+                updateMap(eventData.local_events.concat(eventData.global_events)); //UNCOMMENT FOR MAP FUNCTIONALITY
             })
             .catch(error => {
                 console.error('Error:', error);

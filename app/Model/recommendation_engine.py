@@ -19,6 +19,7 @@ def predict_ticket_sales(artist_popularity, venue_capacity): #enhance later with
 #     return round(suggested_price, 2)
 
 import requests
+import random
 
 # Replace with your Azure ML web service endpoint and key
 AZURE_ENDPOINT = 'https://<your-azure-endpoint>.azurewebsites.net/score'
@@ -39,12 +40,13 @@ def call_azure_ml_model(artist_name):
         ]
     }
     
-    response = requests.post(AZURE_ENDPOINT, json=input_data, headers=headers)
+    return random.randint(10, 100)
+    # response = requests.post(AZURE_ENDPOINT, json=input_data, headers=headers)
     
-    if response.status_code == 200:
-        result = response.json()
-        # Modify this line to match the actual structure of your response
-        predicted_price = result.get('predictedPrice', 'No prediction available')
-        return predicted_price
-    else:
-        raise Exception(f"Azure ML service call failed with status code {response.status_code}")
+    # if response.status_code == 200:
+    #     result = response.json()
+    #     # Modify this line to match the actual structure of your response
+    #     predicted_price = result.get('predictedPrice', 'No prediction available')
+    #     return predicted_price
+    # else:
+    #     raise Exception(f"Azure ML service call failed with status code {response.status_code}")
