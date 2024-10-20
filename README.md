@@ -115,4 +115,3 @@ Data Processing: Pandas, NumPy
 Visualization: Matplotlib, Seaborn, Plotly
 Machine Learning: Scikit-Learn, XGBoost, LightGBM, TensorFlow, Keras, PyTorch
 Deployment: Flask, FastAPI, Docker, AWS Lambda
-# VTHacks2024
