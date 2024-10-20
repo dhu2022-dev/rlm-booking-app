@@ -53,65 +53,69 @@ This application provides a comprehensive system for concert venues to recommend
 - **Ticketmaster and Eventbrite Integration**: Syncs the app with popular ticketing platforms to automatically pull in ticket sales data and post new events.
 - **Ticket Sale Progress Monitoring**: Allows venues to monitor ticket sales from within the app, indicating when it's time to boost marketing or adjust pricing.
 
-### Other To-Dos
-- Safety checks in AWS with proper permissions, table limiting, and access key protection via security manager.
-- Live location w/ GeoLocation
-- More UI elements like loading buttons, load more option, and more styling (Ting Related?)
+---
 
+## To-Dos
 
-## ML Steps
-Define Objectives
-Concert Price Recommendation: Predict optimal ticket prices based on various factors like artist popularity, venue size, historical sales data, and more.
-Ticket Sales Prediction: Estimate the number of tickets likely to be sold for a given artist, venue, and price point.
-2. Collect and Prepare Data
-Data Sources:
+- **Safety Checks**: Implement AWS safety checks with proper permissions, table limiting, and access key protection via security manager.
+- **Live Location**: Add live location support using GeoLocation.
+- **UI Enhancements**: Add more UI elements like loading buttons, 'load more' options, and additional styling.
 
-Artist Data: Popularity metrics, historical performance, social media engagement, etc.
-Ticket Sales History: Past sales data for similar artists and venues.
-Venue Data: Capacity, location, and historical performance.
-Pricing Data: Historical pricing and sales correlation.
-Data Collection:
+---
 
-Gather data from APIs (e.g., Spotify for artist data, ticketing platforms for sales data).
-Collect historical data from internal sources or web scraping.
-Data Preparation:
+## Machine Learning Steps
 
-Cleaning: Handle missing values, outliers, and inconsistencies.
-Feature Engineering: Create relevant features such as artist popularity score, venue capacity, historical average sales, etc.
-Normalization: Scale numerical features to improve model performance.
-3. Exploratory Data Analysis (EDA)
-Understand Relationships:
+### 1. Define Objectives
+- **Concert Price Recommendation**: Predict optimal ticket prices based on various factors like artist popularity, venue size, historical sales data, and more.
+- **Ticket Sales Prediction**: Estimate the number of tickets likely to be sold for a given artist, venue, and price point.
 
-Analyze correlations between features like artist popularity, venue size, and ticket prices.
-Visualize data distributions and relationships using scatter plots, histograms, etc.
-Feature Selection:
+### 2. Collect and Prepare Data
+- **Data Sources**:
+  - Artist Data: Popularity metrics, historical performance, social media engagement, etc.
+  - Ticket Sales History: Past sales data for similar artists and venues.
+  - Venue Data: Capacity, location, and historical performance.
+  - Pricing Data: Historical pricing and sales correlation.
+  
+- **Data Collection**:
+  - Gather data from APIs (e.g., Spotify for artist data, ticketing platforms for sales data).
+  - Collect historical data from internal sources or web scraping.
 
-Identify and select the most relevant features for your model.
-4. Model Selection and Training
-Choose Models:
+- **Data Preparation**:
+  - **Cleaning**: Handle missing values, outliers, and inconsistencies.
+  - **Feature Engineering**: Create relevant features such as artist popularity score, venue capacity, historical average sales, etc.
+  - **Normalization**: Scale numerical features to improve model performance.
 
-Regression Models: For predicting ticket prices and sales (e.g., Linear Regression, Decision Trees, Random Forest, Gradient Boosting Machines, Neural Networks).
-Classification Models: If categorizing events into price ranges or sales brackets (e.g., Logistic Regression, Support Vector Machines).
-Model Training:
+### 3. Exploratory Data Analysis (EDA)
+- **Understand Relationships**: Analyze correlations between features like artist popularity, venue size, and ticket prices. Visualize data distributions and relationships using scatter plots, histograms, etc.
+- **Feature Selection**: Identify and select the most relevant features for your model.
 
-Split Data: Divide your data into training and test sets (e.g., 80% training, 20% testing).
-Train Models: Use the training set to train your models.
-Hyperparameter Tuning: Optimize model parameters using techniques like Grid Search or Random Search.
-Evaluation:
+### 4. Model Selection and Training
+- **Choose Models**:
+  - Regression Models: For predicting ticket prices and sales (e.g., Linear Regression, Decision Trees, Random Forest, Gradient Boosting Machines, Neural Networks).
+  - Classification Models: If categorizing events into price ranges or sales brackets (e.g., Logistic Regression, Support Vector Machines).
+  
+- **Model Training**:
+  - **Split Data**: Divide your data into training and test sets (e.g., 80% training, 20% testing).
+  - **Train Models**: Use the training set to train your models.
+  - **Hyperparameter Tuning**: Optimize model parameters using techniques like Grid Search or Random Search.
+  
+- **Evaluation**:
+  - **Metrics**: Evaluate model performance using metrics like RMSE (Root Mean Square Error) for regression or accuracy for classification.
+  - **Cross-Validation**: Perform cross-validation to ensure robustness and prevent overfitting.
 
-Metrics: Evaluate model performance using metrics like RMSE (Root Mean Square Error) for regression or accuracy for classification.
-Cross-Validation: Perform cross-validation to ensure robustness and prevent overfitting.
-5. Model Deployment and Integration
-Deploy Model:
+### 5. Model Deployment and Integration
+- **Deploy Model**:
+  - **Serve Model**: Use frameworks like Flask or FastAPI to create an API endpoint for your model.
+  - **Integrate**: Connect your model to your application or database for real-time predictions.
+  
+- **Monitor and Update**:
+  - **Performance Monitoring**: Track model performance over time and adjust as necessary.
+  - **Periodic Retraining**: Update the model with new data to maintain accuracy.
 
-Serve Model: Use frameworks like Flask or FastAPI to create an API endpoint for your model.
-Integrate: Connect your model to your application or database for real-time predictions.
-Monitor and Update:
+---
 
-Performance Monitoring: Track model performance over time and adjust as necessary.
-Periodic Retraining: Update the model with new data to maintain accuracy.
-6. Tools and Libraries
-Data Processing: Pandas, NumPy
-Visualization: Matplotlib, Seaborn, Plotly
-Machine Learning: Scikit-Learn, XGBoost, LightGBM, TensorFlow, Keras, PyTorch
-Deployment: Flask, FastAPI, Docker, AWS Lambda
+## Tools and Libraries
+- **Data Processing**: Pandas, NumPy
+- **Visualization**: Matplotlib, Seaborn, Plotly
+- **Machine Learning**: Scikit-Learn, XGBoost, LightGBM, TensorFlow, Keras, PyTorch
+- **Deployment**: Flask, FastAPI, Docker, AWS Lambda
