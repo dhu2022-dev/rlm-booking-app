@@ -1,6 +1,13 @@
 import requests
 import base64
-from config import SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET, TICKETMASTER_API_KEY
+import os
+from dotenv import load_dotenv
+
+# Get variables from .env file
+load_dotenv()
+SPOTIFY_CLIENT_ID = os.getenv('SPOTIFY_CLIENT_ID')
+SPOTIFY_CLIENT_SECRET = os.getenv('SPOTIFY_CLIENT_SECRET')
+TICKETMASTER_API_KEY = os.getenv('TICKETMASTER_API_KEY')
 
 # Get Spotify Access Token
 def get_spotify_token():

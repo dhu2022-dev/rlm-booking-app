@@ -1,9 +1,13 @@
 import csv
 import requests
 import time
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+TICKETMASTER_API_KEY = os.getenv('TICKETMASTER_API_KEY')
 
 # Constants
-TICKETMASTER_API_KEY = 'PKgRHvbfYjxWr7qkOFplRgvBGCFO5ewo'  # Replace with your actual Ticketmaster API key
 TICKETMASTER_BASE_URL = 'https://app.ticketmaster.com/discovery/v2/events.json'
 MAX_RETRIES = 5
 BACKOFF_FACTOR = 2

@@ -1,11 +1,18 @@
-from config import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, REGION_NAME, TABLE_NAME
 from flask import Blueprint, render_template, request, jsonify
 from .API_helper import get_spotify_token, search_artist, get_ticketmaster_events, analyze_local_global_events
 from .AWSDatabase_manager import AWSDatabaseManager
-from .Model.recommendation_engine import call_azure_ml_model, predict_ticket_sales
-#from .Model.recommendation_engine import predict_ticket_sales, suggest_ticket_price
-import json
+from dotenv import load_dotenv
 
+import os
+
+# Load environment variables from .env file and store them
+load_dotenv()
+AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
+REGION_NAME = os.getenv('REGION_NAME')
+TABLE_NAME = os.getenv('TABLE_NAME')
+
+# Initialize the main Blueprint for Flask
 main = Blueprint('main', __name__)
 
 # Initialize the AWSDatabaseManager instance
@@ -15,6 +22,7 @@ db_manager = AWSDatabaseManager(
     region_name=REGION_NAME,
     table_name=TABLE_NAME
 )
+
 # Route to serve the homepage
 @main.route('/')
 def home():
@@ -80,8 +88,8 @@ def get_events_route():
         for event in events:
             if '_embedded' in event and 'venues' in event['_embedded']:
                 venue_capacity = event['_embedded']['venues'][0].get('capacity', 5000)  # Default capacity
-                predicted_sales = predict_ticket_sales(int(artist_popularity), venue_capacity)
-                suggested_price = call_azure_ml_model(artist_name) #suggest_ticket_price(predicted_sales, venue_capacity)
+                predicted_sales = -1 # we would plug in the model values here
+                suggested_price = -1 # same here
                 
                 event['predicted_sales'] = predicted_sales
                 event['suggested_price'] = suggested_price
