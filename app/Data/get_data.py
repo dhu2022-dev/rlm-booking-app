@@ -1,12 +1,18 @@
-import requests
-import base64
-import csv
 import os
+import base64
+import requests
+import csv
 import logging
+import time
 from dotenv import load_dotenv
+from typing import List, Dict, Any
+
+# Configure logging
+logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
 
 class SpotifyDataManager:
-    def __init__(self, client_id, client_secret):
+    def __init__(self, client_id: str, client_secret: str):
+        logging.debug("Initializing SpotifyDataManager")
         self.client_id = client_id
         self.client_secret = client_secret
         self.base_url = 'https://api.spotify.com/v1'
@@ -15,10 +21,11 @@ class SpotifyDataManager:
             'Authorization': f'Bearer {self.access_token}'
         }
 
-    def get_access_token(self):
+    def get_access_token(self) -> str:
         """
         Retrieves access token for Spotify API
         """
+        logging.debug("Getting access token")
         auth_str = f'{self.client_id}:{self.client_secret}'
         b64_auth_str = base64.b64encode(auth_str.encode()).decode()
         
@@ -28,111 +35,89 @@ class SpotifyDataManager:
 
         response = requests.post(url, headers=headers, data=data)
         if response.status_code == 200:
+            logging.debug("Access token retrieved successfully")
             return response.json()['access_token']
         else:
+            logging.error(f"Failed to retrieve access token: {response.status_code}, {response.text}")
             raise Exception(f"Failed to retrieve access token: {response.status_code}, {response.text}")
 
-    def api_get_request(self, endpoint):
-        """
-        Handles GET requests to Spotify API
-        """
-        url = f'{self.base_url}/{endpoint}'
-        response = requests.get(url, headers=self.headers)
-        if response.status_code == 200:
-            return response.json()
-        else:
-            raise Exception(f"Failed to make API call: {response.status_code}, {response.text}")
-
-    def get_categories(self):
-        """
-        Get all available categories (genres)
-        """
-        return self.api_get_request('browse/categories').get('categories', {}).get('items', [])
-
-    def get_playlists_in_category(self, category_id):
-        """
-        Get playlists from a specific category (genre)
-        """
-        return self.api_get_request(f'browse/categories/{category_id}/playlists').get('playlists', {}).get('items', [])
-
-    def get_playlist_artists(self, playlist_id):
-        """
-        Get artists from a specific playlist
-        """
-        tracks = self.api_get_request(f'playlists/{playlist_id}/tracks').get('items', [])
-        artists = []
-        for track in tracks:
-            artist_info = track.get('track', {}).get('artists', [])
-            for artist in artist_info:
-                artists.append(artist)
-        return artists
-
-    def search_artist(self, artist_id):
-        """
-        Get detailed information for an artist by their Spotify ID
-        """
-        return self.api_get_request(f'artists/{artist_id}')
-
-    def categorize_popularity(self, popularity):
-        """
-        Categorizes the popularity of an artist as 'low', 'medium', or 'high'
-        """
-        if popularity < 30:
-            return 'low'
-        elif popularity < 70:
-            return 'medium'
-        else:
-            return 'high'
-
-    def balance_artist_popularity(self, artists, target_popularity):
-        """
-        Ensures a balanced mix of artists by popularity category (low, medium, high)
-        """
-        balanced_artists = []
-        popularity_count = {'low': 0, 'medium': 0, 'high': 0}
-
-        for artist in artists:
-            category = self.categorize_popularity(artist['popularity'])
-            if popularity_count[category] < target_popularity[category]:
-                balanced_artists.append(artist)
-                popularity_count[category] += 1
-
-        return balanced_artists
-    
-    def read_existing_entries(self, filename: str) -> set:
-        existing_entries = set()
+    def get_categories(self) -> List[Dict[str, Any]]:
+        logging.debug("Getting categories")
+        url = f'{self.base_url}/browse/categories'
         try:
-            with open(filename, mode='r', newline='', encoding='utf-8') as file:
-                reader = csv.DictReader(file)
-                for row in reader:
-                    entry = (row['Category ID'], row['Category Name'], row['Playlist ID'], row['Playlist Name'], row['Artist Name'], row['Artist Popularity'])
-                    existing_entries.add(entry)
-        except FileNotFoundError:
-            logging.info(f"File {filename} not found. A new file will be created.")
-        except Exception as e:
-            logging.error(f"Error reading existing entries from CSV: {e}")
-        return existing_entries
+            response = requests.get(url, headers=self.headers)
+            response.raise_for_status()
+            categories = response.json().get('categories', {}).get('items', [])
+            if categories is None:
+                logging.error("No categories found in the response.")
+                return []
+            logging.debug(f"Categories retrieved: {categories}")
+            return categories
+        except requests.RequestException as e:
+            logging.error(f"Error fetching categories: {e}")
+            return []
 
-    def write_to_csv(self, filename, data, headers):
-        """
-        Write the provided data to a CSV file
-        """
+    def get_playlists_in_category(self, category_id: str) -> List[Dict[str, Any]]:
+        logging.debug(f"Getting playlists for category {category_id}")
+        url = f'{self.base_url}/browse/categories/{category_id}/playlists'
         try:
-            with open(filename, mode='w', newline='', encoding='utf-8') as file:
-                writer = csv.writer(file)
-                writer.writerow(headers)
-                writer.writerows(data)
-            print(f"Data has been successfully saved to '{filename}'.")
-        except Exception as e:
-            print(f"Error writing to CSV: {e}")
+            response = requests.get(url, headers=self.headers)
+            response.raise_for_status()
+            playlists = response.json().get('playlists', {}).get('items', [])
+            if playlists is None:
+                logging.error(f"No playlists found for category {category_id}.")
+                return []
+            logging.debug(f"Playlists retrieved for category {category_id}: {playlists}")
+            return playlists
+        except requests.RequestException as e:
+            logging.error(f"Error fetching playlists in category {category_id}: {e}")
+            return []
+
+    def get_playlist_artists(self, playlist_id: str) -> List[Dict[str, Any]]:
+        logging.debug(f"Getting artists for playlist {playlist_id}")
+        url = f'{self.base_url}/playlists/{playlist_id}/tracks'
+        try:
+            response = requests.get(url, headers=self.headers)
+            response.raise_for_status()
+            tracks = response.json().get('items', [])
+            if tracks is None:
+                logging.error(f"No tracks found for playlist {playlist_id}.")
+                return []
+            artists = []
+            for track in tracks:
+                artist = track['track']['artists'][0]
+                artist_id = artist['id']
+                artist_details_url = f'{self.base_url}/artists/{artist_id}'
+                try:
+                    artist_response = requests.get(artist_details_url, headers=self.headers)
+                    artist_response.raise_for_status()
+                    artist_data = artist_response.json()
+                    artist_details = {
+                        'artist_name': artist_data.get('name', 'Unknown Artist'),
+                        'genre': ', '.join(artist_data.get('genres', [])),
+                        'popularity': artist_data.get('popularity', 0),
+                        'followers': artist_data.get('followers', {}).get('total', 0),
+                        'external_url': artist_data.get('external_urls', {}).get('spotify', '')
+                    }
+                    artists.append(artist_details)
+                    # Add a delay to avoid hitting rate limits
+                    time.sleep(1)  # Adjust the delay as needed
+                except requests.RequestException as e:
+                    logging.error(f"Error fetching artist details for {artist_id}: {e}")
+            logging.debug(f"Artists retrieved for playlist {playlist_id}: {artists}")
+            return artists
+        except requests.RequestException as e:
+            logging.error(f"Error fetching artists from playlist {playlist_id}: {e}")
+            return []
 
     def fetch_and_save_spotify_data(self, categories_limit=10, playlists_limit=5, output_file='spotify_data.csv'):
         """
         Fetches data from Spotify, balances the artist popularity, and saves it to a CSV incrementally, skipping duplicates.
         """
+        logging.debug("Starting fetch_and_save_spotify_data")
         try:
             categories = self.get_categories()[:categories_limit]
-            headers = ['Category ID', 'Category Name', 'Playlist ID', 'Playlist Name', 'Artist Name', 'Artist Popularity']
+            headers = ['artist_name', 'genre', 'popularity', 'followers', 'external_url']
             existing_entries = self.read_existing_entries(output_file)
 
             # Open the CSV file in append mode
@@ -143,58 +128,95 @@ class SpotifyDataManager:
                 if file.tell() == 0:
                     writer.writeheader()
 
-                # Go through categories
                 for category in categories:
-                    category_id = category['id']
-                    category_name = category['name']
-                    playlists = self.get_playlists_in_category(category_id)[:playlists_limit]
-                    
-                    # Go through playlists
-                    for playlist in playlists:
-                        playlist_id = playlist['id']
-                        playlist_name = playlist['name']
-                        artists = self.get_playlist_artists(playlist_id)
+                    if category is None:
+                        logging.warning("Encountered None category, skipping.")
+                        continue
 
-                        # Go through artists
+                    category_id = category.get('id')
+                    category_name = category.get('name')
+                    if not category_id or not category_name:
+                        logging.warning("Category ID or name is missing, skipping.")
+                        continue
+
+                    playlists = self.get_playlists_in_category(category_id)[:playlists_limit]
+                    for playlist in playlists:
+                        if playlist is None:
+                            logging.warning("Encountered None playlist, skipping.")
+                            continue
+
+                        playlist_id = playlist.get('id')
+                        playlist_name = playlist.get('name')
+                        if not playlist_id or not playlist_name:
+                            logging.warning("Playlist ID or name is missing, skipping.")
+                            continue
+
+                        artists = self.get_playlist_artists(playlist_id)
                         for artist in artists:
-                            artist_name = artist.get('name', 'Unknown Artist')
-                            artist_popularity = artist.get('popularity', 0)
+                            if artist is None:
+                                logging.warning("Encountered None artist, skipping.")
+                                continue
 
                             artist_data = {
-                                'Category ID': category_id,
-                                'Category Name': category_name,
-                                'Playlist ID': playlist_id,
-                                'Playlist Name': playlist_name,
-                                'Artist Name': artist_name,
-                                'Artist Popularity': artist_popularity
+                                'artist_name': artist.get('artist_name', 'Unknown Artist'),
+                                'genre': artist.get('genre', ''),
+                                'popularity': artist.get('popularity', 0),
+                                'followers': artist.get('followers', 0),
+                                'external_url': artist.get('external_url', '')
                             }
 
-                            # Create the entry
-                            entry = (category_id, category_name, playlist_id, playlist_name, artist_name, artist_popularity)
-                            
-                            # Check for duplicates, write to output if it's new
+                            entry = (artist_data['artist_name'], artist_data['genre'], artist_data['popularity'], artist_data['followers'], artist_data['external_url'])
                             if entry not in existing_entries:
                                 writer.writerow(artist_data)
                                 existing_entries.add(entry)
-                                logging.info(f"Artist {artist_name} written to CSV.")
+                                logging.info(f"Artist {artist_data['artist_name']} written to CSV.")
                             else:
-                                logging.info(f"Duplicate entry for artist {artist_name} skipped.")
+                                logging.info(f"Duplicate entry for artist {artist_data['artist_name']} skipped.")
 
         except Exception as e:
             logging.error(f"An error occurred: {e}")
 
-    # Package everything and run script directly (for testing)
-    def main():
-        # get credentials from .env file
-        load_dotenv()
-        client_id = os.getenv('CLIENT_ID')
-        client_secret = os.getenv('CLIENT_SECRET')
+    def read_existing_entries(self, filename: str) -> set:
+        """
+        Read existing entries from the CSV file to avoid duplicates.
         
-        # Initialize the SpotifyDataManager
-        spotify_manager = SpotifyDataManager(client_id=client_id, client_secret=client_secret)
+        Args:
+            filename (str): Name of the CSV file.
         
-        # Fetch and save data to a CSV file
-        spotify_manager.fetch_and_save_spotify_data()
+        Returns:
+            set: Set of existing entries.
+        """
+        logging.debug(f"Reading existing entries from {filename}")
+        existing_entries = set()
+        try:
+            with open(filename, mode='r', newline='', encoding='utf-8') as file:
+                reader = csv.DictReader(file)
+                for row in reader:
+                    entry = (row['artist_name'], row['genre'], row['popularity'], row['followers'], row['external_url'])
+                    existing_entries.add(entry)
+            logging.debug(f"Existing entries read: {existing_entries}")
+        except FileNotFoundError:
+            logging.info(f"File {filename} not found. A new file will be created.")
+        except Exception as e:
+            logging.error(f"Error reading existing entries from CSV: {e}")
+        return existing_entries
 
-    if __name__ == "__main__":
-        main()
+# Package everything and run script directly (for testing)
+# It WILL run forever until you collect everything you need
+def main():
+    # get credentials from .env file
+    load_dotenv()
+    client_id = os.getenv('SPOTIFY_CLIENT_ID')
+    client_secret = os.getenv('SPOTIFY_CLIENT_SECRET')
+    
+    logging.debug(f"Client ID: {client_id}")
+    logging.debug(f"Client Secret: {client_secret}")
+
+    # Initialize the SpotifyDataManager
+    spotify_manager = SpotifyDataManager(client_id=client_id, client_secret=client_secret)
+    
+    # Fetch and save data to a CSV file
+    spotify_manager.fetch_and_save_spotify_data()
+
+if __name__ == "__main__":
+    main()
