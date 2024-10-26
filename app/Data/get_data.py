@@ -1,6 +1,9 @@
 import requests
 import base64
 import csv
+import os
+import logging
+from dotenv import load_dotenv
 
 class SpotifyDataManager:
     def __init__(self, client_id, client_secret):
@@ -95,6 +98,20 @@ class SpotifyDataManager:
                 popularity_count[category] += 1
 
         return balanced_artists
+    
+    def read_existing_entries(self, filename: str) -> set:
+        existing_entries = set()
+        try:
+            with open(filename, mode='r', newline='', encoding='utf-8') as file:
+                reader = csv.DictReader(file)
+                for row in reader:
+                    entry = (row['Category ID'], row['Category Name'], row['Playlist ID'], row['Playlist Name'], row['Artist Name'], row['Artist Popularity'])
+                    existing_entries.add(entry)
+        except FileNotFoundError:
+            logging.info(f"File {filename} not found. A new file will be created.")
+        except Exception as e:
+            logging.error(f"Error reading existing entries from CSV: {e}")
+        return existing_entries
 
     def write_to_csv(self, filename, data, headers):
         """
@@ -111,58 +128,67 @@ class SpotifyDataManager:
 
     def fetch_and_save_spotify_data(self, categories_limit=10, playlists_limit=5, output_file='spotify_data.csv'):
         """
-        Fetches data from Spotify, balances the artist popularity, and saves it to a CSV
+        Fetches data from Spotify, balances the artist popularity, and saves it to a CSV incrementally, skipping duplicates.
         """
         try:
             categories = self.get_categories()[:categories_limit]
-            all_artists = []
-            for category in categories:
-                category_id = category['id']
-                category_name = category['name']
-                playlists = self.get_playlists_in_category(category_id)[:playlists_limit]
-
-                for playlist in playlists:
-                    playlist_id = playlist['id']
-                    playlist_name = playlist['name']
-                    artists = self.get_playlist_artists(playlist_id)
-
-                    for artist in artists:
-                        artist_name = artist.get('name', 'Unknown Artist')
-                        artist_popularity = artist.get('popularity', 0)
-
-                        all_artists.append({
-                            'name': artist_name,
-                            'popularity': artist_popularity,
-                            'category_id': category_id,
-                            'category_name': category_name,
-                            'playlist_id': playlist_id,
-                            'playlist_name': playlist_name
-                        })
-
-            # Define a target balance of low, medium, and high popularity artists
-            target_popularity = {
-                'low': 10,
-                'medium': 10,
-                'high': 10
-            }
-
-            # Balance artist popularity
-            balanced_artists = self.balance_artist_popularity(all_artists, target_popularity)
-
-            # Writing to CSV
             headers = ['Category ID', 'Category Name', 'Playlist ID', 'Playlist Name', 'Artist Name', 'Artist Popularity']
-            data = [[artist['category_id'], artist['category_name'], artist['playlist_id'], artist['playlist_name'],
-                     artist['name'], artist['popularity']] for artist in balanced_artists]
-            self.write_to_csv(output_file, data, headers)
+            existing_entries = self.read_existing_entries(output_file)
+
+            # Open the CSV file in append mode
+            with open(output_file, mode='a', newline='', encoding='utf-8') as file:
+                writer = csv.DictWriter(file, fieldnames=headers)
+                
+                # Write headers only if the file is empty
+                if file.tell() == 0:
+                    writer.writeheader()
+
+                # Go through categories
+                for category in categories:
+                    category_id = category['id']
+                    category_name = category['name']
+                    playlists = self.get_playlists_in_category(category_id)[:playlists_limit]
+                    
+                    # Go through playlists
+                    for playlist in playlists:
+                        playlist_id = playlist['id']
+                        playlist_name = playlist['name']
+                        artists = self.get_playlist_artists(playlist_id)
+
+                        # Go through artists
+                        for artist in artists:
+                            artist_name = artist.get('name', 'Unknown Artist')
+                            artist_popularity = artist.get('popularity', 0)
+
+                            artist_data = {
+                                'Category ID': category_id,
+                                'Category Name': category_name,
+                                'Playlist ID': playlist_id,
+                                'Playlist Name': playlist_name,
+                                'Artist Name': artist_name,
+                                'Artist Popularity': artist_popularity
+                            }
+
+                            # Create the entry
+                            entry = (category_id, category_name, playlist_id, playlist_name, artist_name, artist_popularity)
+                            
+                            # Check for duplicates, write to output if it's new
+                            if entry not in existing_entries:
+                                writer.writerow(artist_data)
+                                existing_entries.add(entry)
+                                logging.info(f"Artist {artist_name} written to CSV.")
+                            else:
+                                logging.info(f"Duplicate entry for artist {artist_name} skipped.")
 
         except Exception as e:
-            print(f"An error occurred: {e}")
+            logging.error(f"An error occurred: {e}")
 
     # Package everything and run script directly (for testing)
     def main():
-        # Replace 'your_client_id' and 'your_client_secret' with actual values
-        client_id = 'your_client_id'
-        client_secret = 'your_client_secret'
+        # get credentials from .env file
+        load_dotenv()
+        client_id = os.getenv('CLIENT_ID')
+        client_secret = os.getenv('CLIENT_SECRET')
         
         # Initialize the SpotifyDataManager
         spotify_manager = SpotifyDataManager(client_id=client_id, client_secret=client_secret)
