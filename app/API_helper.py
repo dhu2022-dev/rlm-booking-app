@@ -28,7 +28,8 @@ def get_ticketmaster_events(artist_name):
     else:
         return {'error': 'Failed to fetch events'}
 
-#adjust the target_country and target_city in the analyze_local_global_events function to fit the actual location of the venue you're targeting.
+# Idiot Proofing
+# adjust the target_country and target_city in the analyze_local_global_events function to fit the actual location of the venue you're targeting.
 def analyze_local_global_events(events, target_country=None, target_city=None):
     local_events = []
     global_events = []
