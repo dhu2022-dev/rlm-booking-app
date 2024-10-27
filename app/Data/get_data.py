@@ -303,16 +303,19 @@ class SpotifyDataManager:
                 # Read and store existing entries
                 for row in reader:
                     try:
+                        # Normalize the data by stripping whitespace and converting to strings
                         entry = (
-                            row['artist_name'],
-                            row['genre'],
-                            row['popularity'],
-                            row['followers'],
-                            row['external_url']
+                            row['artist_name'].strip(),
+                            row['genre'].strip(),
+                            str(row['popularity']).strip(),  # Ensure consistency in types
+                            str(row['followers']).strip(),   # Convert followers to string
+                            row['external_url'].strip()      # Strip URL whitespace
                         )
                         existing_entries.add(entry)
                     except KeyError as e:
                         logging.warning(f"Missing expected field {e} in a row. Skipping row: {row}")
+                    except Exception as e:
+                        logging.error(f"Error processing row: {e}. Skipping row: {row}")
                 
                 logging.debug(f"Successfully read {len(existing_entries)} existing entries from {filename}")
         
@@ -357,59 +360,74 @@ class SpotifyDataManager:
                 
                 # Loop through categories
                 for category in categories:
-                    category_id = category.get('id')
-                    category_name = category.get('name')
-                    
-                    if not category_id or not category_name:
-                        logging.warning("Category ID or name is missing, skipping.")
-                        continue
-                    
-                    # Fetch playlists in the category
-                    playlists = self.get_playlists_in_category(category_id)
-                    
-                    for playlist in playlists:
-                        playlist_id = playlist.get('id')
-                        playlist_name = playlist.get('name')
+                    try:
+                        category_id = category.get('id')
+                        category_name = category.get('name')
                         
-                        if not playlist_id or not playlist_name:
-                            logging.warning(f"Playlist ID or name is missing for playlist in category {category_name}, skipping.")
+                        if not category_id or not category_name:
+                            logging.warning("Category ID or name is missing, skipping.")
                             continue
                         
-                        # Fetch artists from the playlist
-                        artists = self.get_playlist_artists(playlist_id)
+                        # Fetch playlists in the category
+                        playlists = self.get_playlists_in_category(category_id)
                         
-                        for artist in artists:
-                            if not artist:
-                                logging.warning(f"Encountered None artist in playlist {playlist_name}, skipping.")
-                                continue
-                            
-                            artist_data = {
-                                'artist_name': artist.get('artist_name', 'Unknown Artist'),
-                                'genre': artist.get('genre', ''),
-                                'popularity': artist.get('popularity', 0),
-                                'followers': artist.get('followers', 0),
-                                'external_url': artist.get('external_url', '')
-                            }
-                            
-                            # Create a tuple to represent the artist entry
-                            entry = (artist_data['artist_name'], artist_data['genre'], artist_data['popularity'], artist_data['followers'], artist_data['external_url'])
-                            
-                            # Check for duplicates and write the artist to the CSV if it's new
-                            if entry not in existing_entries:
-                                writer.writerow(artist_data)
-                                existing_entries.add(entry)
-                                data_points_collected += 1
-                                logging.info(f"Artist {artist_data['artist_name']} written to CSV.")
+                        for playlist in playlists:
+                            try:
+                                playlist_id = playlist.get('id')
+                                playlist_name = playlist.get('name')
                                 
-                                # Add a delay to avoid rate limits
-                                time.sleep(0.3)  # 300 milliseconds delay
+                                if not playlist_id or not playlist_name:
+                                    logging.warning(f"Playlist ID or name is missing for playlist in category {category_name}, skipping.")
+                                    continue
                                 
-                                # Stop collecting if the data point limit is reached
-                                if data_points_collected >= data_point_limit:
-                                    logging.info(f"Data point limit of {data_point_limit} reached. Stopping data collection.")
-                                    return
-                            else:
-                                logging.info(f"Duplicate entry for artist {artist_data['artist_name']} skipped.")
+                                # Fetch artists from the playlist
+                                artists = self.get_playlist_artists(playlist_id)
+                                
+                                for artist in artists:
+                                    try:
+                                        if not artist:
+                                            logging.warning(f"Encountered None artist in playlist {playlist_name}, skipping.")
+                                            continue
+                                        
+                                        artist_data = {
+                                            'artist_name': artist.get('artist_name', 'Unknown Artist'),
+                                            'genre': artist.get('genre', ''),
+                                            'popularity': artist.get('popularity', 0),
+                                            'followers': artist.get('followers', 0),
+                                            'external_url': artist.get('external_url', '')
+                                        }
+                                        
+                                        # Create a tuple to represent the artist entry
+                                        entry = (artist_data['artist_name'], artist_data['genre'], artist_data['popularity'], artist_data['followers'], artist_data['external_url'])
+                                        
+                                        # Check for duplicates and write the artist to the CSV if it's new
+                                        if entry not in existing_entries:
+                                            writer.writerow(artist_data)
+                                            existing_entries.add(entry)
+                                            data_points_collected += 1
+                                            logging.info(f"Artist {artist_data['artist_name']} written to CSV.")
+                                            
+                                            # Add a delay to avoid rate limits
+                                            time.sleep(0.1)  # 100 milliseconds delay
+                                            
+                                            # Stop collecting if the data point limit is reached
+                                            if data_points_collected >= data_point_limit:
+                                                logging.info(f"Data point limit of {data_point_limit} reached. Stopping data collection.")
+                                                return
+                                        else:
+                                            logging.info(f"Duplicate entry for artist {artist_data['artist_name']} skipped.")
+                                    
+                                    except Exception as e:
+                                        logging.error(f"Error processing artist in playlist {playlist_name}: {e}")
+                                        continue  # Continue to the next artist
+                            
+                            except Exception as e:
+                                logging.error(f"Error processing playlist {playlist_name} in category {category_name}: {e}")
+                                continue  # Continue to the next playlist
+                    
+                    except Exception as e:
+                        logging.error(f"Error processing category {category_name}: {e}")
+                        continue  # Continue to the next category
         
         except Exception as e:
             logging.error(f"An error occurred during data collection: {e}")
