@@ -4,6 +4,7 @@ import requests
 import csv
 import logging
 import time
+import json
 from dotenv import load_dotenv
 from typing import List, Dict, Any
 
@@ -167,8 +168,6 @@ class SpotifyDataManager:
         
         return playlists
 
-
-
     def get_tracks_from_playlist(self, playlist_id: str) -> List[str]:
         """
         Fetches tracks from a given Spotify playlist and extracts the unique artist IDs.
@@ -327,16 +326,58 @@ class SpotifyDataManager:
         
         return existing_entries
 
-    def fetch_and_save_spotify_data(self, output_file='spotify_data.csv', data_point_limit=10000):
+    def load_progress(self, progress_file: str) -> dict:
+        """
+        Load the last progress from the progress file if it exists.
+        
+        Args:
+            progress_file (str): Path to the progress file.
+        
+        Returns:
+            dict: A dictionary containing the last processed category, playlist, and track.
+        """
+        if os.path.exists(progress_file):
+            with open(progress_file, 'r') as file:
+                return json.load(file)
+        else:
+            # Return a default structure if no progress file exists
+            return {"last_category_id": None, "last_playlist_id": None, "last_track_id": None}
+
+    def save_progress(self, progress_file: str, category_id: str, playlist_id: str, track_id: str) -> None:
+        """
+        Save the current progress to a file.
+        
+        Args:
+            progress_file (str): Path to the progress file.
+            category_id (str): The last processed category ID.
+            playlist_id (str): The last processed playlist ID.
+            track_id (str): The last processed track ID.
+        """
+        progress = {
+            "last_category_id": category_id,
+            "last_playlist_id": playlist_id,
+            "last_track_id": track_id
+        }
+        with open(progress_file, 'w') as file:
+            json.dump(progress, file)
+
+    def fetch_and_save_spotify_data(self, output_file='spotify_data.csv', data_point_limit=10000, progress_file='progress.json'):
         """
         Fetches data from Spotify, checks for duplicates, and saves artist data to a CSV incrementally.
-        Stops automatically after collecting the specified number of data points.
+        Resumes from the last processed category, playlist, and track if the script is restarted.
         
         Args:
             output_file (str): Name of the output CSV file.
             data_point_limit (int): The maximum number of data points to collect.
+            progress_file (str): Name of the progress file to track the last processed items.
         """
         logging.debug("Starting fetch_and_save_spotify_data")
+        
+        # Load the last progress (if any)
+        progress = self.load_progress(progress_file)
+        last_category_id = progress.get('last_category_id')
+        last_playlist_id = progress.get('last_playlist_id')
+        last_track_id = progress.get('last_track_id')
         
         try:
             # Fetch all categories
@@ -359,6 +400,7 @@ class SpotifyDataManager:
                 data_points_collected = len(existing_entries)
                 
                 # Loop through categories
+                category_found = False
                 for category in categories:
                     try:
                         category_id = category.get('id')
@@ -368,9 +410,15 @@ class SpotifyDataManager:
                             logging.warning("Category ID or name is missing, skipping.")
                             continue
                         
+                        # Skip categories that have already been processed
+                        if last_category_id and category_id != last_category_id and not category_found:
+                            continue
+                        category_found = True
+                        
                         # Fetch playlists in the category
                         playlists = self.get_playlists_in_category(category_id)
                         
+                        playlist_found = False
                         for playlist in playlists:
                             try:
                                 playlist_id = playlist.get('id')
@@ -380,17 +428,29 @@ class SpotifyDataManager:
                                     logging.warning(f"Playlist ID or name is missing for playlist in category {category_name}, skipping.")
                                     continue
                                 
+                                # Skip playlists that have already been processed
+                                if last_playlist_id and playlist_id != last_playlist_id and not playlist_found:
+                                    continue
+                                playlist_found = True
+                                
                                 # Fetch artists from the playlist
+                                artist_found = False
                                 artists = self.get_playlist_artists(playlist_id)
                                 
                                 for artist in artists:
                                     try:
+                                        artist_name = artist.get('artist_name', 'Unknown Artist')
+                                        if last_track_id and artist_name != last_track_id and not artist_found:
+                                            # Skip until we reach the last processed track
+                                            continue
+                                        artist_found = True
+                                        
                                         if not artist:
                                             logging.warning(f"Encountered None artist in playlist {playlist_name}, skipping.")
                                             continue
                                         
                                         artist_data = {
-                                            'artist_name': artist.get('artist_name', 'Unknown Artist'),
+                                            'artist_name': artist_name,
                                             'genre': artist.get('genre', ''),
                                             'popularity': artist.get('popularity', 0),
                                             'followers': artist.get('followers', 0),
@@ -407,8 +467,12 @@ class SpotifyDataManager:
                                             data_points_collected += 1
                                             logging.info(f"Artist {artist_data['artist_name']} written to CSV.")
                                             
-                                            # Add a delay to avoid rate limits
-                                            time.sleep(0.1)  # 100 milliseconds delay
+                                            # Save progress after writing the artist
+                                            self.save_progress(progress_file, category_id, playlist_id, artist_name)
+                                            
+                                            # Add delay to avoid hitting rate limit
+                                            logging.debug("Applying delay to avoid (burst) rate limit")
+                                            time.sleep(0.3)  # 300 milliseconds delay (adjust as needed)
                                             
                                             # Stop collecting if the data point limit is reached
                                             if data_points_collected >= data_point_limit:
@@ -416,10 +480,12 @@ class SpotifyDataManager:
                                                 return
                                         else:
                                             logging.info(f"Duplicate entry for artist {artist_data['artist_name']} skipped.")
-                                    
                                     except Exception as e:
                                         logging.error(f"Error processing artist in playlist {playlist_name}: {e}")
                                         continue  # Continue to the next artist
+                                
+                                # Save progress at the end of the playlist
+                                self.save_progress(progress_file, category_id, playlist_id, None)
                             
                             except Exception as e:
                                 logging.error(f"Error processing playlist {playlist_name} in category {category_name}: {e}")
