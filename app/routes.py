@@ -37,7 +37,7 @@ def search_artist_route():
     cached_results = db_manager.get_cached_results(artist_name)
     if cached_results:
         print(f"Using cached results for {artist_name}")
-        return jsonify(cached_results['data'])  # No need to use json.loads
+        return jsonify(cached_results['data'])
 
     # If no cache, fetch a new token and search the artist
     token = get_spotify_token()
@@ -88,8 +88,8 @@ def get_events_route():
         for event in events:
             if '_embedded' in event and 'venues' in event['_embedded']:
                 venue_capacity = event['_embedded']['venues'][0].get('capacity', 5000)  # Default capacity
-                predicted_sales = -1 # we would plug in the model values here
-                suggested_price = -1 # same here
+                predicted_sales = 10000 # we would plug in the model values here
+                suggested_price = 50 # same here
                 
                 event['predicted_sales'] = predicted_sales
                 event['suggested_price'] = suggested_price
