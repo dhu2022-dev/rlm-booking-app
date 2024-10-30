@@ -1,6 +1,6 @@
 # TO DO
 
-- Comment out all code and refactor to best practices
+- Comment on all code and refactor to best practices
 - Cook up a good file structure
 - Concerts expire! update cached data in Dynamo by making a check so there is no "url no exist" error
 - No more print statements, only logger!
