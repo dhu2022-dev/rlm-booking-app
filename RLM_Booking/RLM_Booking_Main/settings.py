@@ -12,9 +12,14 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 
+import environ
+import os
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# Path for stuff shared between flask and Django app (one level up from BASE_DIR; only used for .env)
+PROJECT_ROOT = BASE_DIR.parent
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
@@ -27,17 +32,29 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# Initialize environment variables
+env = environ.Env()
+
+# Load the .env file
+environ.Env.read_env(os.path.join(PROJECT_ROOT, '.env'))
+
 
 # Application definition
 
 INSTALLED_APPS = [
+    # Django Default Apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'apps.artist_recommendation',
+
+    # My Apps (Features)
+    'apps.artist_recommendation.apps.ArtistRecommendationConfig',
+    'apps.concert_performance.apps.ConcertPerformanceConfig',
+    'apps.event_management.apps.EventManagementConfig',
+    'apps.marketing_tools.apps.MarketingToolsConfig',
 ]
 
 MIDDLEWARE = [
@@ -50,12 +67,12 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'RLM_Booking.urls'
+ROOT_URLCONF = 'RLM_Booking_Main.urls'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'], # Path to shared template directory
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -68,7 +85,12 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'RLM_Booking.wsgi.application'
+# Static files configuration
+STATICFILES_DIRS = [
+    BASE_DIR / "static",  # Path to shared static files
+]
+
+WSGI_APPLICATION = 'RLM_Booking_Main.wsgi.application'
 
 
 # Database
