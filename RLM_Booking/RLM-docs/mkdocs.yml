@@ -1,0 +1,12 @@
+site_name: Red Light Management App Documentation
+
+theme:
+  name: 'material'
+
+nav:
+- Home: index.md
+- Overview: overview.md
+- Setup: setup.md
+- Usage Guide:
+  - Basic Usage: usage.md
+  - Advanced Usage: advanced-usage.md
