@@ -3,7 +3,7 @@ name: Deploy MkDocs Documentation
 on:
   push:
     branches:
-      - main  # Trigger deployment on pushes to the main branch
+      - main
 
 jobs:
   deploy:
@@ -16,15 +16,25 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v3
         with:
-          python-version: '3.12' 
+          python-version: '3.12'
 
       - name: Install MkDocs and dependencies
         run: |
+          echo "Installing MkDocs..."
           pip install mkdocs
-          pip install mkdocs-material  # Add any other MkDocs plugins if you use them
+          pip install mkdocs-material
+          echo "MkDocs installed successfully."
 
-      - name: Build and Deploy Documentation
+      - name: Build Documentation
         run: |
+          echo "Building the documentation..."
+          mkdocs build
+          echo "Documentation built successfully."
+
+      - name: Deploy Documentation
+        run: |
+          echo "Deploying documentation..."
           mkdocs gh-deploy --force
+          echo "Documentation deployed successfully."
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
