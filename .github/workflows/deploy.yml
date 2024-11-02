@@ -18,23 +18,14 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Install MkDocs and dependencies
+      - name: Install MkDocs
         run: |
-          echo "Installing MkDocs..."
-          pip install mkdocs
-          pip install mkdocs-material
-          echo "MkDocs installed successfully."
+          pip install mkdocs mkdocs-material
 
-      - name: Build Documentation
+      - name: Deploy MkDocs Documentation
         run: |
-          echo "Building the documentation..."
-          mkdocs build
-          echo "Documentation built successfully."
-
-      - name: Deploy Documentation
-        run: |
-          echo "Deploying documentation..."
-          mkdocs gh-deploy --force
-          echo "Documentation deployed successfully."
+          echo "Starting MkDocs deployment..."
+          mkdocs gh-deploy -f RLM-docs/mkdocs.yml --force
+          echo "MkDocs deployment completed successfully."
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
