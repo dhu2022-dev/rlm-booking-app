@@ -25,7 +25,7 @@ jobs:
       - name: Deploy MkDocs Documentation
         run: |
           echo "Starting MkDocs deployment..."
-          mkdocs gh-deploy -f RLM-docs/mkdocs.yml --force
+          mkdocs gh-deploy -f RLM_Booking/RLM-docs/mkdocs.yml --force
           echo "MkDocs deployment completed successfully."
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
