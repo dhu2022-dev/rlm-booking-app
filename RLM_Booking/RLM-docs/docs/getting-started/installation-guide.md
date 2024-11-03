@@ -18,7 +18,7 @@ Ensure you have the following installed on your machine:
 Clone the project repository from GitHub:
 
 ```bash
-git clone https://github.com/yourusername/yourproject.git
+git clone https://github.com/dhu2022-dev/RLM-Booking.git
 cd yourproject
 ```
 
@@ -74,7 +74,7 @@ cd yourproject
     python manage.py runserver
     ```
 
-## Step 3: Set up Frontend (React)
+## Step 3: Set up Frontend (React) DO NOT WORRY ABOUT THIS FOR NOW
 
 1. **Navigate to the Frontend Directory**:
 
