@@ -1,12 +1,39 @@
-site_name: Red Light Management App Documentation
+site_name: Red Light Ventures App Documentation
 
 theme:
   name: 'material'
 
 nav:
-- Home: index.md
-- Overview: overview.md
-- Setup: setup.md
-- Usage Guide:
-  - Basic Usage: usage.md
-  - Advanced Usage: advanced-usage.md
+  - Introduction:
+      - "Project Overview": introduction/project-overview.md
+      - "Technical Stack": introduction/technical-stack.md
+  - Getting Started:
+      - "Installation Guide": getting-started/installation-guide.md
+      - "Configuration": getting-started/configuration.md
+      - "Running the Project": getting-started/running-project.md
+  - Project Structure:
+      - "Folder Structure": project-structure/folder-structure.md
+      - "Key Modules": project-structure/key-modules.md
+  - API Documentation:
+      - "Endpoints": api/endpoints.md
+      - "Data Models": api/data-models.md
+  - Database Structure:
+      - "Schema Overview": database/schema-overview.md
+      - "Models": database/models.md
+      - "Data Management": database/data-management.md
+  - Features:
+      - "Detailed Features List": features/detailed-features.md
+      - "Sample Workflows": features/sample-workflows.md
+  - Deployment:
+      - "Production Setup": deployment/production-setup.md
+      - "CI/CD": deployment/ci-cd.md
+  - Testing:
+      - "Unit Tests": testing/unit-tests.md
+      - "Integration Tests": testing/integration-tests.md
+      - "End-to-End Testing": testing/end-to-end-testing.md
+  - Troubleshooting & FAQ:
+      - "Common Issues": troubleshooting/common-issues.md
+      - "FAQ": troubleshooting/faq.md
+  - Appendix:
+      - "Glossary": appendix/glossary.md
+      - "References": appendix/references.md
