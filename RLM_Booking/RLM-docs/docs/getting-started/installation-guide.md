@@ -48,6 +48,12 @@ cd yourproject
     DATABASE_URL=your_database_url
     AWS_ACCESS_KEY_ID=your_aws_key
     AWS_SECRET_ACCESS_KEY=your_aws_secret
+    REGION_NAME=your-db-region#
+    TABLE_NAME=your_table_name
+    SPOTIFY_CLIENT_ID=your_spotify_client_id
+    SPOTIFY_CLIENT_SECRET=your_spotify_client_secret
+    TICKETMASTER_API_KEY=your_ticketmaster_api_key
+    TICKETMASTER_API_SECRET=your_ticketmaster_api_secret
     ```
 
     See configuration documentation for specific examples and additional info on this.
