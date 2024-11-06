@@ -14,6 +14,12 @@ nav:
   - Project Structure:
       - "Folder Structure": project-structure/folder-structure.md
       - "Key Modules": project-structure/key-modules.md
+  - AWS:
+      - "AWS Organization": aws/aws-services.md
+      - "AWS Identity-And-Access-Management (IAM) Permissions": aws/iam_permissions.md
+      - "Core AWS Resources": aws/core_aws_resources.md
+      - "CI/CD Pipeline": aws/ci_cd_deployment.md
+      - "Migration to AWS Elastic Beanstalk Plan": aws/migration_elastic_beanstalk.md
   - API Documentation:
       - "Endpoints": api/endpoints.md
       - "Data Models": api/data-models.md
