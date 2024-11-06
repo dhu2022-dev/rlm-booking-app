@@ -10,6 +10,7 @@ This section details the core AWS resources my team set up and how for the clien
 
 - **Purpose**: Fast, scalable storage for structured data.
 - **Setup**:
+
   - Went to **DynamoDB** in the AWS Console.
   - Created tables such as `Artists`, `Venues`, `Events`.
   - Configured **Read/Write Capacity** as needed. DynamoDB will scale automatically.
@@ -18,6 +19,7 @@ This section details the core AWS resources my team set up and how for the clien
 
 - **Purpose**: Stores unstructured data (e.g., images, reports).
 - **Setup**:
+
   - Went to **S3** in the AWS Console.
   - Created buckets like `rlm-prod-artist-data`, `rlm-dev-event-reports`.
   - Enabled **versioning** for data tracking.
@@ -30,6 +32,7 @@ This section details the core AWS resources my team set up and how for the clien
 
 - **Purpose**: For training recommendation models and deploying them.
 - **Setup**:
+
   - Went to **SageMaker** in the AWS Console.
   - Deployed a **Notebook Instance** for data exploration and model training.
   - Deployed trained models as endpoints for real-time recommendations.
@@ -38,6 +41,7 @@ This section details the core AWS resources my team set up and how for the clien
 
 - **Purpose**: Data preparation tasks (e.g., cleaning data from external sources).
 - **Setup**:
+
   - Went to **Glue** in the AWS Console.
   - Created **Jobs** and **Crawlers** to extract, transform, and load data into DynamoDB or S3.
 
@@ -49,6 +53,7 @@ This section details the core AWS resources my team set up and how for the clien
 
 - **Purpose**: Serverless backend processes for handling real-time requests.
 - **Setup**:
+
   - Created functions for specific tasks (e.g., `RecommendArtist`, `FetchEventAnalytics`).
   - Connected Lambda functions to DynamoDB or SageMaker endpoints as needed.
 
@@ -56,6 +61,7 @@ This section details the core AWS resources my team set up and how for the clien
 
 - **Purpose**: Creates RESTful APIs for frontend or external integration.
 - **Setup**:
+
   - Created an API and define endpoints (e.g., `/recommend`, `/analyze`, `/fetch-trends`).
 
 ---
@@ -66,10 +72,14 @@ This section details the core AWS resources my team set up and how for the clien
 
 - **Purpose**: To monitor application metrics, setting alarms, and creating logs for AWS resources we used like Lambda and SageMaker.
 - **Setup**:
+
   - *Alarms*:
+
     - Create CloudWatch Alarms for critical metrics (e.g., Lambda function errors, SageMaker model performance).
     - Configure alarms to notify via Amazon SNS for immediate response.
+
   - *Logs*:
+
     - Enable logs for each Lambda function to track runtime data and troubleshoot errors.
     - For model monitoring, set up logs in SageMaker to track model performance over time.
 
@@ -80,9 +90,13 @@ This section details the core AWS resources my team set up and how for the clien
 - **Purpose**: QuickSight can be used for visualizing analytics and historical data, creating BI dashboards if reporting is required.
 
 - **Setup**
+
   - *Data Sources**:
+
     - Connect QuickSight to S3, DynamoDB, or RDS as needed.
+
   - *Create Dashboards*:
+
     - Develop dashboards for key metrics (e.g., ticket sales, event performance, artist popularity).
     - Use visualizations to gain insights into data trends.
 

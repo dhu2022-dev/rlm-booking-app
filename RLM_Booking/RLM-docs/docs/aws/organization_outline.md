@@ -10,6 +10,7 @@ This document covers my team's initial organizational structure outline to deplo
 
 - **Path**: AWS Management Console > Systems Manager > Application Manager.
 - **Steps**:
+
   1. **Create New Application**: Name it based on the project (e.g., `ArtistRecommenderApp`). We named ours `RLM_Booking`.
   2. **Tagging**: Our tags were `Client: RLM`, `Project: Booking`, `Environment: Developer` and `Environment: Production` in the setup. The point is to organize the application, there's room to add more necessary tags later.
 
