@@ -8,7 +8,7 @@ This document covers our process to set up Continuous Integration and Continuous
 
 ### Purpose
 
-- Automates code deployment, ensuring consistent updates to AWS resources (e.g., Lambda functions, SageMaker models).
+- To automate code deployment and ensure consistent updates to AWS resources (e.g., Lambda functions, SageMaker models).
 
 ### Setup Steps
 

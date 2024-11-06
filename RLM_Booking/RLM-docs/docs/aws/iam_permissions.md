@@ -1,6 +1,6 @@
 # IAM and Permissions
 
-This document provides an overview my team's IAM roles and permissions, ensuring secure, role-based access control for each member of the project.
+This document provides an overview my team's IAM roles and permissions. The aim is to build secure, role-based access control for each member of the project.
 
 ---
 
@@ -8,7 +8,7 @@ This document provides an overview my team's IAM roles and permissions, ensuring
 
 ### Purpose
 
-- Set up IAM roles specific to each team member's function to ensure controlled access to resources.
+- IAM roles specific to each team member's function ensures controlled access to resources.
 
 ### Role Assignments
 
@@ -52,18 +52,18 @@ This document provides an overview my team's IAM roles and permissions, ensuring
 
 - **Temporary Credentials and Assume Role**:
 
-    - Encouraged my team's developers to use temporary credentials by assuming roles with AWS CLI or SDK to minimize long-term credential exposure.
+    - I Encouraged my team's developers to use temporary credentials by assuming roles with AWS CLI or SDK to minimize long-term credential exposure.
 
 ---
 
 ## C. Secrets Management
 
-- **AWS Secrets Manager**:
+- **Used AWS Secrets Manager**:
 
-    - Used Secrets Manager to store sensitive API keys or credentials securely.
+    - We used Secrets Manager to store sensitive API keys or credentials securely.
 
-- **Accessing Secrets Programmatically**:
+- **How we Accessed Secrets Programmatically**:
 
-    - Used SDKs (e.g., Python's boto3) to fetch secrets securely in application code.
+    - We used SDKs (e.g., Python's boto3) to fetch secrets securely in application code.
 
 ---

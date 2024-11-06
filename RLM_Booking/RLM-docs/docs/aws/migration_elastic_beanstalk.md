@@ -18,7 +18,7 @@ This document outlines my plan for a phased approach to adding a frontend using 
 
 2. **Web App Components**:
 
-    - Deploy the frontend, such as a React app, on Elastic Beanstalk, and connect it to API Gateway for seamless interaction with backend services.
+    - Deploy the frontend, a React app in our case, on Elastic Beanstalk, and connect it to API Gateway for seamless interaction with backend services.
 
 ---
 

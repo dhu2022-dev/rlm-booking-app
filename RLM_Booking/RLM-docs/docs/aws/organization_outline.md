@@ -4,9 +4,7 @@ This document covers my team's initial organizational structure outline to deplo
 
 ---
 
-## Step 1: Defining our Application in AWS
-
-### AWS Systems Manager - Application Manager
+## AWS Systems Manager - Application Manager
 
 - **Path**: AWS Management Console > Systems Manager > Application Manager.
 - **Steps**:
@@ -18,9 +16,7 @@ This document covers my team's initial organizational structure outline to deplo
 
 ---
 
-## Step 2: Organize Resources by Environment
-
-### Environment Separation
+## Environment Separation
 
 - **Development** and **Production** environments should be isolated to avoid data and configuration conflicts.
 
@@ -36,11 +32,11 @@ This document covers my team's initial organizational structure outline to deplo
 
 ---
 
-## Step 3: Use AWS Organizations for Multi-Client Management
+## Use of AWS Organizations for Multi-Client Management
 
 ### Create a Dedicated AWS Account
 
 - **Purpose**: Keeps resources, billing, and permissions isolated.
-- **Recommendation**: Plan to use **AWS Organizations** for managing multiple clients. This allows for consistent policies and centralized billing management. BAI Exec will have access to the AWS Organization that your AWS Account (not your personal, the client one) is managed by.
+- **Recommendation Outside this Project Scope**: **AWS Organizations** is used for managing multiple clients. This allows for consistent policies and centralized billing management. BAI Exec will have access to the AWS Organization that your AWS Account (not your personal, the client one) is managed by.
 
 ---
