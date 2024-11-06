@@ -15,7 +15,7 @@ nav:
       - "Folder Structure": project-structure/folder-structure.md
       - "Key Modules": project-structure/key-modules.md
   - AWS:
-      - "AWS Organization": aws/organization-outline.md
+      - "AWS Organization": aws/organization_outline.md
       - "AWS Identity-And-Access-Management (IAM) Permissions": aws/iam_permissions.md
       - "Core AWS Resources": aws/core_aws_resources.md
       - "CI/CD Pipeline": aws/ci_cd_deployment.md
