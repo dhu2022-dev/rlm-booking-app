@@ -1,6 +1,6 @@
 # IAM and Permissions
 
-This document provides an overview of IAM roles and permissions, ensuring secure, role-based access control for the project team.
+This document provides an overview my team's IAM roles and permissions, ensuring secure, role-based access control for each member of the project.
 
 ---
 
@@ -14,33 +14,33 @@ This document provides an overview of IAM roles and permissions, ensuring secure
 
 - **Project Manager Role**: Full administrative access for oversight and management.
 
-  - Assigned to: David
-  - Permissions: Full access to all AWS resources for project oversight.
+    - Assigned to: David
+    - Permissions: Full access to all AWS resources for project oversight.
 
 - **Business Analyst Role**: Limited access for data reporting and analysis.
 
-  - Assigned to: Eli
-  - Permissions: Access to Amazon QuickSight, Athena, and read-only permissions for DynamoDB and S3.
+    - Assigned to: Eli
+    - Permissions: Access to Amazon QuickSight, Athena, and read-only permissions for DynamoDB and S3.
 
 - **Front End Developer Role**: Access for front-end assets and API invocation.
 
-  - Assigned to: Alex
-  - Permissions: Read-only access to S3 for assets, view-only access to Lambda functions, and API Gateway invocation permissions.
+    - Assigned to: Alex
+    - Permissions: Read-only access to S3 for assets, view-only access to Lambda functions, and API Gateway invocation permissions.
 
 - **Back End Developer Role**: Full backend operations access.
 
-  - Assigned to: Michael
-  - Permissions: Full access to Lambda, RDS, API Gateway, and DynamoDB as needed.
+    - Assigned to: Michael
+    - Permissions: Full access to Lambda, RDS, API Gateway, and DynamoDB as needed.
 
 - **Data Scientist Role**: Permissions for model development and data processing.
 
-  - Assigned to: Cody
-  - Permissions: Full access to SageMaker, Glue, read-only access to DynamoDB, and S3 for data storage.
+    - Assigned to: Cody
+    - Permissions: Full access to SageMaker, Glue, read-only access to DynamoDB, and S3 for data storage.
 
 - **Data Engineer Role**: Data ingestion and transformation permissions.
 
-  - Assigned to: Andy
-  - Permissions: Full access to Glue, Kinesis, S3, and optional DynamoDB for data management.
+    - Assigned to: Andy
+    - Permissions: Full access to Glue, Kinesis, S3, and optional DynamoDB for data management.
 
 ---
 
@@ -48,11 +48,11 @@ This document provides an overview of IAM roles and permissions, ensuring secure
 
 - **DevTeam Group**:
 
-  - All developers are part of the `DevTeam` IAM group, which includes shared permissions like CloudWatch read-only access and S3 read-only access.
+    - All developers are part of the `DevTeam` IAM group, which includes shared permissions like CloudWatch read-only access and S3 read-only access.
 
 - **Temporary Credentials and Assume Role**:
 
-  - Encouraged my team's developers to use temporary credentials by assuming roles with AWS CLI or SDK to minimize long-term credential exposure.
+    - Encouraged my team's developers to use temporary credentials by assuming roles with AWS CLI or SDK to minimize long-term credential exposure.
 
 ---
 
@@ -60,10 +60,10 @@ This document provides an overview of IAM roles and permissions, ensuring secure
 
 - **AWS Secrets Manager**:
 
-  - Used Secrets Manager to store sensitive API keys or credentials securely.
+    - Used Secrets Manager to store sensitive API keys or credentials securely.
 
 - **Accessing Secrets Programmatically**:
 
-  - Used SDKs (e.g., Python's boto3) to fetch secrets securely in application code.
+    - Used SDKs (e.g., Python's boto3) to fetch secrets securely in application code.
 
 ---

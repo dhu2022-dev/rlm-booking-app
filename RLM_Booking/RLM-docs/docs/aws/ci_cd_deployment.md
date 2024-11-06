@@ -1,6 +1,6 @@
 # CI/CD and Deployment
 
-This document covers the process we followed setting up Continuous Integration and Continuous Deployment (CI/CD) pipelines to streamline application updates and maintain consistency.
+This document covers our process to set up Continuous Integration and Continuous Deployment (CI/CD) pipelines to streamline application updates and maintain consistency.
 
 ---
 
