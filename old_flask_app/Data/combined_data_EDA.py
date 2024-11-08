@@ -43,7 +43,7 @@ print(df[['artist_name', 'genre', 'mapped_genre']])
 print("\nCleaned DataFrame:")
 print(df.head())
 
-'''print("\nDescriptive Statistics:")
+print("\nDescriptive Statistics:")
 print(df.describe(include='all'))
 
 sns.set_theme(style="whitegrid")
@@ -51,7 +51,7 @@ sns.set_theme(style="whitegrid")
 
 # Plotting Popularity Distribution
 plt.figure(figsize=(8, 6))
-sns.histplot(df['popularity'], kde=True, color='blue')
+sns.histplot(df['popularity'], color='blue')
 plt.title('Popularity Distribution')
 plt.xlabel('Popularity')
 plt.ylabel('Frequency')
@@ -85,4 +85,4 @@ plt.title('Genre Frequency')
 plt.xlabel('Genre')
 plt.ylabel('Count')
 plt.xticks(rotation=45)
-plt.show()'''
+plt.show()

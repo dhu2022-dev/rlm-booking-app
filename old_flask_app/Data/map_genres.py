@@ -4,10 +4,10 @@ preselected_genres = [
 ]
 
 def map_genre(genres):
-    # If genres is 'Unknown' or empty, return 'Other'
+    #if genres is 'Unknown' or empty, return 'Other'
     if genres == ['Unknown'] or not genres:
         return 'Other'
-    # Initialize an empty set to avoid duplicates
+    
     mapped_genres = set()
     for genre in genres:
         genre_lower = genre.lower()
@@ -37,8 +37,6 @@ def map_genre(genres):
             mapped_genres.add('Rock')
         if 'singer-songwriter' in genre_lower:
             mapped_genres.add('Pop')
-        # Add more conditions as needed
-    # If no genres were matched, return 'Other'
     if not mapped_genres:
         return 'Other'
     else:
