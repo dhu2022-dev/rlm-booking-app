@@ -3,7 +3,7 @@ import pandas as pd
 ### INITIAL DATA INSPECTION ###
 
 # Load the data
-df = pd.read_csv(('data/spotify_data.csv'))
+df = pd.read_csv(('old_flask_app/Data/spotify_data.csv'))
 
 # Preview the data
 print(df.head())

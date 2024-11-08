@@ -1,4 +1,6 @@
-#!/Users/davidhu/Documents/TING2/venv/bin/python3.12
+#!/bin/sh
+'''exec' "/Users/codyliddle/Desktop/UVA Year 3/BAI/RLM-Booking/venv/bin/python" "$0" "$@"
+' '''
 # -*- coding: utf-8 -*-
 import re
 import sys
