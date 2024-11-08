@@ -1,3 +1,15 @@
 .env
 RLM_Booking/RLM-docs/site/
 venv/
+myenv/
+/RLM_Booking/apps/artist_recommendation/__pycache__
+/RLM_Booking/apps/artist_recommendation/migrations/__pycache__
+/RLM_Booking/apps/concert_performance/__pycache__
+/RLM_Booking/apps/concert_performance/migrations/__pycache__
+/RLM_Booking/apps/event_management/__pycache__
+/RLM_Booking/apps/event_management/migrations/__pycache__
+/RLM_Booking/apps/marketing_tools/__pycache__
+/RLM_Booking/integrations/__pycache__
+/RLM_Booking/RLM_Booking_Main/__pycache__
+/RLM_Booking/shared_services/__pycache__
+/RLM_Booking/apps/marketing_tools/migrations/__pycache__

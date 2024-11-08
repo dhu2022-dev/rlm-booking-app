@@ -2,10 +2,13 @@ absl-py==2.1.0
 astunparse==1.6.3
 babel==2.16.0
 blinker==1.8.2
+boto3
 certifi==2024.7.4
 charset-normalizer==3.3.2
 click==8.1.7
 colorama==0.4.6
+django
+django-environ
 Flask==3.0.3
 Flask-Cors==4.0.1
 flatbuffers==24.3.25
