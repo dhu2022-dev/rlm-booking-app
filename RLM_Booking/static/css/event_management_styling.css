@@ -1,0 +1,40 @@
+body {
+    background-color: #121212; /* Dark mode background */
+    color: #ffffff;
+}
+.top-bar {
+    background-color: #1a1a1a; /* Slightly lighter than the main background */
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.title {
+    color: #ff0000; /* Red color for titles */
+    margin: 0;
+}
+.logo {
+    width: 25em;
+    height: 5em;
+    border-radius: 10%;
+    background-color: #ffffff; /* Background color to make logo pop */
+    padding: 5px;
+    margin-right: 1rem; /* Margin around logo */
+}
+.table-dark {
+    background-color: #333333;
+    color: #ffffff;
+}
+.input-boxes {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+}
+.table-header {
+    color: #ff0000; /* Red color for headers */
+}
+/* Highlighting favorite rows */
+.table-dark tbody tr.favorite-row {
+    background-color: #555555 !important; /* Ensure highlight color overrides Bootstrap */
+}

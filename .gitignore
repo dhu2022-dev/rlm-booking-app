@@ -13,3 +13,4 @@ myenv/
 /RLM_Booking/RLM_Booking_Main/__pycache__
 /RLM_Booking/shared_services/__pycache__
 /RLM_Booking/apps/marketing_tools/migrations/__pycache__
+/RLM_Booking/apps/__pycache__
