@@ -25,12 +25,15 @@
     </div>
     
     <div class="container mt-4">
-    <!-- Input Boxes -->
-    <div class="input-boxes">
-        <input type="text" class="form-control" placeholder="Artist">
-        <input type="text" class="form-control" placeholder="Location">
-        <input type="text" class="form-control" placeholder="Times">
-    </div>
+    <!-- Form to Send Data to Backend -->
+    <form action="/your-backend-url" method="POST" class="inline-form">
+      <div class="input-boxes">
+          <input type="text" name="artist" class="form-control" placeholder="Artist" required>
+          <input type="text" name="location" class="form-control" placeholder="Location" required>
+          <input type="text" name="times" class="form-control" placeholder="Times" required>
+          <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </form>
 
     <!-- Table -->
     <table class="table table-dark table-striped mt-3">
