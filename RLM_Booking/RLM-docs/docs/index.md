@@ -1,17 +1,5 @@
-# Welcome to MkDocs
+# Welcome to the docs for RLM Booking
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+## David Hu, Alex Yung, Andy Zeng, Cody Liddle, Michael Li, Eli Sterling
 
-## Commands
-
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
-
-## Project layout
-
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+Select an item in the table of contents on the left to get started.

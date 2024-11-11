@@ -34,7 +34,7 @@ This document covers my team's initial organizational structure outline to deplo
 
 ## Use of AWS Organizations for Multi-Client Management
 
-### Create a Dedicated AWS Account
+### Dedicated AWS Account
 
 - **Purpose**: Keeps resources, billing, and permissions isolated.
 - **Recommendation Outside this Project Scope**: **AWS Organizations** is used for managing multiple clients. This allows for consistent policies and centralized billing management. BAI Exec will have access to the AWS Organization that your AWS Account (not your personal, the client one) is managed by.

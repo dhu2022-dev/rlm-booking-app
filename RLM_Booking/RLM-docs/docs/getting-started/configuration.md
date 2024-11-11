@@ -70,7 +70,7 @@ Docker may be used in the future for production. Configuration files will be pro
 
 ## Additional Notes
 
-- **Storing Secrets Securely**: For production, avoid hardcoding secrets in code. Use a secure secret management service (e.g., AWS Secrets Manager) if available.
-- **Configuration Updates**: Whenever a configuration change is made, update this document and any corresponding `.env` files to maintain accurate setup instructions.
+- **Storing Secrets Securely**: For production, avoid hardcoding secrets in code. Use a secure secret management service (we use AWS Secrets Manager) if available.
+- **Configuration Updates**: Whenever a configuration change is made, update this document and any corresponding `.env` files to maintain accurate setup instructions. If you have write access to the repository then this will be updated with your changes every git commit to github (updates via github pages).
 
 ---

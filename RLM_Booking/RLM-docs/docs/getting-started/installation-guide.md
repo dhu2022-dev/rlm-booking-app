@@ -9,7 +9,7 @@ This guide provides step-by-step instructions to set up the project for local de
 Ensure you have the following installed on your machine:
 
 - **Python** (version 3.12)
-- **Node.js** (version X.X) and **npm**
+- **Node.js** (version 22.11.0) and **npm**
 - **AWS CLI** (for cloud services interaction)
 - **Docker** ([will populate in the future when we do production])
 
