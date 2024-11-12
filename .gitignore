@@ -1,3 +1,5 @@
 .env
 RLM_Booking/RLM-docs/site/
 venv/
+apps/__pycache__/
+__pycache__/
