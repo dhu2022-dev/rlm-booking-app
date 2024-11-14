@@ -34,7 +34,52 @@ body {
 .table-header {
     color: #ff0000; /* Red color for headers */
 }
-/* Highlighting favorite rows */
-.table-dark tbody tr.favorite-row {
-    background-color: #555555 !important; /* Ensure highlight color overrides Bootstrap */
+
+/* Custom Table Styling */
+.custom-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.custom-table thead th {
+    background-color: #333333; /* Dark header background */
+    font-family: 'Arial', sans-serif; /* Use a clean, Bootstrap-like font */
+    font-weight: bold;
+    padding: 12px;
+    text-align: left;
+    position: relative;
+    border-bottom: 2px solid #444; /* Slightly lighter bottom border */
+}
+
+.custom-table tbody td {
+    padding: 12px;
+    text-align: left;
+    color: #ffffff; /* White text for dark mode */
+    border-bottom: 1px solid #333; /* Darker border for separation */
+}
+
+.custom-table tbody tr:nth-child(odd) {
+    background-color: #2a2a2a; /* Slightly lighter row color */
+}
+
+.custom-table tbody tr:nth-child(even) {
+    background-color: #1a1a1a;
+}
+
+/* Highlight favorite rows */
+.favorite-row {
+    background-color: darkcyan !important;
+}
+
+/* Sort Icon Styling */
+.sort-btn {
+    color: #f8f9fa; /* Light color to match header */
+    margin-left: 5px;
+    cursor: pointer;
+    font-size: 0.9rem; /* Smaller size for the icon */
+    vertical-align: middle;
+}
+
+.sort-btn:hover {
+    color: #e0e0e0; /* Slightly lighter on hover */
 }
