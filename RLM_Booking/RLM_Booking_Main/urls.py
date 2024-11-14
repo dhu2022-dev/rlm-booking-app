@@ -21,6 +21,6 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('apps.base_urls')),
-    path('artist_recommendation', include('apps.artist_recommendation.urls')),  # Set root URL to artist_recommendation
-    path('event_management', include('apps.event_management.urls'))
+    path('artist_recommendation/', include('apps.artist_recommendation.urls')),  # Set root URL to artist_recommendation
+    path('event_management/', include('apps.event_management.urls'))
 ]

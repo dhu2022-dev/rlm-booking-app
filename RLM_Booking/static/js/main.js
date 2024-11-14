@@ -110,6 +110,8 @@ function updateUserLocation(lat, lon) {
 
 document.addEventListener('DOMContentLoaded', function() {
 
+    const scrollToMapButton = document.getElementById('scroll-to-map');
+    scrollToMapButton.classList.add('d-none');
     // Handle artist search form submission
     document.getElementById('artist-search-form').addEventListener('submit', function(e) {
         e.preventDefault();
@@ -127,7 +129,7 @@ document.addEventListener('DOMContentLoaded', function() {
         initializeMap();
 
         // Fetch artist data from the backend
-        fetch(`/search-artist?name=${encodeURIComponent(artistName)}`)
+        fetch(`/artist_recommendation/search-artist?name=${encodeURIComponent(artistName)}`)
             .then(response => response.json())
             .then(data => {
                 console.log('Artist data received:', data);
@@ -158,17 +160,21 @@ document.addEventListener('DOMContentLoaded', function() {
                 artists.forEach(artist => {
                     artistHtml += `
                         <div class="col-md-6">
-                            <div class="card mb-3">
+                            <div class="card mb-3" style="background-color: #1a1a1a; color: #ffffff; border: none;">
                                 <div class="row g-0">
                                     <div class="col-md-4">
-                                        <img src="${artist.images[0] ? artist.images[0].url : 'https://via.placeholder.com/150'}" class="img-fluid rounded-start" alt="${artist.name}">
+                                        <img src="${artist.images[0] ? artist.images[0].url : 'https://via.placeholder.com/150'}" 
+                                            class="img-fluid rounded-start" 
+                                            alt="${artist.name}" 
+                                            style="border-radius: 10px 0 0 10px;">
                                     </div>
                                     <div class="col-md-8">
                                         <div class="card-body">
-                                            <h5 class="card-title">${artist.name}</h5>
+                                            <h5 class="card-title" style="color: #ff0000;">${artist.name}</h5>
                                             <p class="card-text">Followers: ${artist.followers.total.toLocaleString()}</p>
-                                            <p class="card-text"><small class="text-muted">Popularity: ${artist.popularity}</small></p>
-                                            <a href="${artist.external_urls.spotify}" target="_blank" class="btn btn-primary">View on Spotify</a>
+                                            <p class="card-text"><small style="color: #b3b3b3;">Popularity: ${artist.popularity}</small></p>
+                                            <a href="${artist.external_urls.spotify}" target="_blank" class="btn" 
+                                            style="background-color: #ff0000; color: #ffffff;">View on Spotify</a>
                                         </div>
                                     </div>
                                 </div>
@@ -181,52 +187,54 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 // Fetch event data for the first artist in the list (if needed)
                 const firstArtistName = artists[0].name;
-                return fetch(`/get-events?name=${encodeURIComponent(firstArtistName)}&country=${encodeURIComponent(country)}&city=${encodeURIComponent(city)}`);
+                return fetch(`/artist_recommendation/get-events?name=${encodeURIComponent(firstArtistName)}&country=${encodeURIComponent(country)}&city=${encodeURIComponent(city)}`);
             })
             .then(response => response.json())
             .then(eventData => {
                 console.log('Event data received:', eventData);
-                let eventHtml = '<h2>Upcoming Events:</h2>';
+                let eventHtml = '<h2 style="color: #ff0000;">Upcoming Events:</h2>';
 
                 if (eventData.local_event_count > 0 && Array.isArray(eventData.local_events)) {
-                    eventHtml += `<h3>Local Events (${eventData.local_event_count}):</h3>`;
+                    eventHtml += `<h3 style="color: #ff0000;">Local Events (${eventData.local_event_count}):</h3>`;
                     eventData.local_events.forEach(event => {
                         eventHtml += `
-                            <div class="card mb-3">
+                            <div class="card mb-3" style="background-color: #1a1a1a; color: #ffffff; border: none;">
                                 <div class="card-body">
-                                    <h5 class="card-title">${event.name}</h5>
+                                    <h5 class="card-title" style="color: #ff0000;">${event.name}</h5>
                                     <p class="card-text">Date: ${event.dates.start.localDate}</p>
                                     <p class="card-text">Location: ${event._embedded.venues[0].name}, ${event._embedded.venues[0].city.name}</p>
                                     <p class="card-text"><strong>Predicted Ticket Sales: ${event.predicted_sales}</strong></p>
                                     <p class="card-text"><strong>Suggested Ticket Price: $${event.suggested_price}</strong></p>
-                                    <a href="${event.url}" target="_blank" class="btn btn-primary">Get Tickets</a>
+                                    <a href="${event.url}" target="_blank" class="btn" style="background-color: #ff0000; color: #ffffff;">Get Tickets</a>
                                 </div>
                             </div>
                         `;
                     });
                 } else {
-                    eventHtml += '<p>No local events found.</p>';
+                    eventHtml += '<p style="color: #b3b3b3;">No local events found.</p>';
                 }
 
                 if (eventData.global_event_count > 0 && Array.isArray(eventData.global_events)) {
-                    eventHtml += `<h3>Global Events (${eventData.global_event_count}):</h3>`;
+                    eventHtml += `<h3 style="color: #ff0000;">Global Events (${eventData.global_event_count}):</h3>`;
                     eventData.global_events.forEach(event => {
                         eventHtml += `
-                            <div class="card mb-3">
+                            <div class="card mb-3" style="background-color: #1a1a1a; color: #ffffff; border: none;">
                                 <div class="card-body">
-                                    <h5 class="card-title">${event.name}</h5>
+                                    <h5 class="card-title" style="color: #ff0000;">${event.name}</h5>
                                     <p class="card-text">Date: ${event.dates.start.localDate}</p>
                                     <p class="card-text">Location: ${event._embedded.venues[0].name}, ${event._embedded.venues[0].city.name}</p>
                                     <p class="card-text"><strong>Predicted Ticket Sales: ${event.predicted_sales}</strong></p>
                                     <p class="card-text"><strong>Suggested Ticket Price: $${event.suggested_price}</strong></p>
-                                    <a href="${event.url}" target="_blank" class="btn btn-primary">Get Tickets</a>
+                                    <a href="${event.url}" target="_blank" class="btn" style="background-color: #ff0000; color: #ffffff;">Get Tickets</a>
                                 </div>
                             </div>
                         `;
                     });
                 } else {
-                    eventHtml += '<p>No global events found.</p>';
+                    eventHtml += '<p style="color: #b3b3b3;">No global events found.</p>';
                 }
+
+                scrollToMapButton.classList.remove('d-none');
 
                 document.getElementById('results').innerHTML += eventHtml;
                 updateMap(eventData.local_events.concat(eventData.global_events)); //UNCOMMENT FOR MAP FUNCTIONALITY
@@ -272,4 +280,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Initialize map when DOM elements load
     initializeMap();
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Scroll to map when the button is clicked
+    document.getElementById('scroll-to-map').addEventListener('click', function() {
+        document.getElementById('map').scrollIntoView({ behavior: 'smooth' });
+    });
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Scroll to top when the "Scroll to Top" button is clicked
+    document.getElementById('scroll-to-top').addEventListener('click', function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
 });

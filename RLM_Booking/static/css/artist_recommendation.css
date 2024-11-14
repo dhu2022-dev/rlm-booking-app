@@ -1,0 +1,75 @@
+/* Dark mode styling */
+body {
+    background-color: #121212;
+    color: #ffffff;
+}
+
+/* Header bar styling */
+.header-bar {
+    background-color: #1a1a1a;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Title styling */
+.header-title {
+    color: #ff0000;
+    margin: 0;
+}
+
+/* Form styling */
+#artist-search-form input,
+#artist-search-form button {
+    background-color: #333333;
+    color: #ffffff;
+    border: none;
+}
+
+.logo {
+    width: 25em;
+    height: 5em;
+    border-radius: 10%;
+    background-color: #ffffff; /* Background color to make logo pop */
+    padding: 5px;
+    margin-right: 1rem; /* Margin around logo */
+}
+
+#artist-search-form button {
+    background-color: #ff0000;
+}
+
+/* Map container styling */
+#map {
+    margin-top: 1rem;
+    height: 500px;
+    width: 100%;
+    background-color: #333333;
+}
+
+/* Results section styling */
+#results {
+    margin-top: 1.5rem;
+    color: #ffffff;
+}
+
+/* Artist card styling */
+.artist-card {
+    background-color: #1a1a1a;
+    color: #ffffff;
+    border: none;
+    margin-bottom: 1rem;
+}
+
+.artist-card .card-title {
+    color: #ff0000;
+}
+
+/* Button for detecting location */
+#detect-location {
+    background-color: #333333;
+    color: #ffffff;
+    border: none;
+    margin-top: 1rem;
+}
