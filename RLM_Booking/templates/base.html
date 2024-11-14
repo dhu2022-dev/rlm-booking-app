@@ -1,0 +1,63 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finance App - Features</title>
+    <link rel="stylesheet" href="{% static 'css/landing.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+</head>
+
+<body>    
+    <div class="hero-image">
+        <div class="hero-text">
+            <!-- Title -->
+            <img src="{% static 'img/SHLogo.png' %}" alt="Logo" class="logo"> 
+
+            <br>
+            
+            <!-- Subtitle or the typed-out text effect -->
+            <div id="typed-output"></div>
+            
+            <!-- Horizontal cards container -->
+            <div class="hero-cards">
+                <!-- Bootstrap card for Start Tutorial -->
+                <div class="card card-custom">
+                    <div class="card-body">
+                        <h5 class="card-title">Artist Recommendation</h5>
+                        <p class="card-text">Find your ideal artist using the trained model.</p>
+                        <a href="/artist_recommendation" class="btn btn-danger">Get Started</a>
+                    </div>
+                </div>
+
+                <!-- Bootstrap card for Stock Game -->
+                <div class="card card-custom">
+                    <div class="card-body">
+                        <h5 class="card-title">Manage Possible Events</h5>
+                        <p class="card-text">Find your favorite artists within the area at your preferred time.</p>
+                        <a href="/event_management" class="btn btn-danger">Manage</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <script>
+        var options = {
+            strings: ["All-in-one-place location for events", "Stay updated with the most relevant artists", "Save time!"],
+            typeSpeed: 50,
+            backSpeed: 25,
+            backDelay: 2000, // Delay after text is typed before deleting
+            loop: true
+          };
+        
+          var typed = new Typed("#typed-output", options);
+    </script>
+
+</body>
+</html>
