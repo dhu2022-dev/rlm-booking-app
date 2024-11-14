@@ -10,7 +10,6 @@ nav:
   - Getting Started:
       - "Installation Guide": getting-started/installation-guide.md
       - "Configuration": getting-started/configuration.md
-      - "Running the Project": getting-started/running-project.md
   - Project Structure:
       - "Folder Structure": project-structure/folder-structure.md
       - "Key Modules": project-structure/key-modules.md

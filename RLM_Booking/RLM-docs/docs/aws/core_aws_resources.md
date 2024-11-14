@@ -59,7 +59,7 @@ This section details the core AWS resources my team set up and how for the clien
 - **Purpose**: Creates RESTful APIs for frontend or external integration.
 - **Relation to Project**:
 
-  - Created an API and define endpoints (e.g., `/recommend`, `/analyze`, `/fetch-trends`).
+    - Created an API and define endpoints (e.g., `/recommend`, `/analyze`, `/fetch-trends`).
 
 ---
 
