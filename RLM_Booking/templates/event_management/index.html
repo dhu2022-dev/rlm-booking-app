@@ -20,7 +20,7 @@
 </head>
 <body>
     <!-- Top Bar -->
-    <div class="top-bar d-flex justify-content-between align-items-center">
+    <div class="top-bar align-items-center">
         <!-- Logo with margin and background to pop from background -->
         <a href = "/"> <img src="{% static 'img/SHLogo.png' %}" alt="Logo" class="logo"> </a>
         <h1 class="title">Data Favorites Selector</h1>
@@ -54,6 +54,14 @@
                   Times
                   <i class="bi bi-sort-numeric-down sort-btn" data-column="2" data-sort="asc"></i>
               </th>
+              <th scope="col" class="table-header">
+                  Price to Book
+                  <i class="bi bi-sort-numeric-down sort-btn" data-column="3" data-sort="asc"></i>
+              </th>
+              <th scope="col" class="table-header">
+                  Popularity Metric
+                  <i class="bi bi-sort-numeric-down sort-btn" data-column="4" data-sort="asc"></i>
+              </th>
               <th scope="col" class="table-header">Favorite</th>
           </tr>
       </thead>
@@ -63,18 +71,24 @@
               <td>Drake</td>
               <td>Boston</td>
               <td>2024-11-14T18:30</td>
+              <td>$2500</td>
+              <td>90</td>
               <td><input type="checkbox" class="favorite-check" data-id="1"></td>
           </tr>
           <tr>
               <td>Kendrick</td>
               <td>Charlottesville</td>
               <td>2024-12-20T20:00</td>
+              <td>$3000</td>
+              <td>85</td>
               <td><input type="checkbox" class="favorite-check" data-id="2"></td>
           </tr>
           <tr>
               <td>Potsu</td>
               <td>New York</td>
               <td>2025-01-15T21:00</td>
+              <td>$1800</td>
+              <td>78</td>
               <td><input type="checkbox" class="favorite-check" data-id="3"></td>
           </tr>
       </tbody>
