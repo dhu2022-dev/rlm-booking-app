@@ -1,0 +1,85 @@
+body {
+    background-color: #121212; /* Dark mode background */
+    color: #ffffff;
+}
+.top-bar {
+    background-color: #1a1a1a; /* Slightly lighter than the main background */
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+}
+.title {
+    color: #ff0000; /* Red color for titles */
+    margin-right: 5em;
+    margin-left: 3em;
+}
+.logo {
+    width: 25em;
+    height: 5em;
+    border-radius: 10%;
+    background-color: #ffffff; /* Background color to make logo pop */
+    padding: 5px;
+    margin-right: 1rem; /* Margin around logo */
+}
+.table-dark {
+    background-color: #333333;
+    color: #ffffff;
+}
+.input-boxes {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+}
+.table-header {
+    color: #ff0000; /* Red color for headers */
+}
+
+/* Custom Table Styling */
+.custom-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.custom-table thead th {
+    background-color: #333333; /* Dark header background */
+    font-family: 'Arial', sans-serif; /* Use a clean, Bootstrap-like font */
+    font-weight: bold;
+    padding: 12px;
+    text-align: left;
+    position: relative;
+    border-bottom: 2px solid #444; /* Slightly lighter bottom border */
+}
+
+.custom-table tbody td {
+    padding: 12px;
+    text-align: left;
+    color: #ffffff; /* White text for dark mode */
+    border-bottom: 1px solid #333; /* Darker border for separation */
+}
+
+.custom-table tbody tr:nth-child(odd) {
+    background-color: #2a2a2a; /* Slightly lighter row color */
+}
+
+.custom-table tbody tr:nth-child(even) {
+    background-color: #1a1a1a;
+}
+
+/* Highlight favorite rows */
+.favorite-row {
+    background-color: darkcyan !important;
+}
+
+/* Sort Icon Styling */
+.sort-btn {
+    color: #f8f9fa; /* Light color to match header */
+    margin-left: 5px;
+    cursor: pointer;
+    font-size: 0.9rem; /* Smaller size for the icon */
+    vertical-align: middle;
+}
+
+.sort-btn:hover {
+    color: #e0e0e0; /* Slightly lighter on hover */
+}

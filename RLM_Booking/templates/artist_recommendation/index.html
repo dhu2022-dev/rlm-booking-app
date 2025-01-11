@@ -13,12 +13,19 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/artist_recommendation.css' %}">
 </head>
 <body>
-    <div class="container mt-5">
-        <h1 class="text-center mb-4">Artist Recommendation App</h1>
-        
+    <!-- Header Bar -->
+    <div class="header-bar">
+        <div class="d-flex align-items-center">
+            <a href = "/"> <img src="{% static 'img/SHLogo.png' %}" alt="Logo" class="logo" style = "margin-right: 5em;"> </a>
+            <h1 class="header-title">Artist Recommendation App</h1>
+        </div>
+        <button type="submit" form="artist-search-form" class="btn btn-outline-light">Submit</button>
+    </div>
+
+    <div class="container mt-3">
         <!-- Search Form -->
         <form id="artist-search-form" class="row g-3 justify-content-center">
             <div class="col-auto">
@@ -31,19 +38,25 @@
                 <input type="text" id="city" class="form-control" placeholder="Enter city" value="Boston">
             </div>
             <div class="col-auto">
-                <button type="submit" class="btn btn-primary mb-3">Search</button>
+                <button type="submit" class="btn btn-danger mb-3">Search</button>
             </div>
         </form>
 
+        <!-- Scroll to Map Button -->
+        <div class="text-center mb-3">
+            <button id="scroll-to-map" class="btn" style="background-color: #ff0000; color: #ffffff;">Go to Map</button>
+        </div>
+
         <!-- Results Section -->
         <div id="results" class="row justify-content-center"></div>
-        
+
         <!-- Map Container -->
-        <div id="map" style="height: 500px; width: 100%;"></div>
-        
-        <!-- Add a button to detect location -->
-        <div class="col-auto">
-            <button type="button" id="detect-location" class="btn btn-secondary mb-3">Use My Location</button>
+        <div id="map"></div>
+
+        <!-- Use My Location Button -->
+        <div class="text-center d-flex justify-content-center mb-3">
+            <button type="button" id="detect-location" class="btn" style="background-color: #ff0000; color: #ffffff; margin-right: 10px;">Use My Location</button>
+            <button type="button" id="scroll-to-top" class="btn" style="background-color: #ff0000; color: #ffffff; margin-top: 15px; height: 40px;">Scroll to Top</button>
         </div>
 
     </div>
