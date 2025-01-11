@@ -1,19 +1,8 @@
 # Key Modules
 
-This section provides an overview of each main module and its purpose in the project. Modules are grouped by functionality to clarify their roles in the application.
+This section provides an overview of each main module and its purpose in the project. Modules are grouped by functionality to clarify their roles in the application. Each class and its methods are listed with a brief description. For even more specific information on the methods see the code comments.
 
 ---
-
-## API Module
-
-### Description
-
-This module manages data communication between the frontend and backend through API endpoints defined within each app (e.g., `artist_recommendation`, `concert_performance`). It includes user interactions, data retrieval, and API integrations.
-
-### Key Components
-
-- **Endpoints**: API routes for managing artist, concert, event, and marketing data.
-- **Data Integration**: Connects with external APIs like Spotify and Ticketmaster for additional data.
 
 ## Data Processing Module
 
@@ -25,6 +14,8 @@ Handles backend data processing tasks, such as data cleaning and formatting, whi
 
 - **services.py**: Main data processing functions.
 - **/utils**: Supporting functions, including data writing and progress tracking.
+    - **data_writer.py**: Helper class to scrape API data into a CSV. Takes in a filename and CSV headers; reads in any existing entries in a CSV and writes any new entries in that same CSV. read_existing_entries reads through the given csv and returns a list of items already inside. write_entry_to_csv writes in the entry if it is new; returns true if the entry to write was new and false if not.
+    - **progress_manager.py**: Helper class to track the progress of API scraping to minimize API calls. Takes in a json file of the last API call stored and the headers of the data retrieved. Has load_progress which loads the API call progress stored in the JSON file. Has save_progress to record the last API call's info in the JSON file for future use. Has a should_skip method which checks if a potential call has already been made to reduce API calls.
 
 ## Frontend Module
 
@@ -34,7 +25,7 @@ The frontend module, defined within the `/static` and `/templates` folders, mana
 
 ### Key Components
 
-- **Templates**: HTML templates that render frontend views.
+- **Templates**: HTML templates that render frontend views. Organized by Django app aka "feature".
 - **Static Assets**: CSS for styling and JavaScript for interactive elements.
 
 ## Database Models Module
@@ -60,17 +51,17 @@ Manages connections with AWS services for database storage, machine learning, an
 - **geolocation.py**: Uses AWS location services to provide geolocation capabilities.
 - **logging_manager.py**: Manages logging configurations, storing logs as needed for AWS services.
 
-## Integrations Module
+# API and Integrations Module
 
 ### Description
 
-Handles external data integrations, particularly with Spotify and Ticketmaster, providing relevant data for recommendations and event information.
+This module manages data communication both within the project (frontend and backend interactions) and with external APIs (e.g., Spotify, Ticketmaster). It includes the setup for API endpoints defined within each app (such as `artist_recommendation`, `concert_performance`) and manages integrations for retrieving and processing data from external sources.
 
 ### Key Components
 
-- **spotify_data_manager.py**: Manages data retrieval from Spotify for artist data.
-- **ticketmaster_to_csv.py**: Manages Ticketmaster data for event and ticket information.
+- **Endpoints**: Defines API routes across various apps for internal data management, handling data for artist recommendations, event management, concert performance, and marketing tools.
+- **api_manager.py**: A parent class that generalizes API setup, handling authentication, token management, and request processing for external services. Requires the base url for your API, an optional authentication type (i.e. Basic or Bearer), and any optional API credentials formatted in two string parameter dictionary where the keys might be something like [client_id, client_secret]. Has an authenticate method to authenticate your API connection based on authentication type (if specified). Has get_oath_token method which retrieves the oauth token using any client credentials. Has a refresh_token method to refresh the token if the current one is expired or invalid (for the APIs with temporary access tokens). 
+- **spotify_data_manager.py**: Manages data retrieval and updates from Spotify, providing artist data for recommendations and analytics.
+- **ticketmaster_to_csv.py**: Manages data retrieval from Ticketmaster, used for event listings and ticket information.
 
 ---
-
-These templates are structured to help you organize content based on each module's function and purpose, making it easier to document and maintain.

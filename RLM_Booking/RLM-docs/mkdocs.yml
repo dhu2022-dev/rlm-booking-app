@@ -19,9 +19,6 @@ nav:
       - "Core AWS Resources": aws/core_aws_resources.md
       - "CI/CD Pipeline": aws/ci_cd_deployment.md
       - "Migration to AWS Elastic Beanstalk Plan": aws/migration_elastic_beanstalk.md
-  - API Documentation:
-      - "Endpoints": api/endpoints.md
-      - "Data Models": api/data-models.md
   - Database Structure:
       - "Schema Overview": database/schema-overview.md
       - "Models": database/models.md
