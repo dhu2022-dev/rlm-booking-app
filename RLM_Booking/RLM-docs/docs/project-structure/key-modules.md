@@ -1,6 +1,6 @@
 # Key Modules
 
-This section provides an overview of each main module and its purpose in the project. Modules are grouped by functionality to clarify their roles in the application. Each class and its methods are listed with a brief description. For even more specific information on the methods see the code comments.
+This section provides an overview of each main module and its purpose in the project. Modules are grouped by functionality to clarify their roles in the application. Each class and its methods are listed with a brief description. For even more specific information on the methods see the method docstrings and code comments.
 
 ---
 

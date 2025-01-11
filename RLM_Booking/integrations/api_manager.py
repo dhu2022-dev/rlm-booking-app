@@ -19,6 +19,7 @@ class APIManager:
         self.credentials = credentials
         self.access_token = None
         self.headers = {}
+        self.params = {}
 
         if auth_type and credentials:
             self.authenticate()
@@ -34,6 +35,8 @@ class APIManager:
         elif self.auth_type == 'Basic' and 'username' in self.credentials and 'password' in self.credentials:
             auth_str = f"{self.credentials['username']}:{self.credentials['password']}"
             self.headers = {'Authorization': f"Basic {base64.b64encode(auth_str.encode()).decode()}"}
+        elif self.auth_type == 'APIKey' and 'apikey' in self.credentials:
+            self.params['apikey'] = self.credentials['apikey']
         else:
             logging.error("Unsupported authentication type or missing credentials.")
 
@@ -60,7 +63,7 @@ class APIManager:
             logging.error(f"Failed to retrieve OAuth token: {e}")
             return ''
 
-    def make_request(self, endpoint: str, method: str = 'GET', params: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
+    def make_request(self, endpoint: str, method: str = 'GET', params: Optional[Dict[str, Any]] = {}) -> Dict[str, Any]:
         """
         Makes a request to the API with automatic token refresh and rate limit handling.
 
@@ -77,6 +80,8 @@ class APIManager:
         try:
             # Apply a short delay to avoid rate limits
             time.sleep(0.3)
+
+            params.update(self.params) #add on request paramaters to initial parameters, needed if apikey is a param
 
             response = requests.request(method, url, headers=self.headers, params=params if method == 'GET' else None, json=params if method != 'GET' else None)
 
@@ -99,8 +104,3 @@ class APIManager:
         except requests.RequestException as e:
             logging.error(f"Request failed: {e}")
             return {}
-
-    def refresh_access_token(self):
-        """ Refreshes the access token if the current token is expired or invalid. """
-        if self.auth_type == 'Bearer':
-            self.authenticate()
