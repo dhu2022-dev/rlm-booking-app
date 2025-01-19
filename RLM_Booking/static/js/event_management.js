@@ -1,43 +1,87 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const table = document.getElementById('data-table');
+console.log("JavaScript file loaded successfully!");
 
-    // Function to sort table by column index
-    function sortTable(columnIndex, order) {
-        const rows = Array.from(table.getElementsByTagName('tr'));
+document.addEventListener("DOMContentLoaded", function () {
+    const availabilityForm = document.getElementById("availabilityForm");
+    if (availabilityForm) {
+        availabilityForm.addEventListener("submit", async function (event) {
+            event.preventDefault();
 
-        rows.sort((a, b) => {
-            const cellA = a.getElementsByTagName('td')[columnIndex].textContent.trim();
-            const cellB = b.getElementsByTagName('td')[columnIndex].textContent.trim();
+            // Collect form input values
+            const artist = document.getElementById("artistSearchInput").value.trim();
+            const zipCode = document.getElementById("zipCodeInput").value.trim();
+            const radius = document.getElementById("radiusInput").value.trim();
+            const startDate = document.getElementById("startDateInput").value.trim();
+            const endDate = document.getElementById("endDateInput").value.trim();
 
-            // Handle date comparison for Times column
-            if (columnIndex === 2) {
-                return order === 'asc'
-                    ? new Date(cellA) - new Date(cellB)
-                    : new Date(cellB) - new Date(cellA);
+            // Debugging logs
+            console.log("Artist:", artist);
+            console.log("Zip Code:", zipCode);
+            console.log("Radius:", radius);
+            console.log("Start Date:", startDate);
+            console.log("End Date:", endDate);
+
+            // Build query string
+            const queryParams = new URLSearchParams({
+                artist: artist || "",
+                zipCode: zipCode || "",
+                radius: radius || "",
+                startDate: startDate || "",
+                endDate: endDate || "",
+            });
+            console.log("Query Params:", queryParams.toString());
+
+            try {
+                // Fetch availability results
+                const response = await fetch(`/event_management/search-events/?${queryParams.toString()}`);
+                if (!response.ok) {
+                    console.error(`Error: ${response.status} - ${response.statusText}`);
+                    throw new Error("Failed to fetch availability data.");
+                }
+
+                const events = await response.json();
+                console.log("Fetched Events:", events);
+
+                // Populate the results table
+                populateAvailabilityTable(events);
+            } catch (error) {
+                console.error("Error fetching availability:", error);
             }
-
-            // Handle string comparison for other columns
-            return order === 'asc'
-                ? cellA.localeCompare(cellB)
-                : cellB.localeCompare(cellA);
         });
-
-        // Reorder rows in the table body
-        rows.forEach(row => table.appendChild(row));
+    } else {
+        console.error("Availability form not found in the DOM.");
     }
-
-    // Attach event listeners to sort buttons
-    document.querySelectorAll('.sort-btn').forEach(button => {
-        button.addEventListener('click', function() {
-            const columnIndex = parseInt(this.getAttribute('data-column'));
-            const currentOrder = this.getAttribute('data-sort');
-
-            // Toggle sort order
-            const newOrder = currentOrder === 'asc' ? 'desc' : 'asc';
-            this.setAttribute('data-sort', newOrder);
-
-            // Sort table
-            sortTable(columnIndex, newOrder);
-        });
-    });
 });
+
+function populateAvailabilityTable(events) {
+    const tableBody = document.getElementById("availabilityResultsTable");
+    tableBody.innerHTML = "";
+
+    if (events.length === 0) {
+        const noResultsRow = document.createElement("tr");
+        noResultsRow.innerHTML = `<td colspan="5" class="text-center">No events found.</td>`;
+        tableBody.appendChild(noResultsRow);
+    } else {
+        events.forEach((event) => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+                <td>${event.artist || "Unknown"}</td>
+                <td>${event.name || "Unknown"}</td>
+                <td>${event.venue || "Unknown"}</td>
+                <td>${event.date || "Unknown"}</td>
+                <td>${event.location || "Unknown"}</td>
+            `;
+            tableBody.appendChild(row);
+        });
+    }
+}
+
+function clearTable() {
+    const tableBody = document.getElementById("availabilityResultsTable");
+    tableBody.innerHTML = `<tr><td colspan="5" class="text-center">Start typing to search for events.</td></tr>`;
+}
+
+let debounceTimer;
+function debounce(func, delay) {
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(func, delay);
+}

@@ -12,7 +12,7 @@ SPOTIFY_CLIENT_ID = os.getenv('SPOTIFY_CLIENT_ID')
 SPOTIFY_CLIENT_SECRET = os.getenv('SPOTIFY_CLIENT_SECRET')
 
 # Configure logging for class debugging
-logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
 
 class SpotifyAPIManager(APIManager):
     SPOTIFY_BASE_URL = 'https://api.spotify.com/v1'
@@ -42,12 +42,12 @@ class SpotifyAPIManager(APIManager):
         Returns:
             A list of dictionaries containing the requested data, or an empty list if the request fails.
         """
-        logging.debug(f"Fetching data from endpoint {endpoint}")
+        logger.debug(f"Fetching data from endpoint {endpoint}")
         response = self.make_request(endpoint)
         data = response.get(key, {}).get('items', [])
         
         if not data:
-            logging.warning(f"No data found at endpoint {endpoint}")
+            logger.warning(f"No data found at endpoint {endpoint}")
         
         return data
 
@@ -58,12 +58,12 @@ class SpotifyAPIManager(APIManager):
         Returns:
             A list of category dictionaries, or an empty list if the request fails.
         """
-        logging.debug("Fetching categories from Spotify API")
+        logger.debug("Fetching categories from Spotify API")
         response = self.make_request("browse/categories")
         categories = response.get('categories', {}).get('items', [])
         
         if not categories:
-            logging.warning("No categories found in the API response")
+            logger.warning("No categories found in the API response")
         
         return categories
 
@@ -77,13 +77,13 @@ class SpotifyAPIManager(APIManager):
         Returns:
             A list of playlist dictionaries, or an empty list if the request fails.
         """
-        logging.debug(f"Fetching playlists for category {category_id}")
+        logger.debug(f"Fetching playlists for category {category_id}")
         endpoint = f"browse/categories/{category_id}/playlists"
         response = self.make_request(endpoint)
         playlists = response.get('playlists', {}).get('items', [])
         
         if not playlists:
-            logging.warning(f"No playlists found for category {category_id}")
+            logger.warning(f"No playlists found for category {category_id}")
         
         return playlists
 
@@ -98,13 +98,13 @@ class SpotifyAPIManager(APIManager):
         Returns:
             A list of artist dictionaries, or an empty list if the request fails.
         """
-        logging.debug(f"Fetching artists for playlist {playlist_id}")
+        logger.debug(f"Fetching artists for playlist {playlist_id}")
         endpoint = f"playlists/{playlist_id}/tracks"
         response = self.make_request(endpoint)
         tracks = response.get('items', [])
         
         if not tracks:
-            logging.warning(f"No tracks found for playlist {playlist_id}.")
+            logger.warning(f"No tracks found for playlist {playlist_id}.")
             return []
         
         artists = []
@@ -128,12 +128,12 @@ class SpotifyAPIManager(APIManager):
         Returns:
             A dictionary with artist details, or an empty dictionary if the request fails.
         """
-        logging.debug(f"Fetching details for artist {artist_id}")
+        logger.debug(f"Fetching details for artist {artist_id}")
         endpoint = f"artists/{artist_id}"
         artist_data = self.make_request(endpoint)
         
         if not artist_data:
-            logging.warning(f"No artist data found for {artist_id}.")
+            logger.warning(f"No artist data found for {artist_id}.")
             return {}
         
         artist_details = {

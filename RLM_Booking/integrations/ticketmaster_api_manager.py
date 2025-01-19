@@ -1,9 +1,10 @@
 import os
 from dotenv import load_dotenv
-from api_manager import APIManager
+from .api_manager import APIManager
 from typing import Optional, Dict, List, Any
 import logging
 
+logger = logging.getLogger(__name__)
 load_dotenv()
 TICKETMASTER_API_KEY = os.getenv('TICKETMASTER_API_KEY')
 
@@ -45,39 +46,54 @@ class TicketmasterAPIManager(APIManager):
         Get the Ticketmaster API ID for a specific item based on its type and name.
 
         Args:
-            item_type (str): The type of item we support: artist, genre, event, venue.
-            item_name (str): The name of the item. Must match exactly, no typos. Make sure the name is unique.
+            item_type (str): The type of item (artist, event, venue).
+            item_name (str): The name of the item. Must match exactly.
 
         Returns:
-            str: The unique identifier (id) of the item. The first one if there are multiple valid results.
+            str: The unique identifier (id) of the item, or an empty string if not found.
         """
+        logger.info(f"Fetching ID for {item_type} '{item_name}'")
         endpoint_map = {
             'artist': 'attractions',
-            # 'genre': 'classifications', # genres are not directly searchable. attempt again later.
             'event': 'events',
             'venue': 'venues',
         }
         if item_type not in endpoint_map:
-            logging.warning(f"Unsupported item type: {item_type}")
+            logger.warning(f"Unsupported item type: {item_type}")
             return ''
 
         category = endpoint_map[item_type]
         params = {
             'keyword': item_name
         }
+        logger.debug(f"Final API parameters: {params}")
         response = self.make_request(endpoint=category, params=params)
-        
+
+        # Log the raw response for debugging
+        logger.debug(f"API Response for {item_type} '{item_name}': {response}")
+
+        # Validate the response structure
         if not response or '_embedded' not in response or category not in response['_embedded']:
-            logging.warning(f"No {item_type} found for name: {item_name}")
+            logger.warning(f"No {item_type} found for name: {item_name}")
             return ''
-        
-        id = response['_embedded'][category].get('id', '')
-        
-        return id
+
+        # Handle list response
+        items = response['_embedded'][category]
+        if isinstance(items, list):
+            for item in items:
+                if 'id' in item:
+                    logging.info(f"Found {item_type} ID: {item['id']} for {item_name}")
+                    return item['id']
+            logger.warning(f"No ID found in {item_type} list for name: {item_name}")
+        else:
+            logger.warning(f"Unexpected structure for {item_type}: {items}")
+
+        return ''
+
     
     def fetch_events(self, 
                  artist: Optional[str] = None, 
-                 genre: Optional[str] = None, 
+                 #genre: Optional[str] = None, 
                  postalcode: Optional[str] = None, 
                  latitude: Optional[float] = 0.0,
                  longitude: Optional[float] = 0.0,
@@ -90,7 +106,7 @@ class TicketmasterAPIManager(APIManager):
 
         Args:
             artist (Optional[str]): The name of the artist.
-            genre (Optional[str]): The genre of the event.
+            #genre (Optional[str]): The genre of the event.
             postalcode (Optional[str]): The postal code to search within.
             latitude (Optional[float]): The latitude for geographic search.
             longitude (Optional[float]): The longitude for geographic search.
@@ -101,6 +117,7 @@ class TicketmasterAPIManager(APIManager):
         Returns:
             list: A list of parsed event JSON objects.
         """
+        logger.info("Fetching events from Ticketmaster API")
         endpoint = 'events'
         params = {}
 
@@ -122,14 +139,21 @@ class TicketmasterAPIManager(APIManager):
         if end_date:
             params['endDateTime'] = f"{end_date}T04:59:59Z"
 
-        response = self.make_request(endpoint=endpoint, params=params)
-        
-        if response and '_embedded' in response and 'events' in response['_embedded']:
-            events = response['_embedded']['events']
-            parsed_events = [self.fetch_event_details(event=event) for event in events]
-            return parsed_events
-        
-        return []
+        logger.debug(f"Final API parameters: {params}")
+
+        try:
+            response = self.make_request(endpoint=endpoint, params=params)
+            logger.debug(f"Raw API response: {response}")
+
+            if response and '_embedded' in response and 'events' in response['_embedded']:
+                events = response['_embedded']['events']
+                parsed_events = [self.fetch_event_details(event=event) for event in events]
+                return parsed_events
+            logger.info("No events found in the API response.")
+            return []
+        except Exception as e:
+            logger.error(f"Error while fetching events: {str(e)}", exc_info=True)
+            raise
 
     def fetch_event_details(self, event_id: Optional[str] = None, event: Optional[Dict[str, Any]] = None) -> dict:
         """
@@ -142,15 +166,16 @@ class TicketmasterAPIManager(APIManager):
         Returns:
             dict: A dictionary containing the relevant event details.
         """
+        logger.info(f"Fetching details for event with ID: {event_id}")
         if event is None:
             if event_id is None:
-                logging.warning("No event_id or event JSON object provided.")
+                logger.warning("No event_id or event JSON object provided.")
                 return {}
             endpoint = f'events/{event_id}'
             response = self.make_request(endpoint=endpoint)
             
             if not response:
-                logging.warning(f"No details found for event with id: {event_id}")
+                logger.warning(f"No details found for event with id: {event_id}")
                 return {}
             event = response
 
@@ -183,11 +208,13 @@ class TicketmasterAPIManager(APIManager):
         Returns:
             dict: A dictionary containing the (relevant) attraction details.
         """
+        logger.info(f"Fetching details for artist with ID: {artist_id}")
+
         endpoint = f'attractions/{artist_id}'
         response = self.make_request(endpoint=endpoint)
         
         if not response:
-            logging.warning(f"No details found for artist with id: {artist_id}")
+            logger.warning(f"No details found for artist with id: {artist_id}")
             return {}
 
         artist_details = {
@@ -212,11 +239,13 @@ class TicketmasterAPIManager(APIManager):
         Returns:
             dict: A dictionary containing the venue details.
         """
+        logger.info(f"Fetching details for venue with ID: {venue_id}")
+        
         endpoint = f'venues/{venue_id}'
         response = self.make_request(endpoint=endpoint)
         
         if not response:
-            logging.warning(f"No details found for venue with id: {venue_id}")
+            logger.warning(f"No details found for venue with id: {venue_id}")
             return {}
         
         venue_details = {

@@ -1,0 +1,198 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Management</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/event_management_styling.css' %}">
+</head>
+<body class="bg-dark text-light">
+    <!-- Top Bar -->
+    <div class="top-bar d-flex align-items-center justify-content-between p-3 bg-black">
+        <a href="/"><img src="{% static 'img/SHLogo.png' %}" alt="Logo" class="logo"></a>
+        <h1 class="text-danger">Event Management</h1>
+    </div>
+
+    <div class="container mt-5">
+        <!-- Dashboard -->
+        <div id="dashboardSection" class="mb-5">
+            <h2 class="text-center mb-4">Dashboard</h2>
+            <div class="row g-3">
+                <div class="col-md-3">
+                    <div class="card text-center bg-light">
+                        <div class="card-body">
+                            <h5>Total Upcoming Events</h5>
+                            <p class="fs-4">35</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card text-center bg-light">
+                        <div class="card-body">
+                            <h5>Average Ticket Price</h5>
+                            <p class="fs-4">$75</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card text-center bg-light">
+                        <div class="card-body">
+                            <h5>Booked Venues/Artists</h5>
+                            <p class="fs-4">12</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card text-center bg-light">
+                        <div class="card-body">
+                            <h5>Revenue Projections</h5>
+                            <p class="fs-4">$50,000</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Quick Actions -->
+            <div class="row mt-4 text-center">
+                <h4>Quick Actions</h4>
+                <div class="col-md-4">
+                    <button class="btn btn-primary w-100">Add New Event</button>
+                </div>
+                <div class="col-md-4">
+                    <button class="btn btn-secondary w-100">Check Availability</button>
+                </div>
+                <div class="col-md-4">
+                    <button class="btn btn-warning w-100">Optimize Ticket Prices</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Event Scheduling -->
+        <div id="eventSchedulingSection" class="mb-5">
+            <h2 class="text-center mb-4">Event Scheduling</h2>
+            <ul class="nav nav-tabs mb-3">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#calendarTab" data-bs-toggle="tab">Calendar View</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#formTab" data-bs-toggle="tab">Add Event</a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <!-- Calendar View -->
+                <div class="tab-pane fade show active" id="calendarTab">
+                    <div id="eventCalendar" class="calendar-placeholder">
+                        <!-- FullCalendar.js widget will render here -->
+                    </div>
+                </div>
+                <!-- Add Event Form -->
+                <div class="tab-pane fade" id="formTab">
+                    <form id="eventForm">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <input type="text" id="eventName" class="form-control" placeholder="Event Name" required>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="datetime-local" id="eventDate" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="row g-3 mt-3">
+                            <div class="col-md-6">
+                                <select id="venueDropdown" class="form-select" required>
+                                    <option value="" disabled selected>Select Venue</option>
+                                    <!-- Dynamically populated -->
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <select id="artistDropdown" class="form-select" required>
+                                    <option value="" disabled selected>Select Artist</option>
+                                    <!-- Dynamically populated -->
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-md-6">
+                                <input type="number" id="audienceSize" class="form-control" placeholder="Expected Audience Size">
+                            </div>
+                            <div class="col-md-6">
+                                <textarea id="eventNotes" class="form-control" placeholder="Notes"></textarea>
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-md-12 text-center">
+                                <button type="submit" class="btn btn-primary w-50">Create Event</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Artist and Venue Availability -->
+        <div id="availabilitySection" class="mb-5">
+            <h2 class="text-center mb-4">Check Artist/Venue Availability</h2>
+            <form id="availabilityForm">
+                <div class="row g-3">
+                    <!-- Artist Search -->
+                    <div class="col-md-4">
+                        <input type="text" id="artistSearchInput" class="form-control" placeholder="Search Artist" required>
+                    </div>
+                    <!-- Zip Code -->
+                    <div class="col-md-4">
+                        <input type="text" id="zipCodeInput" class="form-control" placeholder="Zip Code">
+                    </div>
+                    <!-- Search Radius -->
+                    <div class="col-md-4">
+                        <input type="number" id="radiusInput" class="form-control" placeholder="Radius (miles)">
+                    </div>
+                </div>
+                <div class="row g-3 mt-3">
+                    <!-- Start and End Dates -->
+                    <div class="col-md-6">
+                        <input type="date" id="startDateInput" class="form-control" required>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="date" id="endDateInput" class="form-control" required>
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-md-12 text-center">
+                        <button type="submit" class="btn btn-secondary w-50">Search Availability</button>
+                    </div>
+                </div>
+            </form>
+        
+            <!-- Results Table -->
+            <div class="mt-5">
+                <h4>Availability Results</h4>
+                <table class="table table-dark table-striped">
+                    <thead class="table-light">
+                        <tr>
+                            <th scope="col">Artist</th>
+                            <th scope="col">Event Name</th>
+                            <th scope="col">Venue</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Location</th>
+                        </tr>
+                    </thead>
+                    <tbody id="availabilityResultsTable">
+                        <!-- Dynamically populated rows will appear here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    
+</body>
+<script src="{% static 'js/event_management.js' %}"></script>
+</html>

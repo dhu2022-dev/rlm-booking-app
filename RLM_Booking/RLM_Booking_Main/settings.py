@@ -14,6 +14,7 @@ from pathlib import Path
 
 import environ
 import os
+from shared_services.logging_manager import setup_logging
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -38,6 +39,8 @@ env = environ.Env()
 # Load the .env file
 environ.Env.read_env(os.path.join(PROJECT_ROOT, '.env'))
 
+# Logging; Call my custom logging setup
+setup_logging()
 
 # Application definition
 

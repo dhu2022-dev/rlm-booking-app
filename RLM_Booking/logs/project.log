@@ -1,0 +1,10 @@
+2025-01-19 03:37:18,590 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:120] - INFO - Fetching events from Ticketmaster API
+2025-01-19 03:37:18,591 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:55] - INFO - Fetching ID for artist 'Caravan Palace'
+2025-01-19 03:37:19,179 - root - [ticketmaster_api_manager.py:85] - INFO - Found artist ID: K8vZ917GjTf for Caravan Palace
+2025-01-19 03:37:19,833 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:169] - INFO - Fetching details for event with ID: None
+2025-01-19 03:37:19,833 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:169] - INFO - Fetching details for event with ID: None
+2025-01-19 03:37:19,833 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:169] - INFO - Fetching details for event with ID: None
+2025-01-19 03:37:19,834 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:169] - INFO - Fetching details for event with ID: None
+2025-01-19 03:37:19,834 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:169] - INFO - Fetching details for event with ID: None
+2025-01-19 03:37:19,834 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:169] - INFO - Fetching details for event with ID: None
+2025-01-19 03:37:19,834 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:169] - INFO - Fetching details for event with ID: None

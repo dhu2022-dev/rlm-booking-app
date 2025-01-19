@@ -4,6 +4,8 @@ import logging
 import time
 from typing import Dict, Any, Optional
 
+logger = logging.getLogger(__name__)
+
 class APIManager:
     def __init__(self, base_url: str, auth_type: Optional[str] = None, credentials: Optional[Dict[str, str]] = None):
         """
@@ -38,7 +40,7 @@ class APIManager:
         elif self.auth_type == 'APIKey' and 'apikey' in self.credentials:
             self.params['apikey'] = self.credentials['apikey']
         else:
-            logging.error("Unsupported authentication type or missing credentials.")
+            logger.error("Unsupported authentication type or missing credentials.")
 
     def get_oauth_token(self) -> str:
         """
@@ -47,7 +49,7 @@ class APIManager:
         Returns:
             str: The access token.
         """
-        logging.debug("Getting OAuth token.")
+        logger.debug("Getting OAuth token.")
         
         auth_str = f"{self.credentials['client_id']}:{self.credentials['client_secret']}"
         b64_auth_str = base64.b64encode(auth_str.encode()).decode()
@@ -60,7 +62,7 @@ class APIManager:
             response.raise_for_status()
             return response.json().get('access_token', '')
         except requests.RequestException as e:
-            logging.error(f"Failed to retrieve OAuth token: {e}")
+            logger.error(f"Failed to retrieve OAuth token: {e}")
             return ''
 
     def make_request(self, endpoint: str, method: str = 'GET', params: Optional[Dict[str, Any]] = {}) -> Dict[str, Any]:
@@ -87,14 +89,14 @@ class APIManager:
 
             # Refresh token if unauthorized
             if response.status_code == 401 and self.auth_type == 'Bearer':
-                logging.info("Access token expired. Refreshing...")
+                logger.info("Access token expired. Refreshing...")
                 self.authenticate()
                 response = requests.request(method, url, headers=self.headers, params=params)
 
             # Handle rate limits by retrying after the specified delay
             if response.status_code == 429:
                 retry_after = int(response.headers.get('Retry-After', 1))
-                logging.warning(f"Rate limit reached. Retrying after {retry_after} seconds.")
+                logger.warning(f"Rate limit reached. Retrying after {retry_after} seconds.")
                 time.sleep(retry_after)
                 return self.make_request(endpoint, method, params)
 
@@ -102,5 +104,5 @@ class APIManager:
             return response.json()
 
         except requests.RequestException as e:
-            logging.error(f"Request failed: {e}")
+            logger.error(f"Request failed: {e}")
             return {}
