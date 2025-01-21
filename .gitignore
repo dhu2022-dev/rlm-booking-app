@@ -4,4 +4,7 @@ venv/
 myenv/
 __pycache__/
 apps/__pycache__/
-
+**/__pycache__/
+*.pyc
+*.pyo
+RLM_Booking/__pycache__/*
