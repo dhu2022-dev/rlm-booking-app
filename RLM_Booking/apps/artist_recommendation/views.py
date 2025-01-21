@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import JsonResponse
 from django.views.decorators.http import require_GET
 
-from integrations.api_helper import get_spotify_token, search_artist, get_ticketmaster_events, analyze_local_global_events
+from RLM_Booking.integrations.artist_event_search import get_spotify_token, search_artist, get_ticketmaster_events, analyze_local_global_events
 from shared_services.aws_database_manager import AWSDatabaseManager
 import os
 
