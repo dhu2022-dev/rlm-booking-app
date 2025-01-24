@@ -15,15 +15,8 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{% static 'css/artist_recommendation.css' %}">
 </head>
-<body>
-    <!-- Header Bar -->
-    <div class="header-bar">
-        <div class="d-flex align-items-center">
-            <a href = "/"> <img src="{% static 'img/SHLogo.png' %}" alt="Logo" class="logo" style = "margin-right: 5em;"> </a>
-            <h1 class="header-title">Artist Recommendation App</h1>
-        </div>
-        <button type="submit" form="artist-search-form" class="btn btn-outline-light">Submit</button>
-    </div>
+<body class = "bg-dark">
+    {% include 'shared/navbar.html' with title="Artist Recommendation App" %}
 
     <div class="container mt-3">
         <!-- Search Form -->
@@ -59,6 +52,57 @@
             <button type="button" id="scroll-to-top" class="btn" style="background-color: #ff0000; color: #ffffff; margin-top: 15px; height: 40px;">Scroll to Top</button>
         </div>
 
+    </div>
+
+    <!-- Dialog for adding to calendar -->
+    <div class="modal fade" id="addToCalendarModal" tabindex="-1" aria-labelledby="addToCalendarLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content" style="background-color: #1a1a1a; color: #ffffff;">
+                <div class="modal-header" style="border-bottom: 1px solid #444;">
+                    <h5 class="modal-title" id="addToCalendarLabel" style="color: #ff0000;">Add Event to Calendar</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="background-color: #ff0000; border: none;"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="add-event-form">
+                        <div class="mb-3">
+                            <label for="event-name" class="form-label" style="color: #b3b3b3;">Event Name</label>
+                            <input type="text" class="form-control" id="event-name" name="name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="event-location" class="form-label" style="color: #b3b3b3;">Location</label>
+                            <input type="text" class="form-control" id="event-location" name="location" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="event-date" class="form-label" style="color: #b3b3b3;">Date</label>
+                            <input type="date" class="form-control" id="event-date" name="date" required>
+                        </div>
+                        <button type="submit" class="btn" style="background-color: #ff0000; color: #ffffff;">Save Event</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <!-- Success Toast -->
+        <div id="toast-success" class="toast align-items-center text-bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body">
+                    Event added to calendar successfully!
+                </div>
+                <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+    
+        <!-- Error Toast -->
+        <div id="toast-error" class="toast align-items-center text-bg-danger border-0" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body">
+                    Failed to add event. Please try again.
+                </div>
+                <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
     </div>
 
     <!-- Bootstrap JS -->

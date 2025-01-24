@@ -13,14 +13,6 @@ body {
     margin-right: 5em;
     margin-left: 3em;
 }
-.logo {
-    width: 25em;
-    height: 5em;
-    border-radius: 10%;
-    background-color: #ffffff; /* Background color to make logo pop */
-    padding: 5px;
-    margin-right: 1rem; /* Margin around logo */
-}
 .table-dark {
     background-color: #333333;
     color: #ffffff;

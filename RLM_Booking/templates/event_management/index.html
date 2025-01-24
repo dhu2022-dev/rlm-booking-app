@@ -18,14 +18,8 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{% static 'css/event_management_styling.css' %}">
 </head>
-<body>
-    <!-- Top Bar -->
-    <div class="top-bar align-items-center">
-        <!-- Logo with margin and background to pop from background -->
-        <a href = "/"> <img src="{% static 'img/SHLogo.png' %}" alt="Logo" class="logo"> </a>
-        <h1 class="title">Data Favorites Selector</h1>
-        <button id="filterFavorites" class="btn btn-outline-light">Show Favorites</button>
-    </div>
+<body class = "bg-dark">
+    {% include 'shared/navbar.html' with title="Data Favorites Selector" %}
     
     <div class="container mt-4">
     <!-- Form to Send Data to Backend -->

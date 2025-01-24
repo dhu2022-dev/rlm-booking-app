@@ -203,9 +203,14 @@ document.addEventListener('DOMContentLoaded', function() {
                                     <h5 class="card-title" style="color: #ff0000;">${event.name}</h5>
                                     <p class="card-text">Date: ${event.dates.start.localDate}</p>
                                     <p class="card-text">Location: ${event._embedded.venues[0].name}, ${event._embedded.venues[0].city.name}</p>
-                                    <p class="card-text"><strong>Predicted Ticket Sales: ${event.predicted_sales}</strong></p>
-                                    <p class="card-text"><strong>Suggested Ticket Price: $${event.suggested_price}</strong></p>
-                                    <a href="${event.url}" target="_blank" class="btn" style="background-color: #ff0000; color: #ffffff;">Get Tickets</a>
+                                    <button class="btn btn-primary add-to-calendar" 
+                                            data-event='${JSON.stringify({
+                                                name: event.name,
+                                                date: event.dates.start.localDate,
+                                                location: `${event._embedded.venues[0].name}, ${event._embedded.venues[0].city.name}`,
+                                            })}'>
+                                        Add to Calendar
+                                    </button>
                                 </div>
                             </div>
                         `;
@@ -226,6 +231,14 @@ document.addEventListener('DOMContentLoaded', function() {
                                     <p class="card-text"><strong>Predicted Ticket Sales: ${event.predicted_sales}</strong></p>
                                     <p class="card-text"><strong>Suggested Ticket Price: $${event.suggested_price}</strong></p>
                                     <a href="${event.url}" target="_blank" class="btn" style="background-color: #ff0000; color: #ffffff;">Get Tickets</a>
+                                    <button class="btn btn-primary add-to-calendar" 
+                                            data-event='${JSON.stringify({
+                                                name: event.name,
+                                                date: event.dates.start.localDate,
+                                                location: `${event._embedded.venues[0].name}, ${event._embedded.venues[0].city.name}`,
+                                            })}'>
+                                        Add to Calendar
+                                    </button>
                                 </div>
                             </div>
                         `;
@@ -293,5 +306,59 @@ document.addEventListener('DOMContentLoaded', function() {
     // Scroll to top when the "Scroll to Top" button is clicked
     document.getElementById('scroll-to-top').addEventListener('click', function() {
         window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+});
+
+// Add Event Handling:
+const events = []; // Global state to store events
+
+document.addEventListener('click', function (e) {
+    if (e.target.classList.contains('add-to-calendar')) {
+        const eventData = JSON.parse(e.target.getAttribute('data-event'));
+
+        // Populate the modal form with event data
+        document.getElementById('event-name').value = eventData.name;
+        document.getElementById('event-location').value = eventData.location;
+        document.getElementById('event-date').value = eventData.date;
+
+        // Show the modal
+        new bootstrap.Modal(document.getElementById('addToCalendarModal')).show();
+    }
+});
+
+document.getElementById('add-event-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    const newEvent = {
+        name: this.name.value,
+        location: this.location.value,
+        date: this.date.value,
+    };
+
+    // Send the event to the backend
+    fetch('/event_management/api/save-event/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newEvent),
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Failed to save event');
+        }
+        return response.json();
+    })
+    .then(data => {
+        const toastSuccess = new bootstrap.Toast(document.getElementById('toast-success'));
+        toastSuccess.show();
+
+        bootstrap.Modal.getInstance(document.getElementById('addToCalendarModal')).hide();
+    })
+    .catch(error => {
+        console.error('Error:', error);
+
+        const toastError = new bootstrap.Toast(document.getElementById('toast-error'));
+        toastError.show();
     });
 });

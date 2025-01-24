@@ -1,0 +1,138 @@
+{% load static %}
+
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.2/main.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.2/main.min.js"></script>
+    <link rel="stylesheet" href="{% static 'css/calendar_styling.css' %}">
+    
+</head>
+
+<body class = "bg-dark">
+    {% include 'shared/navbar.html' with title="Event Calendar" %}
+    <div class="container mt-4">
+        <div id="calendar"></div>
+    </div>
+
+    <!-- Event Info Modal -->
+    <div class="modal fade" id="eventInfoModal" tabindex="-1" aria-labelledby="eventInfoLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content" style="background-color: #1a1a1a; color: #ffffff;">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="eventInfoLabel">Event Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p><strong>Name:</strong> <span id="event-name"></span></p>
+                    <p><strong>Date:</strong> <span id="event-date"></span></p>
+                    <p><strong>Location:</strong> <span id="event-location"></span></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" id="delete-event-btn">Delete Event</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="no-events-card" class="d-none text-center">
+        <div class="card mx-auto" style="width: 18rem; background-color: #1a1a1a; color: #ffffff; border: none;">
+            <img src="{% static 'img/placeholder.png' %}" class="card-img-top" alt="No Events" style="border-radius: 10px;">
+            <div class="card-body">
+                <h5 class="card-title">No Events Selected</h5>
+                <p class="card-text">You have not selected any events. Use the "Add to Calendar" button on the events page to start planning.</p>
+                <a href="/artist_recommendation" class="btn btn-primary">Browse Events</a>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const calendarEl = document.getElementById('calendar');
+        const noEventsCard = document.getElementById('no-events-card');
+
+        fetch('/event_management/api/get-events/')
+            .then(response => response.json())
+            .then(events => {
+                if (events.length === 0) {
+                    noEventsCard.classList.remove('d-none');
+                    calendarEl.classList.add('d-none'); // Hide the calendar
+                    return;
+                }
+
+                noEventsCard.classList.add('d-none');
+                calendarEl.classList.remove('d-none');
+
+                const calendar = new FullCalendar.Calendar(calendarEl, {
+                    initialView: 'dayGridMonth',
+                    events: events.map(event => ({
+                        id: event.id, 
+                        title: event.name,
+                        start: event.date,
+                        extendedProps: {
+                            location: event.location,
+                        },
+                    })),
+                    eventClick: function (info) {
+                        document.getElementById('event-name').innerText = info.event.title;
+                        document.getElementById('event-date').innerText = info.event.start.toISOString().split('T')[0];
+                        document.getElementById('event-location').innerText = info.event.extendedProps.location;
+
+                        const deleteButton = document.getElementById('delete-event-btn');
+                        deleteButton.onclick = function () {
+                            deleteEvent(info.event.id, calendar, info.event);
+                        };
+
+                        const eventInfoModal = new bootstrap.Modal(document.getElementById('eventInfoModal'));
+                        eventInfoModal.show();
+                    },
+                });
+
+                calendar.render();
+            })
+            .catch(error => {
+                console.error('Error fetching events:', error);
+            });
+    });
+
+    function deleteEvent(eventId, calendar, event) {
+        const deleteButton = document.getElementById('delete-event-btn');
+    
+        deleteButton.disabled = true;
+        deleteButton.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Deleting...';
+    
+        fetch(`/event_management/api/delete-event/${eventId}/`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to delete event');
+            }
+            return response.json();
+        })
+        .then(data => {
+            calendar.getEventById(event.id).remove(); // Remove event from calendar
+            const eventInfoModal = bootstrap.Modal.getInstance(document.getElementById('eventInfoModal'));
+            eventInfoModal.hide(); // Hide the modal
+            alert('Event deleted successfully!');
+        })
+        .catch(error => {
+            console.error('Error deleting event:', error);
+            alert('Failed to delete event.');
+        })
+        .finally(() => {
+            // Reset the button state
+            deleteButton.disabled = false;
+            deleteButton.innerHTML = 'Delete Event';
+        });
+    }
+
+    const deleteButton = document.getElementById('delete-event-btn');
+    deleteButton.onclick = function () {
+        if (confirm('Are you sure you want to delete this event?')) {
+            deleteEvent(info.event.id, calendar, info.event);
+        }
+    };
+</script>
