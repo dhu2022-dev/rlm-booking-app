@@ -3,7 +3,7 @@ from django.http import JsonResponse
 from django.views.decorators.http import require_GET
 
 from integrations.artist_event_search import get_spotify_token, search_artist, get_ticketmaster_events, analyze_local_global_events
-from shared_services.aws_database_manager import AWSDatabaseManager
+from RLM_Booking.shared_services.aws_data_manager import AWSDatabaseManager
 import os
 
 # Initialize AWSDatabaseManager
