@@ -4,15 +4,6 @@ body {
     color: #ffffff;
 }
 
-/* Header bar styling */
-.header-bar {
-    background-color: #1a1a1a;
-    padding: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
 /* Title styling */
 .header-title {
     color: #ff0000;
@@ -25,15 +16,6 @@ body {
     background-color: #333333;
     color: #ffffff;
     border: none;
-}
-
-.logo {
-    width: 25em;
-    height: 5em;
-    border-radius: 10%;
-    background-color: #ffffff; /* Background color to make logo pop */
-    padding: 5px;
-    margin-right: 1rem; /* Margin around logo */
 }
 
 #artist-search-form button {
@@ -72,4 +54,58 @@ body {
     color: #ffffff;
     border: none;
     margin-top: 1rem;
+}
+
+/* Modal Background */
+.modal-content {
+    background-color: #1a1a1a; /* Dark mode */
+    color: #ffffff; /* White text */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Subtle shadow */
+}
+
+/* Modal Header */
+.modal-header {
+    border-bottom: 1px solid #444; /* Dark border */
+    background-color: #2a2a2a; /* Slightly lighter than modal content */
+    color: #ff0000; /* Red title */
+}
+
+/* Close Button */
+.modal-header .btn-close {
+    background-color: #ff0000; /* Red close button */
+    border: none;
+}
+
+/* Modal Form Labels */
+.modal-body .form-label {
+    color: #b3b3b3; /* Light gray for labels */
+}
+
+/* Input Fields */
+.modal-body .form-control {
+    background-color: #2a2a2a; /* Dark input background */
+    color: #ffffff; /* White text */
+    border: 1px solid #444; /* Subtle border */
+    border-radius: 5px;
+}
+
+/* Input Fields: Focus State */
+.modal-body .form-control:focus {
+    border-color: #ff0000; /* Red border on focus */
+    box-shadow: none; /* Remove Bootstrap default shadow */
+}
+
+/* Save Button */
+.modal-body .btn {
+    background-color: #ff0000; /* Red button */
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+/* Save Button: Hover State */
+.modal-body .btn:hover {
+    background-color: #cc0000; /* Darker red on hover */
 }
