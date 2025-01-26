@@ -3,11 +3,11 @@ from django.http import JsonResponse
 from django.views.decorators.http import require_GET
 
 from integrations.artist_event_search import get_spotify_token, search_artist, get_ticketmaster_events, analyze_local_global_events
-from RLM_Booking.shared_services.aws_data_manager import AWSDatabaseManager
+from shared_services.aws_data_manager import AWSDataManager
 import os
 
 # Initialize AWSDatabaseManager
-db_manager = AWSDatabaseManager(
+db_manager = AWSDataManager(
     aws_access_key_id=os.getenv('AWS_ACCESS_KEY_ID'),
     aws_secret_access_key=os.getenv('AWS_SECRET_ACCESS_KEY'),
     region_name=os.getenv('REGION_NAME'),
