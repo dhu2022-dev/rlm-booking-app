@@ -1,0 +1,108 @@
+/* Page Background */
+body {
+    background-color: #121212; /* Dark mode background */
+    color: #ffffff; /* White text for dark mode */
+}
+
+/* Calendar Container */
+#calendar {
+    background-color: #f4f4f4; /* Light calendar background */
+    border-radius: 10px; /* Rounded corners */
+    padding: 20px; /* Padding inside the calendar */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Subtle shadow for elevation */
+    max-width: 100%; /* Ensure it fits within the container */
+    overflow-x: auto; /* Allow horizontal scrolling on small screens */
+}
+
+/* Calendar Header (Toolbar) */
+.fc-toolbar {
+    background-color: #e0e0e0; /* Light gray toolbar background */
+    color: #000; /* Dark text for readability */
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Subtle shadow */
+}
+
+/* Day Cells */
+.fc-daygrid-day {
+    background-color: #ffffff; /* White day cells */
+    border: 1px solid #ccc; /* Light border */
+    color: #000; /* Black text for readability */
+}
+
+/* Today Highlight */
+.fc-day-today {
+    background-color: #ffcccc !important; /* Light red highlight for today's date */
+    border: 2px solid #ff0000; /* Red border for emphasis */
+    color: #000;
+}
+
+/* Event Styling */
+.fc-event {
+    background-color: #ff0000; /* Red event background */
+    border: none; /* Remove border */
+    color: #ffffff; /* White event text */
+    font-weight: bold;
+    border-radius: 5px; /* Rounded corners for events */
+    padding: 2px 5px; /* Small padding inside events */
+}
+
+/* Event Hover */
+.fc-event:hover {
+    background-color: #cc0000; /* Darker red on hover */
+    cursor: pointer;
+}
+
+/* Selected Cell on Click */
+.fc-highlight {
+    background-color: #ffe6e6 !important; /* Light red for selected cells */
+    border: 1px dashed #ff0000 !important; /* Dashed red border */
+}
+
+/* Month/Week/Day Button Styling */
+.fc-button {
+    background-color: #ff0000; /* Red background for buttons */
+    border: none; /* Remove border */
+    color: #ffffff; /* White text */
+    border-radius: 5px; /* Rounded button corners */
+    padding: 5px 10px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+/* Button Hover */
+.fc-button:hover {
+    background-color: #cc0000; /* Darker red on hover */
+}
+
+/* Button Active */
+.fc-button.fc-button-active {
+    background-color: #cc0000; /* Active state background */
+}
+
+/* Calendar Scrollbar Styling (optional) */
+.fc-scroller {
+    scrollbar-color: #ff0000 #e0e0e0; /* Red scrollbar with gray track */
+    scrollbar-width: thin; /* Thin scrollbar */
+}
+
+body, .fc {
+    font-family: 'Arial', sans-serif; /* Replace with your desired font */
+}
+
+#no-events-card .card {
+    background-color: #1a1a1a; /* Match dark mode theme */
+    color: #ffffff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Add subtle shadow */
+    padding: 2em;
+}
+
+#no-events-card .btn-primary {
+    background-color: #ff0000; /* Red theme button */
+    border: none;
+}
+
+#no-events-card .btn-primary:hover {
+    background-color: #cc0000; /* Darker red on hover */
+}
