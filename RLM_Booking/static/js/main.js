@@ -173,8 +173,18 @@ document.addEventListener('DOMContentLoaded', function() {
                                             <h5 class="card-title" style="color: #ff0000;">${artist.name}</h5>
                                             <p class="card-text">Followers: ${artist.followers.total.toLocaleString()}</p>
                                             <p class="card-text"><small style="color: #b3b3b3;">Popularity: ${artist.popularity}</small></p>
-                                            <a href="${artist.external_urls.spotify}" target="_blank" class="btn" 
-                                            style="background-color: #ff0000; color: #ffffff;">View on Spotify</a>
+                                            <a href="${artist.external_urls.spotify}" target="_blank" class="btn btn-danger">View on Spotify</a>
+                                            <button class="btn btn-primary view-artist-details" 
+                                                    data-artist='${JSON.stringify({
+                                                        name: artist.name,
+                                                        followers: artist.followers.total,
+                                                        popularity: artist.popularity,
+                                                        image: artist.images[0] ? artist.images[0].url : 'https://via.placeholder.com/150',
+                                                        spotify: artist.external_urls.spotify,
+                                                        genres: artist.genres || []  // Include genres
+                                                    })}'>
+                                                View Details
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -361,4 +371,23 @@ document.getElementById('add-event-form').addEventListener('submit', function (e
         const toastError = new bootstrap.Toast(document.getElementById('toast-error'));
         toastError.show();
     });
+});
+
+document.addEventListener('click', function (e) {
+    if (e.target.classList.contains('view-artist-details')) {
+        const artistData = JSON.parse(e.target.getAttribute('data-artist'));
+
+        // Populate modal with artist details
+        document.getElementById('artist-modal-name').innerText = artistData.name;
+        document.getElementById('artist-followers').innerText = artistData.followers.toLocaleString();
+        document.getElementById('artist-popularity').innerText = artistData.popularity;
+        document.getElementById('artist-image').src = artistData.image;
+        document.getElementById('artist-spotify-link').href = artistData.spotify;
+        document.getElementById('artist-genres').innerText = artistData.genres.length > 0
+            ? artistData.genres.join(', ') 
+            : 'No genres available'; 
+
+        // Show the modal
+        new bootstrap.Modal(document.getElementById('artistInfoModal')).show();
+    }
 });
