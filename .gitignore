@@ -1,7 +1,14 @@
+# Local Secrets
 .env
+
+# Documentation Site Items
 RLM_Booking/RLM-docs/site/
+
+# Python virtual environment
 venv/
 myenv/
+
+# Django-related files
 __pycache__/
 RLM_Booking/apps/__pycache__/
 RLM_Booking/apps/artist_recommendation/__pycache__/
@@ -14,3 +21,26 @@ RLM_Booking/integrations/__pycache__/
 RLM_Booking/RLM_Booking_Main/__pycache__/
 RLM_Booking/shared_services/__pycache__/
 **/__pycache__/
+
+# Ignore logs
+logs/
+*.log
+
+# Ignore React build and node_modules
+RLM_Booking/frontend/node_modules/
+RLM_Booking/frontend/build/
+RLM_Booking/frontend/.cache/
+
+# Ignore IDE-specific files
+.vscode/
+.idea/
+.DS_Store
+*.swp
+*.swo
+
+# Ignore dependencies
+package-lock.json
+yarn.lock
+
+# Ignore Git-related files
+.git/
