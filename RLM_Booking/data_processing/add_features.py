@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 import regex as re
+from integrations import spotify_api_manager
 
 class AddFeatures:
     def __init__(self, df: pd.DataFrame = None, input_csv: str = None):
@@ -126,33 +127,33 @@ class AddFeatures:
         if self.df is None:
             raise ValueError("Data not loaded. Call load_data() first.")
         
-        self.df["day_nr"] = (self.df["Date"] - self.df["Date"].min()).dt.days # day_nr = days since earliest date
-        self.df["day_of_year"] = self.df["Date"].dt.day_of_year 
+        self.df["Days Elapsed"] = (self.df["Date"] - self.df["Date"].min()).dt.days # day_nr = days since earliest date
+        self.df["Day of Year"] = self.df["Date"].dt.day_of_year 
         
         # sin/cos of day_of_year (1..365)
-        self.df["sin_day_of_year"] = np.sin(2 * np.pi * self.df["day_of_year"] / 365)
-        self.df["cos_day_of_year"] = np.cos(2 * np.pi * self.df["day_of_year"] / 365)
+        self.df["Sin Day of Year"] = np.sin(2 * np.pi * self.df["Day of Year"] / 365)
+        self.df["Cos Day of Year"] = np.cos(2 * np.pi * self.df["Day of Year"] / 365)
         
         # sin/cos of day_of_week (Mon=1..Sun=7 => shift by -1 => 0..6)
-        self.df["sin_day_of_week"] = np.sin(2 * np.pi * (self.df["Day of Week"] - 1) / 7)
-        self.df["cos_day_of_week"] = np.cos(2 * np.pi * (self.df["Day of Week"] - 1) / 7)
+        self.df["Sin Day of Week"] = np.sin(2 * np.pi * (self.df["Day of Week"] - 1) / 7)
+        self.df["Cos Day of Week"] = np.cos(2 * np.pi * (self.df["Day of Week"] - 1) / 7)
         
         # synthetic 2-sine wave feature
         if use_two_sine_signal:
-            signal_1 = 3 + 4 * np.sin(self.df["day_nr"] / 365 * 2 * np.pi)
-            signal_2 = 3 * np.sin(self.df["day_nr"] / 365 * 4 * np.pi + 365/2)
-            self.df["2sine_day_of_year"] = signal_1 + signal_2
+            signal_1 = 3 + 4 * np.sin(self.df["Days Elapsed"] / 365 * 2 * np.pi)
+            signal_2 = 3 * np.sin(self.df["Days Elapsed"] / 365 * 4 * np.pi + 365/2)
+            self.df["2Sine Day Of Year"] = signal_1 + signal_2
         
         date_idx = self.df.columns.get_loc('Date') 
-        self.df.insert(date_idx+1, 'day_nr', self.df.pop('day_nr'))
-        self.df.insert(date_idx+2, 'day_of_year', self.df.pop('day_of_year'))
-        self.df.insert(date_idx+3, 'sin_day_of_year', self.df.pop('sin_day_of_year'))
-        self.df.insert(date_idx+4, 'cos_day_of_year', self.df.pop('cos_day_of_year'))
-        self.df.insert(date_idx+5, '2sine_day_of_year', self.df.pop('2sine_day_of_year'))
+        self.df.insert(date_idx+1, 'Days Elapsed', self.df.pop('Days Elapsed'))
+        self.df.insert(date_idx+2, 'Day of Year', self.df.pop('Day of Year'))
+        self.df.insert(date_idx+3, 'Sin Day of Year', self.df.pop('Sin Day of Year'))
+        self.df.insert(date_idx+4, 'Cos Day of Year', self.df.pop('Cos Day of Year'))
+        self.df.insert(date_idx+5, '2Sine Day Of Year', self.df.pop('2Sine Day Of Year'))
         
         dow_idx = self.df.columns.get_loc('Day of Week')
-        self.df.insert(dow_idx+1, 'sin_day_of_week', self.df.pop('sin_day_of_week'))
-        self.df.insert(dow_idx+2, 'cos_day_of_week', self.df.pop('cos_day_of_week'))
+        self.df.insert(dow_idx+1, 'Sin Day of Week', self.df.pop('Sin Day of Week'))
+        self.df.insert(dow_idx+2, 'Cos Day of Week', self.df.pop('Cos Day of Week'))
 
 
     def add_gbor_bar_sales_ratio(self):
@@ -163,21 +164,21 @@ class AddFeatures:
         if self.df is None:
             raise ValueError("Data not loaded. Call load_data() first.")
         
-        self.df["Total_GBOR_numeric"] = self.df["Total GBOR"].apply(self.parse_currency)
-        self.df["Bar_Sales_numeric"] = self.df["Bar Sales"].apply(self.parse_currency)
+        self.df["Total GBOR Numeric"] = self.df["Total GBOR"].apply(self.parse_currency)
+        self.df["Bar Sales Numeric"] = self.df["Bar Sales"].apply(self.parse_currency)
         
-        self.df["Bar_Sales_numeric"] = self.df["Bar_Sales_numeric"].replace(0, np.nan)
+        self.df["Bar Sales Numeric"] = self.df["Bar Sales Numeric"].replace(0, np.nan)
         
-        self.df["GBOR_Bar_Sales_Ratio"] = (
-            self.df["Total_GBOR_numeric"] / self.df["Bar_Sales_numeric"]
+        self.df["GBOR Bar Sales Ratio"] = (
+            self.df["Total GBOR Numeric"] / self.df["Bar Sales Numeric"]
         )
         
         gbor_idx = self.df.columns.get_loc('Total GBOR')
-        self.df.insert(gbor_idx+1, 'Total_GBOR_numeric', self.df.pop('Total_GBOR_numeric'))
+        self.df.insert(gbor_idx+1, 'Total GBOR Numeric', self.df.pop('Total GBOR Numeric'))
         
         bar_idx = self.df.columns.get_loc('Bar Sales')
-        self.df.insert(bar_idx+1, 'Bar_Sales_numeric', self.df.pop('Bar_Sales_numeric'))
-        self.df.insert(bar_idx+2, 'GBOR_Bar_Sales_Ratio', self.df.pop('GBOR_Bar_Sales_Ratio'))
+        self.df.insert(bar_idx+1, 'Bar Sales Numeric', self.df.pop('Bar Sales Numeric'))
+        self.df.insert(bar_idx+2, 'GBOR Bar Sales Ratio', self.df.pop('GBOR Bar Sales Ratio'))
 
 
     def save_data(self, output_csv: str):
