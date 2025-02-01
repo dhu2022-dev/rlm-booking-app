@@ -27,6 +27,7 @@ logs/
 *.log
 
 # Ignore React build and node_modules
+node_modules/
 RLM_Booking/frontend/node_modules/
 RLM_Booking/frontend/build/
 RLM_Booking/frontend/.cache/
