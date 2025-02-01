@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Layout from "../components/Layout";
 import SearchForm from "../components/SearchForm";
 import MapSection from "../components/MapSection";
 import AddToCalendarModal from "../components/AddToCalendarModal";
