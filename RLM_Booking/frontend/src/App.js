@@ -1,11 +1,21 @@
 import React from "react";
+import { Routes, Route } from "react-router-dom";
+import Layout from "./components/Layout";
+import Hero from "./components/Hero";
+//import HomePage from "./pages/HomePage";
+import ArtistRecommendation from "./pages/ArtistRecommendation";
+import EventManagement from "./pages/EventManagement";
 
 function App() {
     return (
-        <div>
-            <h1>Welcome to RLM Booking</h1>
-            <p>This is the new React frontend for our Django project.</p>
-        </div>
+        <Layout>
+            <Routes>
+                {/* Define routes for the app */}
+                <Route path="/" element={<Hero />} />
+                <Route path="/artist_recommendation" element={<ArtistRecommendation />} />
+                <Route path="/event_management" element={<EventManagement />} />
+            </Routes>
+        </Layout>
     );
 }
 
