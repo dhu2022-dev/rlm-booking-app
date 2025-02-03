@@ -52,6 +52,7 @@ class BureauDataManager:
         try:
             if len(response) > 1:
                 # All of the diff demogrpahic info
+                #10-17, 18-24,25-39,40-64,65+ 
                 data = response[1]
                 demographics = {
                     "ZIP Code": zip_code,
