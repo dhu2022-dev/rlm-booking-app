@@ -29,7 +29,7 @@ class APIManager:
     def authenticate(self):
         """
         Handles authentication for the API based on the provided auth type and credentials.
-        Supports 'Bearer' and 'Basic' authentication schemes.
+        Supports 'Bearer', 'Basic', and API key authentication with customizable parameter names.
         """
         if self.auth_type == 'Bearer' and 'client_id' in self.credentials and 'client_secret' in self.credentials:
             self.access_token = self.get_oauth_token()
@@ -37,10 +37,13 @@ class APIManager:
         elif self.auth_type == 'Basic' and 'username' in self.credentials and 'password' in self.credentials:
             auth_str = f"{self.credentials['username']}:{self.credentials['password']}"
             self.headers = {'Authorization': f"Basic {base64.b64encode(auth_str.encode()).decode()}"}
-        elif self.auth_type == 'APIKey' and 'apikey' in self.credentials:
-            self.params['apikey'] = self.credentials['apikey']
+        elif self.auth_type == 'APIKey' and 'api_key' in self.credentials:
+            # Use a default key parameter name or a custom one if provided
+            key_param_name = self.credentials.get('key_param_name', 'apikey')  # Default to 'apikey'
+            self.params[key_param_name] = self.credentials['api_key']
         else:
             logger.error("Unsupported authentication type or missing credentials.")
+
 
     def get_oauth_token(self) -> str:
         """
@@ -65,40 +68,35 @@ class APIManager:
             logger.error(f"Failed to retrieve OAuth token: {e}")
             return ''
 
-    def make_request(self, endpoint: str, method: str = 'GET', params: Optional[Dict[str, Any]] = {}) -> Dict[str, Any]:
+    def make_request(self, endpoint: str, method: str = 'GET', params: Optional[Dict[str, Any]] = {}, raw_format: bool = False) -> Dict[str, Any]:
         """
-        Makes a request to the API with automatic token refresh and rate limit handling.
-
-        Args:
-            endpoint (str): The specific endpoint of the API.
-            method (str): The HTTP method, default is 'GET'.
-            params (Optional[Dict[str, Any]]): Query parameters or payload for the request.
-
-        Returns:
-            dict: JSON response data from the API or an empty dict on failure.
+        Makes a request to the API with manual encoding toggle.
         """
-        url = f"{self.base_url}/{endpoint}"
-        
+        # Remove trailing slash from base_url if it exists
+        base_url = self.base_url.rstrip("/")
+        url = f"{base_url}/{endpoint}".rstrip("/")  # Ensure no trailing slash
+
         try:
-            # Apply a short delay to avoid rate limits
-            time.sleep(0.3)
+            # Add default parameters (e.g., API key)
+            params.update(self.params)
 
-            params.update(self.params) #add on request paramaters to initial parameters, needed if apikey is a param
+            if raw_format:
+                # Build query string manually for APIs requiring raw formats
+                query_string = "&".join(f"{k}={v}" for k, v in params.items())
+                final_url = f"{url}?{query_string}"
+            else:
+                # Use requests to encode the query string
+                final_url = url
 
-            response = requests.request(method, url, headers=self.headers, params=params if method == 'GET' else None, json=params if method != 'GET' else None)
+            logger.debug(f"Final API Request URL: {final_url}")
 
-            # Refresh token if unauthorized
-            if response.status_code == 401 and self.auth_type == 'Bearer':
-                logger.info("Access token expired. Refreshing...")
-                self.authenticate()
-                response = requests.request(method, url, headers=self.headers, params=params)
-
-            # Handle rate limits by retrying after the specified delay
-            if response.status_code == 429:
-                retry_after = int(response.headers.get('Retry-After', 1))
-                logger.warning(f"Rate limit reached. Retrying after {retry_after} seconds.")
-                time.sleep(retry_after)
-                return self.make_request(endpoint, method, params)
+            response = requests.request(
+                method,
+                final_url if raw_format else url,
+                headers=self.headers,
+                params=params if not raw_format and method == 'GET' else None,
+                json=params if method != 'GET' else None,
+            )
 
             response.raise_for_status()
             return response.json()
