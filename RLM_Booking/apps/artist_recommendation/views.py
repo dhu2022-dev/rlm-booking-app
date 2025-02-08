@@ -15,6 +15,7 @@ db_manager = AWSDataManager(
 # API endpoint for searching an artist
 @require_GET
 def search_artist_route(request):
+    print("API hit successfully")
     artist_name = request.GET.get('name')
     cached_results = db_manager.get_cached_results(artist_name)
 

@@ -7,6 +7,5 @@ urlpatterns = [
     path('api/get-events/', views.get_events, name='get_events'),
     path('api/delete-event/<int:event_id>/', views.delete_event, name='delete_event'),
 
-    path('', base_view.home.as_view(), name='home'),  # Catch-all for React
-    path('<path:path>', base_view.home.as_view()),  # Catch-all for React routes
+    path('', base_view.home.as_view(), name='home'),
 ]
