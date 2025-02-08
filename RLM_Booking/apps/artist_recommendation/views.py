@@ -1,7 +1,5 @@
-from django.shortcuts import render
 from django.http import JsonResponse
 from django.views.decorators.http import require_GET
-
 from integrations.artist_event_search import get_spotify_token, search_artist, get_ticketmaster_events, analyze_local_global_events
 from shared_services.aws_data_manager import AWSDataManager
 import os
@@ -14,11 +12,7 @@ db_manager = AWSDataManager(
     table_name=os.getenv('TABLE_NAME')
 )
 
-# Homepage route
-def home(request):
-    return render(request, 'artist_recommendation/index.html')
-
-# Search artist route
+# API endpoint for searching an artist
 @require_GET
 def search_artist_route(request):
     artist_name = request.GET.get('name')
@@ -36,7 +30,7 @@ def search_artist_route(request):
 
     return JsonResponse(artists, safe=False)
 
-# Get events route
+# API endpoint for fetching events
 @require_GET
 def get_events_route(request):
     artist_name = request.GET.get('name')

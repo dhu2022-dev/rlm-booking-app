@@ -25,6 +25,9 @@ function Navbar() {
                 <Button color="inherit" component={Link} to="/event_management">
                     Event Management
                 </Button>
+                <Button color="inherit" component={Link} to="/calendar_page">
+                    Event Management
+                </Button>
             </Toolbar>
         </AppBar>
     );
