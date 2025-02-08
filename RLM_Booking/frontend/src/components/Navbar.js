@@ -26,7 +26,7 @@ function Navbar() {
                     Event Management
                 </Button>
                 <Button color="inherit" component={Link} to="/calendar_page" sx={{ fontFamily: "'Helvetica Neue', Arial, sans-serif" }}>
-                    Event Management
+                    Calendar
                 </Button>
             </Toolbar>
         </AppBar>
