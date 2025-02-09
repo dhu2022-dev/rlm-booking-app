@@ -83,6 +83,29 @@
         </div>
     </div>
 
+    <div class="modal fade" id="artistInfoModal" tabindex="-1" aria-labelledby="artistInfoLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content" style="background-color: #1a1a1a; color: #ffffff;">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="artistInfoLabel">Artist Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="card" style="background-color: #222; border: none;">
+                        <img id="artist-image" class="card-img-top" src="" alt="Artist Image" style="max-width: 200px; height: auto; margin: 0 auto;">
+                        <div class="card-body">
+                            <h5 id="artist-modal-name" class="card-title" style="color: #ff0000;"></h5>
+                            <p class="card-text"><strong>Followers:</strong> <span id="artist-followers"></span></p>
+                            <p class="card-text"><strong>Popularity:</strong> <span id="artist-popularity"></span></p>
+                            <p class="card-text"><strong>Genres:</strong> <span id="artist-genres"></span></p>  <!-- New Genres Section -->
+                            <a id="artist-spotify-link" href="#" target="_blank" class="btn btn-danger">View on Spotify</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="toast-container position-fixed bottom-0 end-0 p-3">
         <!-- Success Toast -->
         <div id="toast-success" class="toast align-items-center text-bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">

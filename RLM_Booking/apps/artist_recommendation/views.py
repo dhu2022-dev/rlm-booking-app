@@ -34,6 +34,8 @@ def search_artist_route(request):
     artists = artist_data.get('artists', {}).get('items', [artist_data])
     db_manager.cache_results(artist_name, artists)
 
+    print(artists)
+
     return JsonResponse(artists, safe=False)
 
 # Get events route
