@@ -1,5 +1,5 @@
 import pandas as pd
-#rom sklearn.preprocessing import MultiLabelBinarizer
+from sklearn.preprocessing import MultiLabelBinarizer
 
 #define mapping rules as (simplified_category, [list of keywords])
 mapping_rules = [
@@ -39,10 +39,17 @@ def simplify_genres(genre_string):
                 break
     return list(simplified_set)
 
-df = pd.read_csv('artist_shows.csv')
+df = pd.read_csv('/Users/codyliddle/Desktop/RLM-Booking/RLM_Booking/apps/artist_recommendation/rec_engine/RLM_spotify_genres_fixed.csv')
 
 #apply the function to create a new column 'simplified_genres'
 df['simplified_genres'] = df['combined_genres'].apply(simplify_genres)
 
+mlb = MultiLabelBinarizer()
+simplified_encoded = mlb.fit_transform(df['simplified_genres'])
+simplified_genres_df = pd.DataFrame(simplified_encoded, columns=mlb.classes_, index=df.index)
 
-print(df.head())
+df_final = pd.concat([df, simplified_genres_df], axis=1)
+
+print(df_final.head())
+
+df_final.to_csv('artist_shows_with_simplified_genres.csv', index=False)
