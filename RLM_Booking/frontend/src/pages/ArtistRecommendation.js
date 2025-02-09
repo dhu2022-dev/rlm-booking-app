@@ -10,12 +10,14 @@ function ArtistRecommendation() {
     const [events, setEvents] = useState([]);
     const [selectedArtist, setSelectedArtist] = useState(null);
     const [noEvents, setNoEvents] = useState(false); // Track if there are no events
+    const REACT_DEBUG_AR_BASE_URL = process.env.REACT_APP_API_BASE_URL_AR || ""
+    const REACT_DEBUG_EM_BASE_URL = process.env.REACT_APP_API_BASE_URL_EM || ""
 
     const handleArtistSelect = async (artistName, artistPopularity) => {
         setSelectedArtist(artistName);
         try {
             const eventResponse = await fetch(
-                `artist_recommendation/api/get-events/?name=${encodeURIComponent(artistName)}&popularity=${artistPopularity}&country=US&city=Boston`
+                `${REACT_DEBUG_EM_BASE_URL}/api/get-events/?name=${encodeURIComponent(artistName)}&popularity=${artistPopularity}&country=US&city=Boston`, {mode: 'no-cors'}
             );
             const eventData = await eventResponse.json();
 

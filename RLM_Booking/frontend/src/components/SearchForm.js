@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Box, TextField, Button, Grid } from "@mui/material";
 
+const REACT_DEBUG_AR_BASE_URL = process.env.REACT_APP_API_BASE_URL_AR || ""
+
 function SearchForm({ onSearchResults, onEventsResults }) {
     const [searchParams, setSearchParams] = useState({
         artist: "",
@@ -15,7 +17,7 @@ function SearchForm({ onSearchResults, onEventsResults }) {
     const handleSearch = async () => {
         try {
             // Fetch Artists
-            const artistResponse = await fetch(`artist_recommendation/api/search-artist/?name=${searchParams.artist}`);
+            const artistResponse = await fetch(`${REACT_DEBUG_AR_BASE_URL}/api/search-artist/?name=${searchParams.artist}`, {mode: 'no-cors'});
             const artistData = await artistResponse.json();
             onSearchResults(artistData); // Pass results to parent component
 

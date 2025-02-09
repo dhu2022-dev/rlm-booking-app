@@ -117,7 +117,7 @@ document.addEventListener('DOMContentLoaded', function() {
         e.preventDefault();
 
         const artistName = document.getElementById('artist-name').value;
-        const country = document.getElementById('country').value || 'US';
+        const country = document.getElementById('country').vadlue || 'US';
         const city = document.getElementById('city').value || '';
 
         console.log('Search form submitted');
