@@ -10,16 +10,6 @@ myenv/
 
 # Django-related files
 __pycache__/
-RLM_Booking/apps/__pycache__/
-RLM_Booking/apps/artist_recommendation/__pycache__/
-RLM_Booking/apps/concert_performance/__pycache__/
-RLM_Booking/apps/event_management/__pycache__/
-RLM_Booking/apps/marketing_tools/__pycache__/
-RLM_Booking/data_processing/__pycache__/
-RLM_Booking/data_processing/utils/__pycache__/
-RLM_Booking/integrations/__pycache__/
-RLM_Booking/RLM_Booking_Main/__pycache__/
-RLM_Booking/shared_services/__pycache__/
 **/__pycache__/
 
 # Ignore logs
@@ -38,10 +28,6 @@ RLM_Booking/frontend/.cache/
 .DS_Store
 *.swp
 *.swo
-
-# Ignore dependencies
-package-lock.json
-yarn.lock
 
 # Ignore Git-related files
 .git/
