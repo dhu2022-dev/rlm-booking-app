@@ -1,7 +1,13 @@
+import math
+from dotenv import load_dotenv
 import pandas as pd
 import numpy as np
 import regex as re
-from integrations import spotify_api_manager
+from integrations.artist_event_search import get_spotify_token, search_artist
+
+
+#RLM/apps/data_processing
+#need to add safety measures e.g. what to do if column alr exists
 
 class AddFeatures:
     def __init__(self, df: pd.DataFrame = None, input_csv: str = None):
@@ -11,6 +17,7 @@ class AddFeatures:
         :param df: pandas DataFrame containing the data.
         :param csv_path: Path to the CSV file to load data from.
         """
+        load_dotenv()
         if df is not None and input_csv is not None:
             raise ValueError("Provide either a DataFrame or a CSV path, not both.")
         elif df is not None:
@@ -86,6 +93,9 @@ class AddFeatures:
         
         NOTE: parse_artists is imperfet, most ideally, just have a destinated column for artists in the csv
         """
+        if 'Artists' in self.df.columns:
+            return
+        
         if 'Artists' not in self.df.columns:
             # Create the 'Artists' series by applying parse_artists to each 'Show'
             artists_series = self.df['Show'].apply(lambda x: ', '.join(self.parse_artists(x)))
@@ -106,9 +116,9 @@ class AddFeatures:
         """
         Creates a 'Day of Week' column (Mon=1, Sun=7), inserts it after 'Date', then sorts by Date.
         """
-        if self.df is None:
-            raise ValueError("Data not loaded. Call load_data() first.")
-        
+        if 'Day of Week' in self.df.columns:
+            return    
+          
         self.df['Day of Week'] = self.df['Date'].dt.dayofweek + 1
         
         date_idx = self.df.columns.get_loc('Date')
@@ -124,9 +134,9 @@ class AddFeatures:
         :param use_two_sine_signal: if True, creates a '2sine_day_of_year' column
                                     combining two sine waves. 
         """
-        if self.df is None:
-            raise ValueError("Data not loaded. Call load_data() first.")
-        
+        if 'Days Elapsed' in self.df.columns:
+            return
+
         self.df["Days Elapsed"] = (self.df["Date"] - self.df["Date"].min()).dt.days # day_nr = days since earliest date
         self.df["Day of Year"] = self.df["Date"].dt.day_of_year 
         
@@ -161,9 +171,9 @@ class AddFeatures:
         Creates numeric columns for Total GBOR & Bar Sales
         Adds GBOR_Bar_Sales_Ratio column = Total_GBOR_numeric / Bar_Sales_numeric.
         """
-        if self.df is None:
-            raise ValueError("Data not loaded. Call load_data() first.")
-        
+        if 'GBOR Bar Sales Ratio' in self.df.columns:
+            return
+
         self.df["Total GBOR Numeric"] = self.df["Total GBOR"].apply(self.parse_currency)
         self.df["Bar Sales Numeric"] = self.df["Bar Sales"].apply(self.parse_currency)
         
@@ -181,12 +191,83 @@ class AddFeatures:
         self.df.insert(bar_idx+2, 'GBOR Bar Sales Ratio', self.df.pop('GBOR Bar Sales Ratio'))
 
 
+    @staticmethod
+    def get_max(x):
+        parts = str(x).split(',')
+        numbers = [int(part) for part in parts]
+        return max(numbers)
+
+    def add_spotify_followers_column(self):
+        """
+        Creates 2 columns
+            Spotify Followers: artist's Spotify follower counts. Separated by comma if there are multiple artists
+            Spotify Followers Max: largest followers count in Spotify Followers
+        """
+        if 'Spotify Followers' in self.df.columns:
+            return
+
+        token = get_spotify_token()
+        followers_list = []
+        # count = 0
+
+        for idx, row in self.df.iterrows():
+            artist_names = [item.strip() for item in row['Artists'].split(',')]
+            # print(f"Row {idx} items: {artist_names}")
+            followers = []
+            for artist in artist_names:
+                artist_data = search_artist(artist, token)
+                try:
+                    followers_total = artist_data['artists']['items'][0]['followers']['total']
+                    # If the field is empty (e.g., empty string or None), set to NaN
+                    if followers_total in ("", None):
+                        followers_total = math.nan
+                except (KeyError, IndexError, TypeError):
+                    followers_total = math.nan
+                followers.append(followers_total)
+                # print(artist_data)
+            comma_separated = ",".join(map(str, followers))
+            followers_list.append(comma_separated)
+            
+        self.df["Spotify Followers"] = followers_list
+        self.df['Spotify Followers Max'] = self.df['Spotify Followers'].apply(self.get_max)
+
+
+
+    def add_spotify_genre_column(self):
+        '''
+        Retrive the genres of all artists in a comma separated format
+        '''
+        if 'Combined Genres' in self.df.columns:
+            return
+
+        token = get_spotify_token()
+        combined_genres_list = []
+
+        for idx, row in self.df.iterrows():
+            artist_names = [item.strip() for item in row['Artists'].split(',')]
+            all_genres = []
+            
+            for artist in artist_names:
+                try:
+                    artist_data = search_artist(artist, token)
+                    # Extract genres from the first search result.
+                    genres = artist_data['artists']['items'][0]['genres']
+                except (IndexError, KeyError):
+                    print(f"Error retrieving genres for artist: {artist}")
+                    genres = []
+                all_genres.extend(genres)
+
+            combined_genres = list(set(all_genres))
+            combined_genres_cs = ",".join(combined_genres)
+            combined_genres_list.append(combined_genres_cs)
+        
+        self.df['Combined Genres'] = combined_genres_list
+
+
     def save_data(self, output_csv: str):
         """
         Saves the current DataFrame to the specified CSV path.
         """
-        if self.df is None:
-            raise ValueError("Nothing to save; self.df is empty.")
         self.df.to_csv(output_csv, index=False)
         print(f"Data saved to {output_csv}")
 
@@ -199,11 +280,15 @@ class AddFeatures:
           3) Add day_of_week
           4) Add cyclical features (optionally with 2 sine signals)
           5) Add GBOR-Bar Sales ratio
-          6) Save final CSV
+          6) Add Spotify follower columns
+          7) Add Spotify genre columns
+          8) Save final CSV
         """
         self.add_artists()
         self.date_to_datetime()
         self.add_day_of_week()
         self.add_cyclical_features(use_two_sine_signal=use_two_sine_signal)
         self.add_gbor_bar_sales_ratio()
+        self.add_spotify_followers_column()
+        self.add_spotify_genre_column()
         self.save_data(output_csv)
