@@ -9,3 +9,287 @@
 2025-01-19 03:37:19,834 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:169] - INFO - Fetching details for event with ID: None
 2025-01-19 03:37:19,834 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:169] - INFO - Fetching details for event with ID: None
 2025-03-02 01:58:49,530 - integrations.api_manager - [api_manager.py:45] - ERROR - Unsupported authentication type or missing credentials.
+2025-02-08 14:51:35,975 - integrations.api_manager - [api_manager.py:45] - ERROR - Unsupported authentication type or missing credentials.
+2025-02-19 01:45:50,491 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:120] - INFO - Fetching events from Ticketmaster API
+2025-02-19 01:45:50,492 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:55] - INFO - Fetching ID for artist 'undefined'
+2025-02-19 01:45:51,094 - root - [ticketmaster_api_manager.py:85] - INFO - Found artist ID: K8vZ917GTNf for undefined
+2025-02-19 01:45:51,508 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:152] - INFO - No events found in the API response.
+2025-02-19 01:45:51,514 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:120] - INFO - Fetching events from Ticketmaster API
+2025-02-19 01:45:51,514 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:55] - INFO - Fetching ID for artist 'undefined'
+2025-02-19 01:45:52,024 - root - [ticketmaster_api_manager.py:85] - INFO - Found artist ID: K8vZ917GTNf for undefined
+2025-02-19 01:45:52,465 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:152] - INFO - No events found in the API response.
+2025-02-19 01:45:52,475 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:120] - INFO - Fetching events from Ticketmaster API
+2025-02-19 01:45:52,475 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:55] - INFO - Fetching ID for artist 'undefined'
+2025-02-19 01:45:52,837 - root - [ticketmaster_api_manager.py:85] - INFO - Found artist ID: K8vZ917GTNf for undefined
+2025-02-19 01:45:53,197 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:152] - INFO - No events found in the API response.
+2025-02-19 01:45:53,199 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:120] - INFO - Fetching events from Ticketmaster API
+2025-02-19 01:45:53,199 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:55] - INFO - Fetching ID for artist 'undefined'
+2025-02-19 01:45:53,570 - root - [ticketmaster_api_manager.py:85] - INFO - Found artist ID: K8vZ917GTNf for undefined
+2025-02-19 01:45:54,110 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:152] - INFO - No events found in the API response.
+2025-02-19 01:45:54,118 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:120] - INFO - Fetching events from Ticketmaster API
+2025-02-19 01:45:54,118 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:55] - INFO - Fetching ID for artist 'undefined'
+2025-02-19 01:45:54,555 - root - [ticketmaster_api_manager.py:85] - INFO - Found artist ID: K8vZ917GTNf for undefined
+2025-02-19 01:45:54,912 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:152] - INFO - No events found in the API response.
+2025-02-19 01:45:54,918 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:120] - INFO - Fetching events from Ticketmaster API
+2025-02-19 01:45:54,918 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:55] - INFO - Fetching ID for artist 'undefined'
+2025-02-19 01:45:55,295 - root - [ticketmaster_api_manager.py:85] - INFO - Found artist ID: K8vZ917GTNf for undefined
+2025-02-19 01:45:55,656 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:152] - INFO - No events found in the API response.
+2025-02-19 01:45:55,665 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:120] - INFO - Fetching events from Ticketmaster API
+2025-02-19 01:45:55,665 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:55] - INFO - Fetching ID for artist 'undefined'
+2025-02-19 01:45:56,042 - root - [ticketmaster_api_manager.py:85] - INFO - Found artist ID: K8vZ917GTNf for undefined
+2025-02-19 01:45:56,409 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:152] - INFO - No events found in the API response.
+2025-02-19 01:45:56,414 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:120] - INFO - Fetching events from Ticketmaster API
+2025-02-19 01:45:56,414 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:55] - INFO - Fetching ID for artist 'undefined'
+2025-02-19 01:45:56,799 - root - [ticketmaster_api_manager.py:85] - INFO - Found artist ID: K8vZ917GTNf for undefined
+2025-02-19 01:45:57,321 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:152] - INFO - No events found in the API response.
+2025-02-19 01:45:57,329 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:120] - INFO - Fetching events from Ticketmaster API
+2025-02-19 01:45:57,329 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:55] - INFO - Fetching ID for artist 'undefined'
+2025-02-19 01:45:57,719 - root - [ticketmaster_api_manager.py:85] - INFO - Found artist ID: K8vZ917GTNf for undefined
+2025-02-19 01:45:58,064 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:152] - INFO - No events found in the API response.
+2025-02-19 01:45:58,068 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:120] - INFO - Fetching events from Ticketmaster API
+2025-02-19 01:45:58,069 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:55] - INFO - Fetching ID for artist 'undefined'
+2025-02-19 01:45:58,435 - root - [ticketmaster_api_manager.py:85] - INFO - Found artist ID: K8vZ917GTNf for undefined
+2025-02-19 01:45:58,783 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:152] - INFO - No events found in the API response.
+2025-02-19 01:45:58,792 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:120] - INFO - Fetching events from Ticketmaster API
+2025-02-19 01:45:58,793 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:55] - INFO - Fetching ID for artist 'undefined'
+2025-02-19 01:45:59,353 - root - [ticketmaster_api_manager.py:85] - INFO - Found artist ID: K8vZ917GTNf for undefined
+2025-02-19 01:45:59,827 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:152] - INFO - No events found in the API response.
+2025-02-19 01:45:59,833 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:120] - INFO - Fetching events from Ticketmaster API
+2025-02-19 01:45:59,833 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:55] - INFO - Fetching ID for artist 'undefined'
+2025-02-19 01:46:00,182 - root - [ticketmaster_api_manager.py:85] - INFO - Found artist ID: K8vZ917GTNf for undefined
+2025-02-19 01:46:00,599 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:152] - INFO - No events found in the API response.
+2025-02-19 01:46:00,603 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:120] - INFO - Fetching events from Ticketmaster API
+2025-02-19 01:46:00,603 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:55] - INFO - Fetching ID for artist 'undefined'
+2025-02-19 01:46:00,982 - root - [ticketmaster_api_manager.py:85] - INFO - Found artist ID: K8vZ917GTNf for undefined
+2025-02-19 01:46:01,515 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:152] - INFO - No events found in the API response.
+2025-02-19 01:46:01,520 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:120] - INFO - Fetching events from Ticketmaster API
+2025-02-19 01:46:01,520 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:55] - INFO - Fetching ID for artist 'undefined'
+2025-02-19 01:46:01,874 - root - [ticketmaster_api_manager.py:85] - INFO - Found artist ID: K8vZ917GTNf for undefined
+2025-02-19 01:46:02,227 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:152] - INFO - No events found in the API response.
+2025-02-19 01:46:02,230 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:120] - INFO - Fetching events from Ticketmaster API
+2025-02-19 01:46:02,230 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:55] - INFO - Fetching ID for artist 'undefined'
+2025-02-19 01:46:02,587 - root - [ticketmaster_api_manager.py:85] - INFO - Found artist ID: K8vZ917GTNf for undefined
+2025-02-19 01:46:02,970 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:152] - INFO - No events found in the API response.
+2025-02-19 01:46:02,978 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:120] - INFO - Fetching events from Ticketmaster API
+2025-02-19 01:46:02,978 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:55] - INFO - Fetching ID for artist 'undefined'
+2025-02-19 01:46:03,343 - root - [ticketmaster_api_manager.py:85] - INFO - Found artist ID: K8vZ917GTNf for undefined
+2025-02-19 01:46:03,729 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:152] - INFO - No events found in the API response.
+2025-02-19 01:46:03,733 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:120] - INFO - Fetching events from Ticketmaster API
+2025-02-19 01:46:03,733 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:55] - INFO - Fetching ID for artist 'undefined'
+2025-02-19 01:46:04,132 - root - [ticketmaster_api_manager.py:85] - INFO - Found artist ID: K8vZ917GTNf for undefined
+2025-02-19 01:46:04,633 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:152] - INFO - No events found in the API response.
+2025-02-19 01:46:04,644 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:120] - INFO - Fetching events from Ticketmaster API
+2025-02-19 01:46:04,644 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:55] - INFO - Fetching ID for artist 'undefined'
+2025-02-19 01:46:05,024 - root - [ticketmaster_api_manager.py:85] - INFO - Found artist ID: K8vZ917GTNf for undefined
+2025-02-19 01:46:05,457 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:152] - INFO - No events found in the API response.
+2025-02-19 01:46:05,462 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:120] - INFO - Fetching events from Ticketmaster API
+2025-02-19 01:46:05,462 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:55] - INFO - Fetching ID for artist 'undefined'
+2025-02-19 01:46:05,825 - root - [ticketmaster_api_manager.py:85] - INFO - Found artist ID: K8vZ917GTNf for undefined
+2025-02-19 01:46:06,179 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:152] - INFO - No events found in the API response.
+2025-02-19 01:46:06,182 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:120] - INFO - Fetching events from Ticketmaster API
+2025-02-19 01:46:06,182 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:55] - INFO - Fetching ID for artist 'undefined'
+2025-02-19 01:46:06,689 - root - [ticketmaster_api_manager.py:85] - INFO - Found artist ID: K8vZ917GTNf for undefined
+2025-02-19 01:46:07,121 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:152] - INFO - No events found in the API response.
+2025-02-19 01:46:07,126 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:120] - INFO - Fetching events from Ticketmaster API
+2025-02-19 01:46:07,126 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:55] - INFO - Fetching ID for artist 'undefined'
+2025-02-19 01:46:07,486 - root - [ticketmaster_api_manager.py:85] - INFO - Found artist ID: K8vZ917GTNf for undefined
+2025-02-19 01:46:07,848 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:152] - INFO - No events found in the API response.
+2025-02-19 01:46:07,857 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:120] - INFO - Fetching events from Ticketmaster API
+2025-02-19 01:46:07,857 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:55] - INFO - Fetching ID for artist 'undefined'
+2025-02-19 01:46:08,218 - root - [ticketmaster_api_manager.py:85] - INFO - Found artist ID: K8vZ917GTNf for undefined
+2025-02-19 01:46:08,562 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:152] - INFO - No events found in the API response.
+2025-02-19 01:46:08,567 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:120] - INFO - Fetching events from Ticketmaster API
+2025-02-19 01:46:08,567 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:55] - INFO - Fetching ID for artist 'undefined'
+2025-02-19 01:46:08,953 - root - [ticketmaster_api_manager.py:85] - INFO - Found artist ID: K8vZ917GTNf for undefined
+2025-02-19 01:46:09,310 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:152] - INFO - No events found in the API response.
+2025-02-19 01:46:09,318 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:120] - INFO - Fetching events from Ticketmaster API
+2025-02-19 01:46:09,319 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:55] - INFO - Fetching ID for artist 'undefined'
+2025-02-19 01:46:09,674 - root - [ticketmaster_api_manager.py:85] - INFO - Found artist ID: K8vZ917GTNf for undefined
+2025-02-19 01:46:10,038 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:152] - INFO - No events found in the API response.
+2025-02-19 01:46:10,044 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:120] - INFO - Fetching events from Ticketmaster API
+2025-02-19 01:46:10,044 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:55] - INFO - Fetching ID for artist 'undefined'
+2025-02-19 01:46:10,421 - root - [ticketmaster_api_manager.py:85] - INFO - Found artist ID: K8vZ917GTNf for undefined
+2025-02-19 01:46:10,472 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:120] - INFO - Fetching events from Ticketmaster API
+2025-02-19 01:46:10,473 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:120] - INFO - Fetching events from Ticketmaster API
+2025-02-19 01:46:10,473 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:55] - INFO - Fetching ID for artist 'undefined'
+2025-02-19 01:46:10,473 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:55] - INFO - Fetching ID for artist 'undefined'
+2025-02-19 01:46:10,473 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:120] - INFO - Fetching events from Ticketmaster API
+2025-02-19 01:46:10,473 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:120] - INFO - Fetching events from Ticketmaster API
+2025-02-19 01:46:10,474 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:55] - INFO - Fetching ID for artist 'undefined'
+2025-02-19 01:46:10,473 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:120] - INFO - Fetching events from Ticketmaster API
+2025-02-19 01:46:10,473 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:55] - INFO - Fetching ID for artist 'undefined'
+2025-02-19 01:46:10,474 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:55] - INFO - Fetching ID for artist 'undefined'
+2025-02-19 01:46:10,928 - integrations.api_manager - [api_manager.py:99] - WARNING - Rate limit reached. Retrying after 1 seconds.
+2025-02-19 01:46:10,934 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:152] - INFO - No events found in the API response.
+2025-02-19 01:46:10,937 - root - [ticketmaster_api_manager.py:85] - INFO - Found artist ID: K8vZ917GTNf for undefined
+2025-02-19 01:46:10,937 - root - [ticketmaster_api_manager.py:85] - INFO - Found artist ID: K8vZ917GTNf for undefined
+2025-02-19 01:46:10,943 - root - [ticketmaster_api_manager.py:85] - INFO - Found artist ID: K8vZ917GTNf for undefined
+2025-02-19 01:46:10,944 - root - [ticketmaster_api_manager.py:85] - INFO - Found artist ID: K8vZ917GTNf for undefined
+2025-02-19 01:46:10,945 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:120] - INFO - Fetching events from Ticketmaster API
+2025-02-19 01:46:10,945 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:55] - INFO - Fetching ID for artist 'undefined'
+2025-02-19 01:46:11,331 - integrations.api_manager - [api_manager.py:99] - WARNING - Rate limit reached. Retrying after 1 seconds.
+2025-02-19 01:46:11,332 - root - [ticketmaster_api_manager.py:85] - INFO - Found artist ID: K8vZ917GTNf for undefined
+2025-02-19 01:46:11,367 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:152] - INFO - No events found in the API response.
+2025-02-19 01:46:11,372 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:152] - INFO - No events found in the API response.
+2025-02-19 01:46:11,385 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:120] - INFO - Fetching events from Ticketmaster API
+2025-02-19 01:46:11,385 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:152] - INFO - No events found in the API response.
+2025-02-19 01:46:11,386 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:55] - INFO - Fetching ID for artist 'undefined'
+2025-02-19 01:46:11,387 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:120] - INFO - Fetching events from Ticketmaster API
+2025-02-19 01:46:11,388 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:120] - INFO - Fetching events from Ticketmaster API
+2025-02-19 01:46:11,388 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:55] - INFO - Fetching ID for artist 'undefined'
+2025-02-19 01:46:11,388 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:55] - INFO - Fetching ID for artist 'undefined'
+2025-02-19 01:46:11,689 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:152] - INFO - No events found in the API response.
+2025-02-19 01:46:11,702 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:120] - INFO - Fetching events from Ticketmaster API
+2025-02-19 01:46:11,705 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:55] - INFO - Fetching ID for artist 'undefined'
+2025-02-19 01:46:11,774 - integrations.api_manager - [api_manager.py:99] - WARNING - Rate limit reached. Retrying after 1 seconds.
+2025-02-19 01:46:11,775 - root - [ticketmaster_api_manager.py:85] - INFO - Found artist ID: K8vZ917GTNf for undefined
+2025-02-19 01:46:11,932 - root - [ticketmaster_api_manager.py:85] - INFO - Found artist ID: K8vZ917GTNf for undefined
+2025-02-19 01:46:12,043 - root - [ticketmaster_api_manager.py:85] - INFO - Found artist ID: K8vZ917GTNf for undefined
+2025-02-19 01:46:12,116 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:152] - INFO - No events found in the API response.
+2025-02-19 01:46:12,156 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:120] - INFO - Fetching events from Ticketmaster API
+2025-02-19 01:46:12,156 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:55] - INFO - Fetching ID for artist 'undefined'
+2025-02-19 01:46:12,361 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:152] - INFO - No events found in the API response.
+2025-02-19 01:46:12,365 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:120] - INFO - Fetching events from Ticketmaster API
+2025-02-19 01:46:12,365 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:55] - INFO - Fetching ID for artist 'undefined'
+2025-02-19 01:46:12,367 - root - [ticketmaster_api_manager.py:85] - INFO - Found artist ID: K8vZ917GTNf for undefined
+2025-02-19 01:46:12,398 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:152] - INFO - No events found in the API response.
+2025-02-19 01:46:12,402 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:120] - INFO - Fetching events from Ticketmaster API
+2025-02-19 01:46:12,402 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:55] - INFO - Fetching ID for artist 'undefined'
+2025-02-19 01:46:12,502 - root - [ticketmaster_api_manager.py:85] - INFO - Found artist ID: K8vZ917GTNf for undefined
+2025-02-19 01:46:12,689 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:152] - INFO - No events found in the API response.
+2025-02-19 01:46:12,699 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:120] - INFO - Fetching events from Ticketmaster API
+2025-02-19 01:46:12,699 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:55] - INFO - Fetching ID for artist 'undefined'
+2025-02-19 01:46:12,735 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:152] - INFO - No events found in the API response.
+2025-02-19 01:46:12,735 - root - [ticketmaster_api_manager.py:85] - INFO - Found artist ID: K8vZ917GTNf for undefined
+2025-02-19 01:46:12,742 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:120] - INFO - Fetching events from Ticketmaster API
+2025-02-19 01:46:12,742 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:55] - INFO - Fetching ID for artist 'undefined'
+2025-02-19 01:46:12,756 - root - [ticketmaster_api_manager.py:85] - INFO - Found artist ID: K8vZ917GTNf for undefined
+2025-02-19 01:46:13,000 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:152] - INFO - No events found in the API response.
+2025-02-19 01:46:13,008 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:120] - INFO - Fetching events from Ticketmaster API
+2025-02-19 01:46:13,009 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:55] - INFO - Fetching ID for artist 'undefined'
+2025-02-19 01:46:13,070 - root - [ticketmaster_api_manager.py:85] - INFO - Found artist ID: K8vZ917GTNf for undefined
+2025-02-19 01:46:13,120 - integrations.api_manager - [api_manager.py:99] - WARNING - Rate limit reached. Retrying after 1 seconds.
+2025-02-19 01:46:13,130 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:152] - INFO - No events found in the API response.
+2025-02-19 01:46:13,137 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:120] - INFO - Fetching events from Ticketmaster API
+2025-02-19 01:46:13,137 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:55] - INFO - Fetching ID for artist 'undefined'
+2025-02-19 01:46:13,140 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:152] - INFO - No events found in the API response.
+2025-02-19 01:46:13,141 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:120] - INFO - Fetching events from Ticketmaster API
+2025-02-19 01:46:13,142 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:55] - INFO - Fetching ID for artist 'undefined'
+2025-02-19 01:46:13,150 - root - [ticketmaster_api_manager.py:85] - INFO - Found artist ID: K8vZ917GTNf for undefined
+2025-02-19 01:46:13,414 - root - [ticketmaster_api_manager.py:85] - INFO - Found artist ID: K8vZ917GTNf for undefined
+2025-02-19 01:46:13,416 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:152] - INFO - No events found in the API response.
+2025-02-19 01:46:13,424 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:120] - INFO - Fetching events from Ticketmaster API
+2025-02-19 01:46:13,424 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:55] - INFO - Fetching ID for artist 'undefined'
+2025-02-19 01:46:13,491 - root - [ticketmaster_api_manager.py:85] - INFO - Found artist ID: K8vZ917GTNf for undefined
+2025-02-19 01:46:13,501 - integrations.api_manager - [api_manager.py:99] - WARNING - Rate limit reached. Retrying after 1 seconds.
+2025-02-19 01:46:13,503 - root - [ticketmaster_api_manager.py:85] - INFO - Found artist ID: K8vZ917GTNf for undefined
+2025-02-19 01:46:13,757 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:152] - INFO - No events found in the API response.
+2025-02-19 01:46:13,763 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:120] - INFO - Fetching events from Ticketmaster API
+2025-02-19 01:46:13,763 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:55] - INFO - Fetching ID for artist 'undefined'
+2025-02-19 01:46:13,763 - root - [ticketmaster_api_manager.py:85] - INFO - Found artist ID: K8vZ917GTNf for undefined
+2025-02-19 01:46:13,858 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:152] - INFO - No events found in the API response.
+2025-02-19 01:46:13,860 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:120] - INFO - Fetching events from Ticketmaster API
+2025-02-19 01:46:13,860 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:55] - INFO - Fetching ID for artist 'undefined'
+2025-02-19 01:46:13,870 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:152] - INFO - No events found in the API response.
+2025-02-19 01:46:13,874 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:120] - INFO - Fetching events from Ticketmaster API
+2025-02-19 01:46:13,874 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:55] - INFO - Fetching ID for artist 'undefined'
+2025-02-19 01:46:14,103 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:152] - INFO - No events found in the API response.
+2025-02-19 01:46:14,107 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:120] - INFO - Fetching events from Ticketmaster API
+2025-02-19 01:46:14,107 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:55] - INFO - Fetching ID for artist 'undefined'
+2025-02-19 01:46:14,125 - root - [ticketmaster_api_manager.py:85] - INFO - Found artist ID: K8vZ917GTNf for undefined
+2025-02-19 01:46:14,221 - root - [ticketmaster_api_manager.py:85] - INFO - Found artist ID: K8vZ917GTNf for undefined
+2025-02-19 01:46:14,226 - root - [ticketmaster_api_manager.py:85] - INFO - Found artist ID: K8vZ917GTNf for undefined
+2025-02-19 01:46:14,490 - root - [ticketmaster_api_manager.py:85] - INFO - Found artist ID: K8vZ917GTNf for undefined
+2025-02-19 01:46:14,500 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:152] - INFO - No events found in the API response.
+2025-02-19 01:46:14,510 - root - [ticketmaster_api_manager.py:85] - INFO - Found artist ID: K8vZ917GTNf for undefined
+2025-02-19 01:46:14,514 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:120] - INFO - Fetching events from Ticketmaster API
+2025-02-19 01:46:14,514 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:55] - INFO - Fetching ID for artist 'undefined'
+2025-02-19 01:46:14,579 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:152] - INFO - No events found in the API response.
+2025-02-19 01:46:14,586 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:120] - INFO - Fetching events from Ticketmaster API
+2025-02-19 01:46:14,587 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:55] - INFO - Fetching ID for artist 'undefined'
+2025-02-19 01:46:14,597 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:152] - INFO - No events found in the API response.
+2025-02-19 01:46:14,599 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:120] - INFO - Fetching events from Ticketmaster API
+2025-02-19 01:46:14,599 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:55] - INFO - Fetching ID for artist 'undefined'
+2025-02-19 01:46:14,850 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:152] - INFO - No events found in the API response.
+2025-02-19 01:46:14,851 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:152] - INFO - No events found in the API response.
+2025-02-19 01:46:14,861 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:120] - INFO - Fetching events from Ticketmaster API
+2025-02-19 01:46:14,861 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:55] - INFO - Fetching ID for artist 'undefined'
+2025-02-19 01:46:14,869 - root - [ticketmaster_api_manager.py:85] - INFO - Found artist ID: K8vZ917GTNf for undefined
+2025-02-19 01:46:14,870 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:152] - INFO - No events found in the API response.
+2025-02-19 01:46:15,118 - root - [ticketmaster_api_manager.py:85] - INFO - Found artist ID: K8vZ917GTNf for undefined
+2025-02-19 01:46:15,118 - root - [ticketmaster_api_manager.py:85] - INFO - Found artist ID: K8vZ917GTNf for undefined
+2025-02-19 01:46:15,216 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:152] - INFO - No events found in the API response.
+2025-02-19 01:46:15,226 - root - [ticketmaster_api_manager.py:85] - INFO - Found artist ID: K8vZ917GTNf for undefined
+2025-02-19 01:46:15,504 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:152] - INFO - No events found in the API response.
+2025-02-19 01:46:15,505 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:152] - INFO - No events found in the API response.
+2025-02-19 01:46:15,592 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:152] - INFO - No events found in the API response.
+2025-03-02 01:54:29,436 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:120] - INFO - Fetching events from Ticketmaster API
+2025-03-02 01:54:29,439 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:55] - INFO - Fetching ID for artist 'Drake'
+2025-03-02 01:54:30,097 - root - [ticketmaster_api_manager.py:85] - INFO - Found artist ID: K8vZ917Gp47 for Drake
+2025-03-02 01:54:30,690 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:169] - INFO - Fetching details for event with ID: None
+2025-03-02 01:54:30,690 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:169] - INFO - Fetching details for event with ID: None
+2025-03-02 01:54:30,691 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:169] - INFO - Fetching details for event with ID: None
+2025-03-02 01:54:30,691 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:169] - INFO - Fetching details for event with ID: None
+2025-03-02 01:54:30,691 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:169] - INFO - Fetching details for event with ID: None
+2025-03-02 01:54:30,691 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:169] - INFO - Fetching details for event with ID: None
+2025-03-02 01:54:30,691 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:169] - INFO - Fetching details for event with ID: None
+2025-03-02 01:54:30,691 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:169] - INFO - Fetching details for event with ID: None
+2025-03-02 01:54:30,691 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:169] - INFO - Fetching details for event with ID: None
+2025-03-02 01:54:38,916 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:120] - INFO - Fetching events from Ticketmaster API
+2025-03-02 01:54:38,916 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:55] - INFO - Fetching ID for artist 'Drake'
+2025-03-02 01:54:39,364 - root - [ticketmaster_api_manager.py:85] - INFO - Found artist ID: K8vZ917Gp47 for Drake
+2025-03-02 01:54:39,829 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:169] - INFO - Fetching details for event with ID: None
+2025-03-02 01:54:39,830 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:169] - INFO - Fetching details for event with ID: None
+2025-03-02 01:54:39,830 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:169] - INFO - Fetching details for event with ID: None
+2025-03-02 01:54:39,830 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:169] - INFO - Fetching details for event with ID: None
+2025-03-02 01:54:39,830 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:169] - INFO - Fetching details for event with ID: None
+2025-03-02 01:54:39,830 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:169] - INFO - Fetching details for event with ID: None
+2025-03-02 01:54:39,830 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:169] - INFO - Fetching details for event with ID: None
+2025-03-02 01:54:39,830 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:169] - INFO - Fetching details for event with ID: None
+2025-03-02 01:54:39,830 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:169] - INFO - Fetching details for event with ID: None
+2025-03-02 01:54:41,916 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:120] - INFO - Fetching events from Ticketmaster API
+2025-03-02 01:54:41,916 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:55] - INFO - Fetching ID for artist 'Kendrick Lamar'
+2025-03-02 01:54:42,412 - root - [ticketmaster_api_manager.py:85] - INFO - Found artist ID: K8vZ917GSg0 for Kendrick Lamar
+2025-03-02 01:54:43,098 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:169] - INFO - Fetching details for event with ID: None
+2025-03-02 01:54:43,098 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:169] - INFO - Fetching details for event with ID: None
+2025-03-02 01:54:43,098 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:169] - INFO - Fetching details for event with ID: None
+2025-03-02 01:54:43,098 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:169] - INFO - Fetching details for event with ID: None
+2025-03-02 01:54:43,098 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:169] - INFO - Fetching details for event with ID: None
+2025-03-02 01:54:43,098 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:169] - INFO - Fetching details for event with ID: None
+2025-03-02 01:54:43,098 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:169] - INFO - Fetching details for event with ID: None
+2025-03-02 01:54:43,098 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:169] - INFO - Fetching details for event with ID: None
+2025-03-02 01:54:43,098 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:169] - INFO - Fetching details for event with ID: None
+2025-03-02 01:54:43,098 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:169] - INFO - Fetching details for event with ID: None
+2025-03-02 01:54:43,099 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:169] - INFO - Fetching details for event with ID: None
+2025-03-02 01:54:43,099 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:169] - INFO - Fetching details for event with ID: None
+2025-03-02 01:54:43,099 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:169] - INFO - Fetching details for event with ID: None
+2025-03-02 01:54:43,099 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:169] - INFO - Fetching details for event with ID: None
+2025-03-02 01:54:43,099 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:169] - INFO - Fetching details for event with ID: None
+2025-03-02 01:54:43,099 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:169] - INFO - Fetching details for event with ID: None
+2025-03-02 01:54:43,099 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:169] - INFO - Fetching details for event with ID: None
+2025-03-02 01:54:43,099 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:169] - INFO - Fetching details for event with ID: None
+2025-03-02 01:54:43,099 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:169] - INFO - Fetching details for event with ID: None
+2025-03-02 01:54:43,099 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:169] - INFO - Fetching details for event with ID: None
+2025-03-02 01:54:49,239 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:120] - INFO - Fetching events from Ticketmaster API
+2025-03-02 01:54:49,240 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:55] - INFO - Fetching ID for artist 'The Weeknd'
+2025-03-02 01:54:49,757 - root - [ticketmaster_api_manager.py:85] - INFO - Found artist ID: K8vZ9172Ln7 for The Weeknd
+2025-03-02 01:54:50,461 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:169] - INFO - Fetching details for event with ID: None
+2025-03-02 01:54:50,462 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:169] - INFO - Fetching details for event with ID: None
+2025-03-02 01:54:50,462 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:169] - INFO - Fetching details for event with ID: None
+2025-03-02 01:54:50,462 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:169] - INFO - Fetching details for event with ID: None
+2025-03-02 01:54:50,462 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:169] - INFO - Fetching details for event with ID: None
+2025-03-02 01:54:50,462 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:169] - INFO - Fetching details for event with ID: None
+2025-03-02 01:54:50,462 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:169] - INFO - Fetching details for event with ID: None
+2025-03-02 01:54:50,462 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:169] - INFO - Fetching details for event with ID: None
+2025-03-02 01:54:50,462 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:169] - INFO - Fetching details for event with ID: None
+2025-03-02 01:54:50,462 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:169] - INFO - Fetching details for event with ID: None
+2025-03-02 01:54:50,463 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:169] - INFO - Fetching details for event with ID: None
+2025-03-02 01:54:50,463 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:169] - INFO - Fetching details for event with ID: None
+2025-03-02 01:54:50,463 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:169] - INFO - Fetching details for event with ID: None
+2025-03-02 01:54:50,463 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:169] - INFO - Fetching details for event with ID: None
+2025-03-02 01:54:50,463 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:169] - INFO - Fetching details for event with ID: None
+2025-03-02 01:54:50,463 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:169] - INFO - Fetching details for event with ID: None
+2025-03-02 01:54:50,463 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:169] - INFO - Fetching details for event with ID: None
+2025-03-02 01:54:50,463 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:169] - INFO - Fetching details for event with ID: None
+2025-03-02 01:54:50,463 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:169] - INFO - Fetching details for event with ID: None
+2025-03-02 01:54:50,463 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:169] - INFO - Fetching details for event with ID: None

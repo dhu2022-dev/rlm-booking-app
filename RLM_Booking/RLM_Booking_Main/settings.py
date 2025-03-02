@@ -58,9 +58,13 @@ INSTALLED_APPS = [
     'apps.concert_performance.apps.ConcertPerformanceConfig',
     'apps.event_management.apps.EventManagementConfig',
     'apps.marketing_tools.apps.MarketingToolsConfig',
+
+    # Third Party Apps
+    "corsheaders",
 ]
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -70,12 +74,20 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+# Allow requests from frontend
+CORS_ALLOW_CREDENTIALS = True  # Allow cookies/auth headers
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",  # Add your frontend URL
+    "http://127.0.0.1:3000",
+    "https://your-production-frontend.com"  # Add production if needed
+]
+
 ROOT_URLCONF = 'RLM_Booking_Main.urls'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'], # Path to shared template directory
+        'DIRS': [BASE_DIR], # Path to shared template directory
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -89,9 +101,11 @@ TEMPLATES = [
 ]
 
 # Static files configuration
+STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    BASE_DIR / "static",  # Path to shared static files
+    os.path.join(BASE_DIR, 'frontend/build/static'),  # Serve React static files
 ]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 WSGI_APPLICATION = 'RLM_Booking_Main.wsgi.application'
 

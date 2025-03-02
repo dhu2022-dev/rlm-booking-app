@@ -11,6 +11,19 @@ This application provides a comprehensive system for concert venues to recommend
 
 ---
 
+## Starting the Site Locally (React + Django):
+1. Ensure you have django installed in your python environment
+2. cd into /frontend folder within RLM-booking and then run ```npm install```
+3. Decide if you want to run the React frontend in production environment, or for development
+4. If for production: run ```npm run build``` in the frontend folder. This builds the React site.
+5. If for development: run ```npm start``` if you want to see instant changes in React. This can be accessed at localhost:3000
+    a. If you are planning on testing api calls on this test frontend server, you must create a .env in the frontend with the following:
+    ```REACT_APP_API_BASE_URL_AR=http://localhost:8000/artist_recommendation```
+    ```REACT_APP_API_BASE_URL_EM=http://localhost:8000/event_management```
+
+6. Run ```python manage.py runserver``` in the RLM-Booking folder. This hosts the backend at localhost:8000 (allows api requests)
+
+
 ## Features
 
 ### 1. Artist Recommendation System Based on Venue Data

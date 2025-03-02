@@ -1,8 +1,7 @@
-from django.shortcuts import render
 from django.http import JsonResponse
 from django.views.decorators.http import require_GET
-
 from integrations.artist_event_search import get_spotify_token, search_artist, get_ticketmaster_events, analyze_local_global_events
+from integrations.ticketmaster_api_manager import TicketmasterAPIManager
 from shared_services.aws_data_manager import AWSDataManager
 import os
 
@@ -14,13 +13,13 @@ db_manager = AWSDataManager(
     table_name=os.getenv('TABLE_NAME')
 )
 
-# Homepage route
-def home(request):
-    return render(request, 'artist_recommendation/index.html')
+# Initialize Ticketmaster API Manager
+ticketmaster_manager = TicketmasterAPIManager()
 
-# Search artist route
+# API endpoint for searching an artist
 @require_GET
 def search_artist_route(request):
+    print("API hit successfully")
     artist_name = request.GET.get('name')
     cached_results = db_manager.get_cached_results(artist_name)
 
@@ -38,33 +37,51 @@ def search_artist_route(request):
 
     return JsonResponse(artists, safe=False)
 
-# Get events route
+# API endpoint for fetching upcoming events
 @require_GET
 def get_events_route(request):
     artist_name = request.GET.get('name')
     artist_popularity = request.GET.get('popularity', 50)
     target_country = request.GET.get('country', 'US')
-    target_city = request.GET.get('city', '')
+    target_city = request.GET.get('city', 'Boston')
+    postalcode = request.GET.get('postalcode', None)
+    latitude = request.GET.get('latitude', None)
+    longitude = request.GET.get('longitude', None)
+    radius = request.GET.get('radius', None)
+    start_date = request.GET.get('start_date', None)
+    end_date = request.GET.get('end_date', None)
 
-    events_data = get_ticketmaster_events(artist_name)
+    try:
+        # Fetch events using the refactored method
+        events = ticketmaster_manager.fetch_events(
+            artist=artist_name,
+            postalcode=postalcode,
+            latitude=float(latitude) if latitude else None,
+            longitude=float(longitude) if longitude else None,
+            radius=int(radius) if radius else None,
+            start_date=start_date,
+            end_date=end_date
+        )
 
-    if events_data and '_embedded' in events_data and 'events' in events_data['_embedded']:
-        events = events_data['_embedded']['events']
-        local_events, global_events = analyze_local_global_events(events, target_country, target_city)
+        if events:
+            local_events, global_events = analyze_local_global_events(events, target_country, target_city)
 
-        for event in events:
-            if '_embedded' in event and 'venues' in event['_embedded']:
-                venue_capacity = event['_embedded']['venues'][0].get('capacity', 5000)
-                event['predicted_sales'] = 10000  # Replace with model values
+            # Add additional metadata (e.g., suggested price, predicted sales)
+            for event in events:
+                event['predicted_sales'] = 10000  # Placeholder, replace with ML model logic
                 event['suggested_price'] = 50
 
-        return JsonResponse({
-            'events': events,
-            'local_event_count': len(local_events),
-            'global_event_count': len(global_events),
-            'local_events': local_events,
-            'global_events': global_events
-        })
+            return JsonResponse({
+                'events': events,
+                'local_event_count': len(local_events),
+                'global_event_count': len(global_events),
+                'local_events': local_events,
+                'global_events': global_events
+            })
+
+    except Exception as e:
+        print("something wrong calling ticketmaster class")
+        #logger.error(f"Error fetching events: {str(e)}", exc_info=True)
 
     return JsonResponse({
         'events': [],
