@@ -1,37 +1,46 @@
 import React, { useState } from "react";
 import { Box, TextField, Button, Grid } from "@mui/material";
+import BASE_URL from "../../config";
+import { useArtistContext } from "../../context/ArtistContext"; // Use the context hook
 
-const REACT_DEBUG_AR_BASE_URL = process.env.REACT_APP_API_BASE_URL_AR || ""
-
-function SearchForm({ onSearchResults, onEventsResults }) {
-    const [searchParams, setSearchParams] = useState({
+function SearchForm() {
+    const { dispatch } = useArtistContext(); // Get dispatch from context
+    const [formValues, setFormValues] = useState({
         artist: "",
         country: "US",
         city: "Boston",
     });
 
     const handleChange = (e) => {
-        setSearchParams({ ...searchParams, [e.target.name]: e.target.value });
+        setFormValues({ ...formValues, [e.target.name]: e.target.value });
     };
 
     const handleSearch = async () => {
         try {
-            // Fetch Artists
-            const artistResponse = await fetch(`${REACT_DEBUG_AR_BASE_URL}/api/search-artist/?name=${searchParams.artist}`, {mode: 'no-cors'});
-            const artistData = await artistResponse.json();
-            onSearchResults(artistData); // Pass results to parent component
-
-            // If artists exist, fetch events for the first artist
-            if (artistData.length > 0) {
-                const firstArtist = artistData[0].name;
-                const eventResponse = await fetch(
-                    `/api/get-events/?name=${encodeURIComponent(firstArtist)}&country=${encodeURIComponent(searchParams.country)}&city=${encodeURIComponent(searchParams.city)}`
-                );
-                const eventData = await eventResponse.json();
-                onEventsResults(eventData.local_events.concat(eventData.global_events));
+            if (!formValues.artist.trim()) {
+                console.error("Artist name cannot be empty.");
+                return;
             }
+
+            // Dispatch action to update search params in context
+            dispatch({ type: "SET_SEARCH_PARAMS", payload: formValues });
+
+            // Fetch artists
+            const response = await fetch(
+                `${BASE_URL}/api/artist-recommendation/search-artist/?name=${encodeURIComponent(formValues.artist)}&country=${encodeURIComponent(formValues.country)}&city=${encodeURIComponent(formValues.city)}`
+            );
+
+            const artistData = await response.json();
+
+            if (!Array.isArray(artistData) || artistData.length === 0) {
+                console.warn("No artists found.");
+                dispatch({ type: "SET_ARTISTS", payload: [] });
+                return;
+            }
+
+            dispatch({ type: "SET_ARTISTS", payload: artistData });
         } catch (error) {
-            console.error("Error fetching data:", error);
+            console.error("Error fetching artists:", error);
         }
     };
 
@@ -44,7 +53,7 @@ function SearchForm({ onSearchResults, onEventsResults }) {
                         label="Artist Name"
                         variant="outlined"
                         required
-                        value={searchParams.artist}
+                        value={formValues.artist} 
                         onChange={handleChange}
                         InputProps={{ style: { backgroundColor: "white", color: "black", borderRadius: "4px" } }}
                         InputLabelProps={{
@@ -63,7 +72,7 @@ function SearchForm({ onSearchResults, onEventsResults }) {
                         name="country"
                         label="Country Code (e.g., US)"
                         variant="outlined"
-                        value={searchParams.country}
+                        value={formValues.country}
                         onChange={handleChange}
                         InputProps={{ style: { backgroundColor: "white", color: "black", borderRadius: "4px" } }}
                         InputLabelProps={{
@@ -82,7 +91,7 @@ function SearchForm({ onSearchResults, onEventsResults }) {
                         name="city"
                         label="City"
                         variant="outlined"
-                        value={searchParams.city}
+                        value={formValues.city}
                         onChange={handleChange}
                         InputProps={{ style: { backgroundColor: "white", color: "black", borderRadius: "4px" } }}
                         InputLabelProps={{

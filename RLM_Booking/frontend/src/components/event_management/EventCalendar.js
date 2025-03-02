@@ -12,7 +12,7 @@ function EventCalendar() {
 
     // Fetch events from the backend
     useEffect(() => {
-        fetch("/event_management/api/get-events/")
+        fetch("/api/event-management/get-events")
             .then((response) => response.json())
             .then((data) => setEvents(data))
             .catch((error) => console.error("Error fetching events:", error));
@@ -31,7 +31,7 @@ function EventCalendar() {
 
     // Handle event deletion
     const deleteEvent = (eventId) => {
-        fetch(`/event_management/api/delete-event/${eventId}/`, {
+        fetch(`/api/event-management/delete-event/${eventId}/`, {
             method: "DELETE",
             headers: { "Content-Type": "application/json" },
         })

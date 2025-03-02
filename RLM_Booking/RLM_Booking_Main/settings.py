@@ -58,9 +58,13 @@ INSTALLED_APPS = [
     'apps.concert_performance.apps.ConcertPerformanceConfig',
     'apps.event_management.apps.EventManagementConfig',
     'apps.marketing_tools.apps.MarketingToolsConfig',
+
+    # Third Party Apps
+    "corsheaders",
 ]
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -68,6 +72,14 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
+
+# Allow requests from frontend
+CORS_ALLOW_CREDENTIALS = True  # Allow cookies/auth headers
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",  # Add your frontend URL
+    "http://127.0.0.1:3000",
+    "https://your-production-frontend.com"  # Add production if needed
 ]
 
 ROOT_URLCONF = 'RLM_Booking_Main.urls'

@@ -20,7 +20,9 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('apps.base_urls')),
-    path('artist_recommendation/', include('apps.artist_recommendation.urls')),  # Set root URL to artist_recommendation
-    path('event_management/', include('apps.event_management.urls'))
+
+    # Django only serves backend hence the "api/" starter route
+    path('api/', include('apps.base_urls')),  
+    path('api/artist-recommendation/', include('apps.artist_recommendation.urls')),
+    path('api/event-management/', include('apps.event_management.urls')),
 ]

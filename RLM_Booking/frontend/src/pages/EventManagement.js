@@ -10,7 +10,7 @@ import {
     Tab,
     TextField,
 } from "@mui/material";
-import EventCalendar from "../components/EventCalendar";
+import EventCalendar from "../components/event_management/EventCalendar";
 
 function EventManagement() {
     const [activeTab, setActiveTab] = useState(0);

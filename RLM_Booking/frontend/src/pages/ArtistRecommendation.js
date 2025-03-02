@@ -1,46 +1,58 @@
-import React, { useState } from "react";
+import React from "react";
 import { Grid, Box, Typography, Container } from "@mui/material";
-import SearchForm from "../components/SearchForm";
-import MapSection from "../components/MapSection";
-import ArtistResults from "../components/ArtistResults";
-import EventResults from "../components/EventResults";
+import SearchForm from "../components/artist_recommendation/SearchForm";
+import MapSection from "../components/artist_recommendation/MapSection";
+import ArtistResults from "../components/artist_recommendation/ArtistResults";
+import EventResults from "../components/event_management/EventResults";
+import { useArtistContext } from "../context/ArtistContext";
+import BASE_URL from "../config";
 
 function ArtistRecommendation() {
-    const [artists, setArtists] = useState([]);
-    const [events, setEvents] = useState([]);
-    const [selectedArtist, setSelectedArtist] = useState(null);
-    const [noEvents, setNoEvents] = useState(false); // Track if there are no events
-    const REACT_DEBUG_AR_BASE_URL = process.env.REACT_APP_API_BASE_URL_AR || ""
-    const REACT_DEBUG_EM_BASE_URL = process.env.REACT_APP_API_BASE_URL_EM || ""
+    // Get state and dispatch from context
+    const { state, dispatch } = useArtistContext();
+    const { artists, events, selectedArtist, noEvents, searchParams } = state;
 
+    // Fetch events when "View Events" is clicked
     const handleArtistSelect = async (artistName, artistPopularity) => {
-        setSelectedArtist(artistName);
+        if (!artistName) {
+            console.error("Artist name is missing.");
+            return;
+        }
+    
+        if (!searchParams) {
+            console.error("searchParams is undefined.");
+            return;
+        }
+    
         try {
-            const eventResponse = await fetch(
-                `${REACT_DEBUG_EM_BASE_URL}/api/get-events/?name=${encodeURIComponent(artistName)}&popularity=${artistPopularity}&country=US&city=Boston`, {mode: 'no-cors'}
+            dispatch({ type: "SELECT_ARTIST", payload: artistName }); // Update selected artist
+    
+            const response = await fetch(
+                `${BASE_URL}/api/artist-recommendation/get-events/?name=${encodeURIComponent(artistName)}&popularity=${artistPopularity}&country=${encodeURIComponent(searchParams?.country || "US")}&city=${encodeURIComponent(searchParams?.city || "")}`
             );
-            const eventData = await eventResponse.json();
-
-            // Filter events to ensure only events for the selected artist are shown
-            const filteredEvents = eventData.events.filter(
-                (event) => event.name.toLowerCase() === artistName.toLowerCase()
-            );
-
-            setEvents(filteredEvents);
-            setNoEvents(filteredEvents.length === 0); // If no events, set flag to true
+    
+            const eventData = await response.json();
+    
+            if (!eventData || !Array.isArray(eventData.events)) {
+                dispatch({ type: "SET_EVENTS", payload: [] });  // Clear events
+                dispatch({ type: "SET_NO_EVENTS", payload: true }); // Set no events flag
+                return;
+            }
+    
+            dispatch({ type: "SET_EVENTS", payload: eventData.events });
+            dispatch({ type: "SET_NO_EVENTS", payload: false });
         } catch (error) {
             console.error("Error fetching events:", error);
-            setNoEvents(true); // Ensure "No events found" displays on error
+            dispatch({ type: "SET_NO_EVENTS", payload: true });
         }
-    };
+    };       
 
+    // Handle adding events to the calendar
     const handleAddToCalendar = async (event) => {
         try {
-            const response = await fetch("/event_management/api/save-event/", {
+            const response = await fetch("/api/event_management/save-event", {
                 method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
+                headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(event),
             });
 
@@ -65,7 +77,8 @@ function ArtistRecommendation() {
                 <Typography variant="h6" textAlign="center" sx={{ marginBottom: 3 }}>
                     Find the perfect artist for your next event.
                 </Typography>
-                <SearchForm onSearchResults={setArtists} />
+                
+                <SearchForm />
 
                 {/* Artist Results Grid (Above the Map) */}
                 {artists.length > 0 && (
@@ -81,29 +94,14 @@ function ArtistRecommendation() {
                     </Grid>
                     {events.length > 0 ? (
                         <Grid item xs={12} md={6} mt={2}>
-                            <Box
-                                sx={{
-                                    border: "2px solid red",
-                                    borderRadius: "8px",
-                                    padding: "16px",
-                                    backgroundColor: "#1f1f1f",
-                                }}
-                            >
+                            <Box sx={{ border: "2px solid red", borderRadius: "8px", padding: "16px", backgroundColor: "#1f1f1f" }}>
                                 <EventResults events={events} onAddToCalendar={handleAddToCalendar} />
                             </Box>
                         </Grid>
                     ) : (
                         noEvents && (
                             <Grid item xs={12} md={6} mt={2}>
-                                <Box
-                                    sx={{
-                                        border: "2px solid red",
-                                        borderRadius: "8px",
-                                        padding: "16px",
-                                        backgroundColor: "#1f1f1f",
-                                        textAlign: "center",
-                                    }}
-                                >
+                                <Box sx={{ border: "2px solid red", borderRadius: "8px", padding: "16px", backgroundColor: "#1f1f1f", textAlign: "center" }}>
                                     <Typography variant="h6" color="white">
                                         No events found
                                     </Typography>
