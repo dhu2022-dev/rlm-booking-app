@@ -164,7 +164,7 @@ def main():
         base_url="https://api.census.gov/data/2020/acs/acs5",
         auth_type="APIKey",
         credentials={
-            "api_key": census_api_key,
+            "apikey": census_api_key,
             "key_param_name": "key"  # Census-specific parameter name
         }
     )

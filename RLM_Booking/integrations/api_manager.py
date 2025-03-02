@@ -37,10 +37,10 @@ class APIManager:
         elif self.auth_type == 'Basic' and 'username' in self.credentials and 'password' in self.credentials:
             auth_str = f"{self.credentials['username']}:{self.credentials['password']}"
             self.headers = {'Authorization': f"Basic {base64.b64encode(auth_str.encode()).decode()}"}
-        elif self.auth_type == 'APIKey' and 'api_key' in self.credentials:
+        elif self.auth_type == 'APIKey' and 'apikey' in self.credentials:
             # Use a default key parameter name or a custom one if provided
             key_param_name = self.credentials.get('key_param_name', 'apikey')  # Default to 'apikey'
-            self.params[key_param_name] = self.credentials['api_key']
+            self.params[key_param_name] = self.credentials['apikey']
         else:
             logger.error("Unsupported authentication type or missing credentials.")
 
@@ -68,7 +68,44 @@ class APIManager:
             logger.error(f"Failed to retrieve OAuth token: {e}")
             return ''
 
-    def make_request(self, endpoint: str, method: str = 'GET', params: Optional[Dict[str, Any]] = {}, raw_format: bool = False) -> Dict[str, Any]:
+    def make_request(self, endpoint: str, method: str = 'GET', params: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
+        """
+        Standardized method to make API requests, restored to its original form.
+
+        Args:
+            endpoint (str): API endpoint (e.g., "attractions" for Ticketmaster).
+            method (str): HTTP method (default: 'GET').
+            params (Optional[Dict[str, Any]]): Query parameters.
+
+        Returns:
+            Dict[str, Any]: JSON response from the API.
+        """
+        params = params or {}  # Ensure params is a dictionary
+        params = {**self.params, **params}  # Merge default params without modifying in place
+
+        # Ensure proper URL formatting (remove double slashes)
+        url = f"{self.base_url.rstrip('/')}/{endpoint.lstrip('/')}"
+
+        logger.debug(f"Making {method} request to {url}")
+        logger.debug(f"Request Headers: {self.headers}")
+        logger.debug(f"Request Params: {params}")
+
+        try:
+            response = requests.request(
+                method,
+                url,
+                headers=self.headers,
+                params=params if method == 'GET' else None,
+                json=params if method != 'GET' else None,
+            )
+            response.raise_for_status()
+            return response.json()
+        except requests.RequestException as e:
+            logger.error(f"Request failed: {e}")
+            return {}
+
+    # gimmick version of make request for census api only; TODO: merge with make_request
+    def make_census_request(self, endpoint: str, method: str = 'GET', params: Optional[Dict[str, Any]] = {}, raw_format: bool = False) -> Dict[str, Any]:
         """
         Makes a request to the API with manual encoding toggle.
         """

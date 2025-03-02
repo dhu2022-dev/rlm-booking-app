@@ -293,3 +293,87 @@
 2025-03-02 01:54:50,463 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:169] - INFO - Fetching details for event with ID: None
 2025-03-02 01:54:50,463 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:169] - INFO - Fetching details for event with ID: None
 2025-03-02 01:54:50,463 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:169] - INFO - Fetching details for event with ID: None
+2025-03-02 02:09:14,182 - integrations.api_manager - [api_manager.py:45] - ERROR - Unsupported authentication type or missing credentials.
+2025-03-02 02:09:14,184 - integrations.api_manager - [api_manager.py:45] - ERROR - Unsupported authentication type or missing credentials.
+2025-03-02 02:09:28,278 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:120] - INFO - Fetching events from Ticketmaster API
+2025-03-02 02:09:28,279 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:55] - INFO - Fetching ID for artist 'Drake'
+2025-03-02 02:09:28,451 - integrations.api_manager - [api_manager.py:105] - ERROR - Request failed: 401 Client Error: Unauthorized for url: https://app.ticketmaster.com/discovery/v2/attractions?keyword=Drake
+2025-03-02 02:09:28,452 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:77] - WARNING - No artist found for name: Drake
+2025-03-02 02:09:28,571 - integrations.api_manager - [api_manager.py:105] - ERROR - Request failed: 401 Client Error: Unauthorized for url: https://app.ticketmaster.com/discovery/v2/events
+2025-03-02 02:09:28,572 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:152] - INFO - No events found in the API response.
+2025-03-02 02:09:35,808 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:120] - INFO - Fetching events from Ticketmaster API
+2025-03-02 02:09:35,808 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:55] - INFO - Fetching ID for artist 'Drake'
+2025-03-02 02:09:35,947 - integrations.api_manager - [api_manager.py:105] - ERROR - Request failed: 401 Client Error: Unauthorized for url: https://app.ticketmaster.com/discovery/v2/attractions?keyword=Drake
+2025-03-02 02:09:35,947 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:77] - WARNING - No artist found for name: Drake
+2025-03-02 02:09:36,051 - integrations.api_manager - [api_manager.py:105] - ERROR - Request failed: 401 Client Error: Unauthorized for url: https://app.ticketmaster.com/discovery/v2/events
+2025-03-02 02:09:36,051 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:152] - INFO - No events found in the API response.
+2025-03-02 02:10:01,150 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:120] - INFO - Fetching events from Ticketmaster API
+2025-03-02 02:10:01,150 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:55] - INFO - Fetching ID for artist 'Drake'
+2025-03-02 02:10:01,284 - integrations.api_manager - [api_manager.py:105] - ERROR - Request failed: 401 Client Error: Unauthorized for url: https://app.ticketmaster.com/discovery/v2/attractions?keyword=Drake
+2025-03-02 02:10:01,284 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:77] - WARNING - No artist found for name: Drake
+2025-03-02 02:10:01,399 - integrations.api_manager - [api_manager.py:105] - ERROR - Request failed: 401 Client Error: Unauthorized for url: https://app.ticketmaster.com/discovery/v2/events
+2025-03-02 02:10:01,400 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:152] - INFO - No events found in the API response.
+2025-03-02 02:10:08,202 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:120] - INFO - Fetching events from Ticketmaster API
+2025-03-02 02:10:08,202 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:55] - INFO - Fetching ID for artist 'Kendrick Lamar'
+2025-03-02 02:10:08,318 - integrations.api_manager - [api_manager.py:105] - ERROR - Request failed: 401 Client Error: Unauthorized for url: https://app.ticketmaster.com/discovery/v2/attractions?keyword=Kendrick+Lamar
+2025-03-02 02:10:08,319 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:77] - WARNING - No artist found for name: Kendrick Lamar
+2025-03-02 02:10:08,425 - integrations.api_manager - [api_manager.py:105] - ERROR - Request failed: 401 Client Error: Unauthorized for url: https://app.ticketmaster.com/discovery/v2/events
+2025-03-02 02:10:08,426 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:152] - INFO - No events found in the API response.
+2025-03-02 02:10:55,293 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:120] - INFO - Fetching events from Ticketmaster API
+2025-03-02 02:10:55,293 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:55] - INFO - Fetching ID for artist 'Drake'
+2025-03-02 02:10:55,507 - integrations.api_manager - [api_manager.py:105] - ERROR - Request failed: 401 Client Error: Unauthorized for url: https://app.ticketmaster.com/discovery/v2/attractions?keyword=Drake
+2025-03-02 02:10:55,507 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:77] - WARNING - No artist found for name: Drake
+2025-03-02 02:10:55,632 - integrations.api_manager - [api_manager.py:105] - ERROR - Request failed: 401 Client Error: Unauthorized for url: https://app.ticketmaster.com/discovery/v2/events
+2025-03-02 02:10:55,633 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:152] - INFO - No events found in the API response.
+2025-03-02 02:17:39,135 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:120] - INFO - Fetching events from Ticketmaster API
+2025-03-02 02:17:39,135 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:55] - INFO - Fetching ID for artist 'Drake'
+2025-03-02 02:17:39,260 - integrations.api_manager - [api_manager.py:105] - ERROR - Request failed: 401 Client Error: Unauthorized for url: https://app.ticketmaster.com/discovery/v2/attractions?keyword=Drake
+2025-03-02 02:17:39,260 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:77] - WARNING - No artist found for name: Drake
+2025-03-02 02:17:39,373 - integrations.api_manager - [api_manager.py:105] - ERROR - Request failed: 401 Client Error: Unauthorized for url: https://app.ticketmaster.com/discovery/v2/events
+2025-03-02 02:17:39,374 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:152] - INFO - No events found in the API response.
+2025-03-02 04:33:32,194 - integrations.api_manager - [api_manager.py:45] - ERROR - Unsupported authentication type or missing credentials.
+2025-03-02 04:33:32,195 - integrations.api_manager - [api_manager.py:45] - ERROR - Unsupported authentication type or missing credentials.
+2025-03-02 04:35:26,915 - integrations.api_manager - [api_manager.py:45] - ERROR - Unsupported authentication type or missing credentials.
+2025-03-02 04:35:26,915 - integrations.api_manager - [api_manager.py:45] - ERROR - Unsupported authentication type or missing credentials.
+2025-03-02 04:35:39,576 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:120] - INFO - Fetching events from Ticketmaster API
+2025-03-02 04:35:39,579 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:55] - INFO - Fetching ID for artist 'Drake'
+2025-03-02 04:35:39,804 - integrations.api_manager - [api_manager.py:101] - ERROR - Request failed: 401 Client Error: Unauthorized for url: https://app.ticketmaster.com/discovery/v2//attractions?keyword=Drake
+2025-03-02 04:35:39,805 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:77] - WARNING - No artist found for name: Drake
+2025-03-02 04:35:39,897 - integrations.api_manager - [api_manager.py:101] - ERROR - Request failed: 401 Client Error: Unauthorized for url: https://app.ticketmaster.com/discovery/v2//events
+2025-03-02 04:35:39,899 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:152] - INFO - No events found in the API response.
+2025-03-02 04:42:29,582 - integrations.api_manager - [api_manager.py:45] - ERROR - Unsupported authentication type or missing credentials.
+2025-03-02 04:42:29,583 - integrations.api_manager - [api_manager.py:45] - ERROR - Unsupported authentication type or missing credentials.
+2025-03-02 04:42:41,499 - integrations.api_manager - [api_manager.py:45] - ERROR - Unsupported authentication type or missing credentials.
+2025-03-02 04:42:41,499 - integrations.api_manager - [api_manager.py:45] - ERROR - Unsupported authentication type or missing credentials.
+2025-03-02 04:43:00,917 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:120] - INFO - Fetching events from Ticketmaster API
+2025-03-02 04:43:00,917 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:55] - INFO - Fetching ID for artist 'Drake'
+2025-03-02 04:43:01,043 - integrations.api_manager - [api_manager.py:104] - ERROR - Request failed: 401 Client Error: Unauthorized for url: https://app.ticketmaster.com/discovery/v2/attractions?keyword=Drake
+2025-03-02 04:43:01,044 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:77] - WARNING - No artist found for name: Drake
+2025-03-02 04:43:01,123 - integrations.api_manager - [api_manager.py:104] - ERROR - Request failed: 401 Client Error: Unauthorized for url: https://app.ticketmaster.com/discovery/v2/events
+2025-03-02 04:43:01,123 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:152] - INFO - No events found in the API response.
+2025-03-02 04:48:58,839 - integrations.api_manager - [api_manager.py:45] - ERROR - Unsupported authentication type or missing credentials.
+2025-03-02 04:48:58,840 - integrations.api_manager - [api_manager.py:45] - ERROR - Unsupported authentication type or missing credentials.
+2025-03-02 04:49:42,516 - integrations.api_manager - [api_manager.py:45] - ERROR - Unsupported authentication type or missing credentials.
+2025-03-02 04:49:42,516 - integrations.api_manager - [api_manager.py:45] - ERROR - Unsupported authentication type or missing credentials.
+2025-03-02 04:49:56,147 - integrations.api_manager - [api_manager.py:45] - ERROR - Unsupported authentication type or missing credentials.
+2025-03-02 04:49:56,148 - integrations.api_manager - [api_manager.py:45] - ERROR - Unsupported authentication type or missing credentials.
+2025-03-02 04:50:18,978 - integrations.api_manager - [api_manager.py:45] - ERROR - Unsupported authentication type or missing credentials.
+2025-03-02 04:50:18,978 - integrations.api_manager - [api_manager.py:45] - ERROR - Unsupported authentication type or missing credentials.
+2025-03-02 04:50:31,821 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:120] - INFO - Fetching events from Ticketmaster API
+2025-03-02 04:50:31,821 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:55] - INFO - Fetching ID for artist 'Drake'
+2025-03-02 04:50:32,119 - integrations.api_manager - [api_manager.py:104] - ERROR - Request failed: 401 Client Error: Unauthorized for url: https://app.ticketmaster.com/discovery/v2/attractions?keyword=Drake
+2025-03-02 04:50:32,120 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:77] - WARNING - No artist found for name: Drake
+2025-03-02 04:50:32,237 - integrations.api_manager - [api_manager.py:104] - ERROR - Request failed: 401 Client Error: Unauthorized for url: https://app.ticketmaster.com/discovery/v2/events
+2025-03-02 04:50:32,242 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:152] - INFO - No events found in the API response.
+2025-03-02 04:51:13,957 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:120] - INFO - Fetching events from Ticketmaster API
+2025-03-02 04:51:13,958 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:55] - INFO - Fetching ID for artist 'Drake'
+2025-03-02 04:51:14,291 - root - [ticketmaster_api_manager.py:85] - INFO - Found artist ID: K8vZ917Gp47 for Drake
+2025-03-02 04:51:14,498 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:169] - INFO - Fetching details for event with ID: None
+2025-03-02 04:51:14,498 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:169] - INFO - Fetching details for event with ID: None
+2025-03-02 04:51:14,498 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:169] - INFO - Fetching details for event with ID: None
+2025-03-02 04:51:14,498 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:169] - INFO - Fetching details for event with ID: None
+2025-03-02 04:51:14,498 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:169] - INFO - Fetching details for event with ID: None
+2025-03-02 04:51:14,498 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:169] - INFO - Fetching details for event with ID: None
+2025-03-02 04:51:14,498 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:169] - INFO - Fetching details for event with ID: None
+2025-03-02 04:51:14,498 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:169] - INFO - Fetching details for event with ID: None
+2025-03-02 04:51:14,498 - integrations.ticketmaster_api_manager - [ticketmaster_api_manager.py:169] - INFO - Fetching details for event with ID: None
